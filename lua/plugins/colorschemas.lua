@@ -9,7 +9,7 @@ return {
     "olimorris/onedarkpro.nvim",
     priority = 1000,
     lazy = false,
-    enabled = true,
+    enabled = false,
     config = function()
       vim.cmd("colorscheme onedark")
     end,
@@ -18,7 +18,7 @@ return {
     "navarasu/onedark.nvim",
     priority = 1000,
     lazy = false,
-    enabled = false,
+    enabled = true,
     config = function()
       vim.cmd.colorscheme("onedark")
     end,
