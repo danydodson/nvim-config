@@ -1,0 +1,7 @@
+.vscode
+.DS_Store
+.netrwhist
+.repro
+*.log
+*.js
+*.ts
