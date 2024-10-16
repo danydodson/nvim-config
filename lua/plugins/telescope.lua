@@ -1,8 +1,4 @@
 -- lua/plugins/telescope.lua
--- https://github.com/nvim-telescope/telescope.nvim
--- https://github.com/nvim-telescope/telescope-ui-select.nvim
-
--- return {}
 
 return {
 	{
@@ -13,10 +9,16 @@ return {
 		tag = "0.1.5",
 		dependencies = { "nvim-lua/plenary.nvim" },
 		config = function()
+			local actions = require("telescope.actions")
 			require("telescope").setup({
 				extensions = {
 					["ui-select"] = {
 						require("telescope.themes").get_dropdown({}),
+					},
+					mappings = {
+						i = {
+							["<esc>"] = actions.close,
+						},
 					},
 				},
 			})

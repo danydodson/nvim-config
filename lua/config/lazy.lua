@@ -17,16 +17,15 @@ vim.opt.rtp:prepend(lazypath)
 
 require("lazy").setup({
 	spec = {
-		{ import = "plugins" },
+		{
+			import = "plugins",
+		},
 	},
 	change_detection = {
 		notify = false,
 	},
 	defaults = {
 		lazy = false,
-	},
-	ui = {
-		wrap = false,
 	},
 	checker = {
 		enabled = false,

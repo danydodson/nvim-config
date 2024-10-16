@@ -1,7 +1,4 @@
 -- lua/plugins/lualine.lua
--- https://github.com/nvim-lualine/lualine.nvim
-
--- return {}
 
 return {
 	{

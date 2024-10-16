@@ -1,21 +1,54 @@
 -- lua/plugins/none-ls.lua
--- https://github.com/nvimtools/none-ls.nvim
-
--- return {}
 
 return {
 	"nvimtools/none-ls.nvim",
 	dependencies = {
-		"nvimtools/none-ls-extras.nvim",
+		"gbprod/none-ls-shellcheck.nvim", -- shellcheck
+		"nvimtools/none-ls-extras.nvim", -- eslint_d
 	},
 	config = function()
 		local null_ls = require("null-ls")
 		null_ls.setup({
 			sources = {
 				null_ls.builtins.formatting.stylua,
-				null_ls.builtins.formatting.prettier,
+
+				null_ls.builtins.formatting.shfmt,
+        require("none-ls-shellcheck.diagnostics"),
+        require("none-ls-shellcheck.code_actions"),
+
+				-- require("none-ls.diagnostics.eslint_d"),
+        -- require("none-ls.code_actions.eslint_d"),
+
+				null_ls.builtins.diagnostics.staticcheck,
+        null_ls.builtins.formatting.asmfmt,
+
+				null_ls.builtins.diagnostics.stylelint,
+
+				-- null_ls.builtins.formatting.prettier,
+				null_ls.builtins.formatting.prettierd.with({
+          filetypes = {
+            "javascript",
+            "javascriptreact",
+            "typescript",
+            "typescriptreact",
+            "vue",
+            "css",
+            "scss",
+            "less",
+            "html",
+            "json",
+            "jsonc",
+            "yaml",
+            "markdown",
+            "markdown.mdx",
+            "graphql",
+            "handlebars",
+          },
+          extra_filetypes = { "toml", "svelte" },
+          extra_args = { "--tabWidth", "2", "--semi", "true", "--print-width", "120", "--prose-wrap", "never" },
+        }),
 			},
 		})
-		vim.keymap.set("n", "<leader>gf", vim.lsp.buf.format, {})
+		vim.keymap.set("n", "<leader>ff", vim.lsp.buf.format, {})
 	end,
 }

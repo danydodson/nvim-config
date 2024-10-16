@@ -1,59 +1,88 @@
 -- lua/plugins/lsp-config.lua
--- https://github.com/williamboman/mason.nvim
--- https://github.com/williamboman/mason-lspconfig.nvim
--- https://github.com/neovim/nvim-lspconfig
-
--- return {}
 
 return {
-	{
-		"williamboman/mason.nvim",
-		lazy = false,
-		config = function()
-			require("mason").setup()
-		end,
-	},
-	{
-		"williamboman/mason-lspconfig.nvim",
-		lazy = false,
-		config = function()
-			require("mason-lspconfig").setup({
-				ensure_installed = {
-					"cssls",
-					"eslint_d",
-					"gopls",
-					"html",
-					"lua_ls",
-					"rust_analyzer",
-					"ts_ls",
-				},
-			})
-		end,
-		opts = {
-			auto_install = true,
-		},
-	},
-	{
-		"neovim/nvim-lspconfig",
-		lazy = false,
-		config = function()
-			-- local capabilities = require("cmp_nvim_lsp")
+  {
+    "williamboman/mason.nvim",
+    lazy = false,
+    config = function()
+      require("mason").setup()
+    end,
+  },
+  {
+    "williamboman/mason-lspconfig.nvim",
+    lazy = false,
+    config = function()
+      require("mason-lspconfig").setup({
+        ensure_installed = {
+          "asmfmt",
+          "bashls",
+          "cssls",
+          "eslint_d",
+          "gopls",
+          "html",
+          "lua_ls",
+          "markdown",
+          "prettierd",
+          "rust_analyzer",
+          "stylelint",
+          "tailwindcss",
+          "ts_ls",
+          "yamlls",
+        },
+      })
+    end,
+    opts = {
+      auto_install = true,
+    },
+  },
+  {
+    "neovim/nvim-lspconfig",
+    lazy = false,
+    config = function()
 
-			local lspconfig = require("lspconfig")
-			lspconfig.ts_ls.setup({
-				-- capabilities = capabilities,
-			})
-			lspconfig.html.setup({
-				-- capabilities = capabilities
-			})
-			lspconfig.lua_ls.setup({
-				-- capabilities = capabilities
-			})
+      local capabilities = require("cmp_nvim_lsp").default_capabilities()
 
-			vim.keymap.set("n", "K", vim.lsp.buf.hover, {})
-			vim.keymap.set("n", "<leader>gd", vim.lsp.buf.definition, {})
-			vim.keymap.set("n", "<leader>gr", vim.lsp.buf.references, {})
-			vim.keymap.set("n", "<leader>ca", vim.lsp.buf.code_action, {})
-		end,
-	},
+      local lspconfig = require("lspconfig")
+      lspconfig.ts_ls.setup({
+        capabilities = capabilities,
+      })
+
+      lspconfig.html.setup({
+        capabilities = capabilities,
+      })
+
+      lspconfig.lua_ls.setup({
+        capabilities = capabilities,
+      })
+
+      lspconfig.tailwindcss.setup({
+        capabilities = capabilities,
+      })
+
+      local capabilities_css = vim.lsp.protocol.make_client_capabilities()
+      capabilities_css.textDocument.completion.completionItem.snippetSupport = true
+      lspconfig.cssls.setup({
+        capabilities = capabilities_css,
+      })
+
+      lspconfig.marksman.setup({
+        capabilities = capabilities,
+      })
+
+      lspconfig.yamlls.setup({
+        capabilities = capabilities,
+      })
+
+      lspconfig.bashls.setup({
+        capabilities = capabilities,
+        cmd = { "bash-language-server", "start" },
+        filetypes = { "sh", "bash", "zsh" },
+      })
+
+      vim.keymap.set("n", "K", vim.lsp.buf.hover, {})
+      vim.keymap.set("n", "<leader>gd", vim.lsp.buf.definition, {})
+      vim.keymap.set("n", "<leader>gr", vim.lsp.buf.references, {})
+      vim.keymap.set("n", "<leader>ca", vim.lsp.buf.code_action, {})
+    end,
+  },
 }

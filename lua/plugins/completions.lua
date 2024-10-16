@@ -1,9 +1,4 @@
 -- lua/plugins/colorscheme.lua
--- https://github.com/hrsh7th/cmp-nvim-lsp
--- https://github.com/hrsh7th/nvim-cmp
--- https://github.com/L3MON4D3/LuaSnip
-
--- return {}
 
 return {
 	{
@@ -11,6 +6,8 @@ return {
 	},
 	{
 		"L3MON4D3/LuaSnip",
+		version = "v2.*",
+		build = "make install_jsregexp",
 		dependencies = {
 			"saadparwaiz1/cmp_luasnip",
 			"rafamadriz/friendly-snippets",
@@ -40,7 +37,7 @@ return {
 				}),
 				sources = cmp.config.sources({
 					{ name = "nvim_lsp" },
-					{ name = "luasnip" }, -- For luasnip users.
+					{ name = "luasnip" },
 				}, {
 					{ name = "buffer" },
 				}),

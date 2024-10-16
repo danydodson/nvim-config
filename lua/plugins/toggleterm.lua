@@ -1,7 +1,4 @@
 -- lua/plugins/toggleterm.lua
--- https://github.com/akinsho/toggleterm.nvim
-
--- return {}
 
 return {
 	{

@@ -1,7 +1,4 @@
 -- lua/plugins/treesitter.lua
--- https://github.com/nvim-treesitter/nvim-treesitter
-
--- return {}
 
 return {
 	{
@@ -16,6 +13,7 @@ return {
 				ensure_installed = {
 					"bash",
 					"c",
+					"diff",
 					"css",
 					"dockerfile",
 					"go",
@@ -24,14 +22,20 @@ return {
 					"html",
 					"http",
 					"javascript",
+					"jsdoc",
 					"json",
 					"jsonc",
 					"lua",
+					"luap",
 					"luadoc",
 					"markdown",
+          "markdown_inline",
+          "printf",
+          "python",
 					"nginx",
 					"ocaml",
 					"query",
+					"regex",
 					"rust",
 					"sql",
 					"toml",

@@ -1,7 +1,4 @@
 -- lua/plugins/neo-tree.lua
--- https://github.com/nvim-neo-tree/neo-tree.nvim
-
--- return {}
 
 return {
 	"nvim-neo-tree/neo-tree.nvim",
@@ -13,22 +10,51 @@ return {
 		"3rd/image.nvim",
 	},
 	config = function()
-		vim.keymap.set("n", "<C-e>", ":Neotree filesystem toggle<CR>", {})
-		vim.keymap.set("n", "<leader>bf", ":Neotree buffers reveal float<CR>", {})
 		require("neo-tree").setup({
 			close_if_last_window = true,
-			window = {
-				width = 35,
+			popup_border_style = "rounded",
+			open_files_do_not_replace_types = { "terminal", "trouble", "qf" },
+			default_component_configs = {
+				indent = {
+					padding = 1,
+				},
 			},
 			filesystem = {
+				use_libuv_file_watcher = false,
+				follow_current_file = {
+					enabled = false,
+					leave_dirs_open = true,
+				},
 				filtered_items = {
-					visible = true,
+					visible = false,
 					hide_dotfiles = false,
-					never_show = {
-						".git",
+					never_show = { ".git" },
+				},
+			},
+			window = {
+				width = 35,
+				mappings = {
+					["<space>"] = "none",
+					["<esc>"] = "cancel",
+					["."] = "set_root",
+					["s"] = "open_vsplit",
+					["t"] = "open_tabnew",
+					["i"] = "show_file_details",
+					["P"] = { "toggle_preview", config = { use_float = true, use_image_nvim = true } },
+					["O"] = {
+						function(state)
+							require("lazy.util").open(state.tree:get_node().path, { system = true })
+						end,
 					},
 				},
 			},
+			buffers = {
+				follow_current_file = {
+					enabled = true,
+				},
+			},
 		})
+		vim.keymap.set("n", "<leader>e", ":Neotree filesystem toggle<CR>", { noremap = true, silent = true })
+		vim.keymap.set("n", "<leader>bf", ":Neotree buffers reveal float<CR>", { noremap = true, silent = true })
 	end,
 }
