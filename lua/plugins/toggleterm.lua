@@ -4,11 +4,17 @@
 -- return {}
 
 return {
-  {
-    "akinsho/toggleterm.nvim",
-    version = "*",
-    opts = {
-      --[[ things you want to change go here]]
-    },
-  },
+	{
+		"akinsho/toggleterm.nvim",
+		version = "*",
+		opts = {
+			size = 20,
+			open_mapping = [[<c-\>]],
+			direction = "float",
+			float_opts = {
+				border = "curved",
+				winblend = 3,
+			},
+		},
+	},
 }
