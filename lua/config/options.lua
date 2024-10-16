@@ -16,7 +16,7 @@ vim.opt.softtabstop = 2 -- Insert two spaces instead of a tab character.
 vim.opt.expandtab = true -- Enable the use of space in tab.
 vim.opt.shiftwidth = 2 -- Number of spaces to use for each step of (auto)indentation.
 vim.opt.wrap = false -- Prevent line wraping.
-vim.opt.mouse = 'a' -- Enable mouse support in (a)ll modes.
+vim.opt.mouse = "a" -- Enable mouse support in (a)ll modes.
 vim.opt.backup = false --
 vim.opt.swapfile = false --
 vim.opt.undofile = true -- Enable persistent undo between session and reboots.
@@ -27,3 +27,5 @@ vim.opt.sidescrolloff = 8 -- Same but for side scrolling.
 vim.g.loaded_perl_provider = 0 -- Select or disable perl provider.
 vim.g.loaded_ruby_provider = 0 -- Select or disable ruby provider.
 vim.g.python3_host_prog = os.getenv("HOME") .. "/.config/pyenv/versions/3.10.0/bin/python3" -- Select or disable python3 provider.
+
+vim.o.shortmess = vim.o.shortmess .. "I" -- Hide nvim intro message.
