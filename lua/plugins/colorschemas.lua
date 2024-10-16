@@ -5,7 +5,7 @@ return {
     "olimorris/onedarkpro.nvim",
     priority = 1000,
     lazy = false,
-    enabled = false,
+    enabled = true,
     config = function()
       vim.cmd("colorscheme onedark")
     end,
@@ -14,11 +14,12 @@ return {
     "rebelot/kanagawa.nvim",
     priority = 1000,
     lazy = false,
-    enabled = true,
+    enabled = false,
     config = function()
       vim.cmd.colorscheme("kanagawa")
     end,
     opts = {
+      compile = false,
       transparent = true,
       overrides = function(colors)
         local theme = colors.theme

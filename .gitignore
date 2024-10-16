@@ -2,6 +2,5 @@
 .DS_Store
 .netrwhist
 .repro
+.imgs
 *.log
-*.js
-*.ts

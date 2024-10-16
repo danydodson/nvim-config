@@ -14,17 +14,13 @@ return {
     config = function()
       require("mason-lspconfig").setup({
         ensure_installed = {
-          "asmfmt",
           "bashls",
           "cssls",
-          "eslint_d",
           "gopls",
           "html",
           "lua_ls",
-          "markdown",
-          "prettierd",
+          "marksman",
           "rust_analyzer",
-          "stylelint",
           "tailwindcss",
           "ts_ls",
           "yamlls",
@@ -39,7 +35,6 @@ return {
     "neovim/nvim-lspconfig",
     lazy = false,
     config = function()
-
       local capabilities = require("cmp_nvim_lsp").default_capabilities()
 
       local lspconfig = require("lspconfig")
