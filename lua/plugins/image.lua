@@ -25,6 +25,7 @@ return {
         "*.jpeg",
         "*.gif",
         "*.webp",
+        "*.svg",
         "*.avif",
       },
     })

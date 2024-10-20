@@ -11,33 +11,36 @@ return {
   },
   config = function()
     require("neo-tree").setup({
-      -- source_selector = {
-      --  winbar = false,
-      -- statusline = false,
-      -- },
       close_if_last_window = true,
       popup_border_style = "rounded",
-      open_files_do_not_replace_types = { "terminal", "trouble", "qf" },
+      open_files_do_not_replace_types = {
+        "terminal",
+        "trouble",
+        "qf",
+      },
       default_component_configs = {
         indent = {
-          padding = 1,
+          padding = 2,
         },
       },
       filesystem = {
-        use_libuv_file_watcher = false,
+        use_libuv_file_watcher = true,
         follow_current_file = {
-          enabled = false,
+          enabled = true,
           leave_dirs_open = true,
         },
         filtered_items = {
           visible = true,
           hide_dotfiles = false,
           hide_gitignored = false,
-          never_show = { ".git", ".DS_Store" },
+          never_show = {
+            ".git",
+            ".DS_Store",
+          },
         },
       },
       window = {
-        width = 30,
+        width = 35,
         mappings = {
           ["."] = "set_root",
           ["<esc>"] = "cancel",
@@ -56,6 +59,10 @@ return {
         },
       },
     })
+
+    -- Hide the NeoTree statusline
+    vim.keymap.set("n", "<leader>st", ":NeoTreeCloseAll<CR>", { noremap = true, silent = true })
+
     vim.keymap.set("n", "<leader>e", ":Neotree filesystem toggle<CR>", { noremap = true, silent = true })
     vim.keymap.set("n", "<leader>bf", ":Neotree buffers reveal float<CR>", { noremap = true, silent = true })
   end,
