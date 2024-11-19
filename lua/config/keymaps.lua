@@ -16,11 +16,20 @@ map("v", "<", "<gv")
 map("v", ">", ">gv")
 
 -- commenting in editor
+map('n', '<Leader>v', 'gcc', { remap = true, desc = 'Comment Line' })
+map('x', '<Leader>v', 'gc', { remap = true, desc = 'Comment Selection' })
 map("n", "gcO", "o<esc>Vcx<esc><cmd>normal gcc<cr>fxa<bs>", { desc = "Add Comment Below" })
 map("n", "gco", "O<esc>Vcx<esc><cmd>normal gcc<cr>fxa<bs>", { desc = "Add Comment Above" })
 
+-- new file
+map("n", "<leader>fn", "<cmd>enew<cr>", { desc = "New File" })
+
 -- launch lazy
 map("n", "<leader>l", "<cmd>Lazy<cr>", { desc = "Lazy" })
+
+-- duplicate lines without affecting clipboard selections
+map('n', '<Leader>dd', 'm`""Y""P``', { desc = 'Duplicate line' })
+map('x', '<Leader>dd', '""Y""Pgv', { desc = 'Duplicate selection' })
 
 -- move lines in the editor
 map("n", "<C-k>", "<cmd>m .-2<cr>==", { desc = "Move Up" })

@@ -46,9 +46,9 @@ vim.opt.backup = false
 vim.opt.swapfile = false
 vim.opt.undofile = true
 vim.opt.undolevels = 10000
-vim.opt.undodir = os.getenv("HOME") .. "/.config/vim/undodir"
+vim.opt.undodir = os.getenv("HOME") .. "/.vim/undodir"
 
 vim.g.loaded_perl_provider = 0
 vim.g.loaded_ruby_provider = 0
-vim.g.python3_host_prog = os.getenv("HOME") .. "/.config/pyenv/versions/3.10.0/bin/python3"
+vim.g.python3_host_prog = os.getenv("HOME") .. "/opt/homebrew/bin/python3"
 

@@ -32,6 +32,22 @@ vim.api.nvim_create_autocmd({ "VimResized" }, {
   end,
 })
 
+-- Show cursor line only in active window
+vim.api.nvim_create_autocmd({ 'InsertLeave', 'WinEnter' }, {
+  group = augroup('auto_cursorline_show'),
+  callback = function(event)
+    if vim.bo[event.buf].buftype == '' then
+      vim.opt_local.cursorline = true
+    end
+  end,
+})
+vim.api.nvim_create_autocmd({ 'InsertEnter', 'WinLeave' }, {
+  group = augroup('auto_cursorline_hide'),
+  callback = function()
+    vim.opt_local.cursorline = false
+  end,
+})
+
 -- fix conceallevel for json files
 vim.api.nvim_create_autocmd({ "FileType" }, {
   group = augroup("json_conceal"),

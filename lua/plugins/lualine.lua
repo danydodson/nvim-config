@@ -9,7 +9,7 @@ return {
 
 			require("lualine").setup({
 				options = {
-					globalstatus = false,
+					globalstatus = true,
 					theme = "auto",
 					refresh = {
 						statusline = 200,
