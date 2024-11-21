@@ -19,7 +19,9 @@ require("lazy").setup({
   spec = {
     {
       import = "plugins",
-      cond = (function() return not vim.g.vscode end)
+      cond = function()
+        return not vim.g.vscode
+      end,
     },
   },
   change_detection = {
@@ -30,5 +32,36 @@ require("lazy").setup({
   },
   checker = {
     enabled = false,
+  },
+  performance = {
+    rtp = {
+      disabled_plugins = {
+        "2html_plugin",
+        "tohtml",
+        "getscript",
+        "getscriptPlugin",
+        "gzip",
+        "logipat",
+        "netrw",
+        "netrwPlugin",
+        "netrwSettings",
+        "netrwFileHandlers",
+        "matchit",
+        "tar",
+        "tarPlugin",
+        "rrhelper",
+        "spellfile_plugin",
+        "vimball",
+        "vimballPlugin",
+        "zip",
+        "zipPlugin",
+        "syntax",
+        "synmenu",
+        "optwin",
+        "compiler",
+        "bugreport",
+        "ftplugin",
+      },
+    },
   },
 })

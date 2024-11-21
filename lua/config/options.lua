@@ -8,6 +8,8 @@ vim.g.bigfile_size = 1024 * 1024 * 1.5
 vim.opt.wrap = false
 vim.opt.relativenumber = true
 vim.opt.cursorline = true
+vim.opt.cursorcolumn = false
+
 vim.opt.numberwidth = 2
 vim.opt.virtualedit = "block"
 vim.opt.termguicolors = true
@@ -23,6 +25,10 @@ vim.opt.showcmd = false
 vim.opt.cmdheight = 0
 vim.opt.signcolumn = "yes:1"
 
+vim.g.autoformat_enabled = false
+vim.g.autopairs_enabled = false
+vim.g.cmp_enabled = false
+
 vim.opt.autoread = true
 vim.opt.splitbelow = true
 vim.opt.splitkeep = "screen"
@@ -37,6 +43,7 @@ vim.opt.smartindent = true
 vim.opt.mouse = "a"
 vim.opt.mousescroll = "ver:1,hor:0"
 vim.opt.guicursor = "n:blinkon200,i-ci-ve:ver25"
+vim.opt.wildignore = "*/.git,*/node_modules,*/venv,*/tmp,*.so,*.swp,*.zip,*.pyc"
 
 vim.opt.conceallevel = 0
 vim.opt.clipboard = "unnamedplus"
@@ -50,5 +57,4 @@ vim.opt.undodir = os.getenv("HOME") .. "/.vim/undodir"
 
 vim.g.loaded_perl_provider = 0
 vim.g.loaded_ruby_provider = 0
-vim.g.python3_host_prog = os.getenv("HOME") .. "/opt/homebrew/bin/python3"
-
+vim.g.python3_host_prog = vim.fn.exepath("python3")

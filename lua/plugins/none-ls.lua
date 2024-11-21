@@ -4,7 +4,7 @@ return {
   "nvimtools/none-ls.nvim",
   dependencies = {
     "gbprod/none-ls-shellcheck.nvim", -- shellcheck
-    "nvimtools/none-ls-extras.nvim",  -- eslint_d
+    "nvimtools/none-ls-extras.nvim", -- eslint_d
   },
   config = function()
     local null_ls = require("null-ls")
@@ -41,13 +41,17 @@ return {
           },
           extra_filetypes = {
             "toml",
-            "svelte"
+            "svelte",
           },
           extra_args = {
-            "--tabWidth", "2",
-            "--semi", "true",
-            "--print-width", "120",
-            "--prose-wrap", "never",
+            "--tabWidth",
+            "2",
+            "--semi",
+            "true",
+            "--print-width",
+            "120",
+            "--prose-wrap",
+            "never",
           },
         }),
       },

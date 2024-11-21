@@ -2,8 +2,12 @@
 
 local map = vim.keymap.set
 
+-- reload
+map("n", "<Leader>z", require("core.utils").reload_config, { desc = "Reload vim config" })
+
 -- save file
 map({ "i", "x", "n", "s" }, "<C-s>", "<cmd>w<cr><esc>", { desc = "Save File" })
+map("n", "<Leader>w", "<Cmd>write<CR>", { desc = "Save current file" })
 
 -- quit all
 map("n", "<leader>qq", "<cmd>qa<cr>", { desc = "Quit All" })
@@ -15,11 +19,14 @@ map({ "i", "n" }, "<esc>", "<cmd>noh<cr><esc>", { desc = "Escape and Clear hlsea
 map("v", "<", "<gv")
 map("v", ">", ">gv")
 
--- commenting in editor
+-- commenting
 map('n', '<Leader>v', 'gcc', { remap = true, desc = 'Comment Line' })
 map('x', '<Leader>v', 'gc', { remap = true, desc = 'Comment Selection' })
 map("n", "gcO", "o<esc>Vcx<esc><cmd>normal gcc<cr>fxa<bs>", { desc = "Add Comment Below" })
 map("n", "gco", "O<esc>Vcx<esc><cmd>normal gcc<cr>fxa<bs>", { desc = "Add Comment Above" })
+
+-- replace word
+map("n", "<Leader>r", ":%s/<C-r><C-w>/", { desc = "Replace word" })
 
 -- new file
 map("n", "<leader>fn", "<cmd>enew<cr>", { desc = "New File" })
@@ -27,7 +34,7 @@ map("n", "<leader>fn", "<cmd>enew<cr>", { desc = "New File" })
 -- launch lazy
 map("n", "<leader>l", "<cmd>Lazy<cr>", { desc = "Lazy" })
 
--- duplicate lines without affecting clipboard selections
+-- duplicate lines without affecting clipboard
 map('n', '<Leader>dd', 'm`""Y""P``', { desc = 'Duplicate line' })
 map('x', '<Leader>dd', '""Y""Pgv', { desc = 'Duplicate selection' })
 
@@ -42,7 +49,9 @@ map("v", "<C-k>", ":m '<-2<cr>gv=gv", { desc = "Move Up" })
 -- buffer life control
 map("n", "[b", "<cmd>bprevious<cr>", { desc = "Prev Buffer" })
 map("n", "]b", "<cmd>bnext<cr>", { desc = "Next Buffer" })
-map("n", "<leader>bd", "<cmd>:bd<cr>", { desc = "Delete Buffer and Window" })
+map("n", "<Leader>x", "<Cmd>bd<CR>", { desc = "Close current buffer" })
+map("n", "<Leader>xx", "<Cmd>%bd<CR>", { desc = "Close all buffer" })
+map("n", "<Leader>xo", "<Cmd>%bd<Bar>e#<Bar>bd#<CR>", { desc = "Close all buffer but current" })
 
 -- terminal control
 map("t", "<C-/>", "<cmd>close<cr>", { silent = true, desc = "Hide Terminal" })
@@ -63,9 +72,9 @@ map("t", "<C-Right>", "<C-\\><C-N><C-w>l", { silent = true })
 
 -- tabs life control
 map("n", "<leader><tab><tab>", "<cmd>tabnew<cr>", { desc = "New Tab" })
-map("n", "<leader><tab>]", "<cmd>tabnext<cr>", { desc = "Next Tab" })
+map("n", "<leader>]]", "<cmd>tabnext<cr>", { desc = "Next Tab" })
 map("n", "<leader><tab>d", "<cmd>tabclose<cr>", { desc = "Close Tab" })
-map("n", "<leader><tab>[", "<cmd>tabprevious<cr>", { desc = "Previous Tab" })
+map("n", "<leader>[[", "<cmd>tabprevious<cr>", { desc = "Previous Tab" })
 
 -- windows life control
 map("n", "<leader>w", "<c-w>", { desc = "Windows", remap = true })
@@ -90,3 +99,4 @@ map({ "n", "x" }, "j", "v:count == 0 ? 'gj' : 'j'", { desc = "Down", expr = true
 map({ "n", "x" }, "<Down>", "v:count == 0 ? 'gj' : 'j'", { desc = "Down", expr = true, silent = true })
 map({ "n", "x" }, "k", "v:count == 0 ? 'gk' : 'k'", { desc = "Up", expr = true, silent = true })
 map({ "n", "x" }, "<Up>", "v:count == 0 ? 'gk' : 'k'", { desc = "Up", expr = true, silent = true })
+

@@ -32,7 +32,7 @@ vim.api.nvim_create_autocmd({ "VimResized" }, {
   end,
 })
 
--- Show cursor line only in active window
+-- show cursor line only in active window
 vim.api.nvim_create_autocmd({ 'InsertLeave', 'WinEnter' }, {
   group = augroup('auto_cursorline_show'),
   callback = function(event)
