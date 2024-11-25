@@ -1,8 +1,8 @@
 -- lua/plugins/comment.lua
 
 return {
-  "numToStr/Comment.nvim",
-  opts = {
-    ignore = '^$'
-  },
+	{
+		"numToStr/Comment.nvim",
+		opts = {}
+	}
 }

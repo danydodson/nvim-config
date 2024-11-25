@@ -5,11 +5,6 @@
 --   HEAVY = { "┏", "━", "┓", "┃", "┛", "━", "┗", "┃" },
 -- }
 
--- Icon.STATE = {
---   MODIFIED = "",
---   READONLY = "",
--- }
-
 -- return {
 --   THIN = { left = "▏", center = "│", right = "▕" },
 --   LIGHT = "┃",
@@ -17,6 +12,11 @@
 --   HEAVY = "▊",
 --   FULL = "█",
 --   SHADE = { light = "░", medium = "▒", dark = "▓" },
+-- }
+
+-- Icon.STATE = {
+--   MODIFIED = "",
+--   READONLY = "",
 -- }
 
 return {
@@ -196,3 +196,4 @@ return {
     },
   },
 }
+

@@ -3,17 +3,16 @@
 vim.g.mapleader = " "
 vim.g.maplocalleader = "\\"
 
-vim.g.bigfile_size = 1024 * 1024 * 1.5
-
 vim.opt.wrap = false
-vim.opt.relativenumber = true
-vim.opt.cursorline = true
-vim.opt.cursorcolumn = false
-
-vim.opt.numberwidth = 2
-vim.opt.virtualedit = "block"
 vim.opt.termguicolors = true
+vim.opt.virtualedit = "block"
 vim.opt.smoothscroll = true
+
+vim.opt.number = true
+vim.opt.relativenumber = true
+vim.opt.numberwidth = 2
+vim.opt.signcolumn = "yes:1"
+vim.opt.cmdheight = 0
 
 vim.g.loaded_netrw = 1
 vim.g.loaded_netrwPlugin = 1
@@ -21,9 +20,6 @@ vim.g.loaded_netrwPlugin = 1
 vim.opt.showmode = false
 vim.opt.ruler = false
 vim.opt.showcmd = false
-
-vim.opt.cmdheight = 0
-vim.opt.signcolumn = "yes:1"
 
 vim.g.autoformat_enabled = false
 vim.g.autopairs_enabled = false
@@ -45,8 +41,11 @@ vim.opt.mousescroll = "ver:1,hor:0"
 vim.opt.guicursor = "n:blinkon200,i-ci-ve:ver25"
 vim.opt.wildignore = "*/.git,*/node_modules,*/venv,*/tmp,*.so,*.swp,*.zip,*.pyc"
 
+vim.g.bigfile_size = 1024 * 1024 * 1.5
+
 vim.opt.conceallevel = 0
 vim.opt.clipboard = "unnamedplus"
+vim.opt.fillchars = { eob = " " }
 vim.opt.shortmess:append({ s = true, I = true })
 
 vim.opt.backup = false

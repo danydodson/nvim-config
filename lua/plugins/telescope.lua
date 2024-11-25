@@ -42,7 +42,7 @@ return {
         }
       end
 
-      vim.keymap.set("n", "<leader><leader>", find_files, {})
+      vim.keymap.set("n", "<leader>ff", find_files, {})
       vim.keymap.set("n", "<leader>fc", find_config_files, {})
       vim.keymap.set("n", "<leader>fg", builtin.live_grep, {})
       vim.keymap.set("n", "<leader>fb", builtin.buffers, {})

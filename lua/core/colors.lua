@@ -1,44 +1,60 @@
 -- lua/core/colors.lua
 
-local M = {
-  base00 = "#1b2b34",
-  base01 = "#343d46",
-  base02 = "#4f5b66",
-  base03 = "#65737e",
-  base04 = "#a7adba",
-  base05 = "#c0c5ce",
-  base06 = "#cdd3de",
-  base07 = "#d8dee9",
-  red = "#ec5f67",
-  orange = "#f99157",
-  yellow = "#fac863",
-  green = "#99c794",
-  cyan = "#62b3b2",
-  blue = "#6699cc",
-  purple = "#c594c5",
-  brown = "#ab7967",
-  white = "#ffffff",
-
-  -- light = "#abb2bf",
-  -- dark = "#21262e",
-  -- green = "#98c379",
-  -- yellow = "#e5c07b",
-  -- blue = "#61afef",
-  -- red = "#e06c75",
+return {
+  dark = {
+    black = "#181a1f",
+    bg0 = "#282c34",
+    bg1 = "#31353f",
+    bg2 = "#393f4a",
+    bg3 = "#3b3f4c",
+    bg_d = "#21252b",
+    bg_blue = "#73b8f1",
+    bg_yellow = "#ebd09c",
+    fg = "#abb2bf",
+    purple = "#c678dd",
+    green = "#98c379",
+    orange = "#d19a66",
+    blue = "#61afef",
+    yellow = "#e5c07b",
+    cyan = "#56b6c2",
+    red = "#e86671",
+    grey = "#5c6370",
+    light_grey = "#848b98",
+    dark_cyan = "#2b6f77",
+    dark_red = "#993939",
+    dark_yellow = "#93691d",
+    dark_purple = "#8a3fa0",
+    diff_add = "#31392b",
+    diff_delete = "#382b2c",
+    diff_change = "#1c3448",
+    diff_text = "#2c5372",
+  },
+  darker = {
+    black = "#0e1013",
+    bg0 = "#1f2329",
+    bg1 = "#282c34",
+    bg2 = "#30363f",
+    bg3 = "#323641",
+    bg_d = "#181b20",
+    bg_blue = "#61afef",
+    bg_yellow = "#e8c88c",
+    fg = "#a0a8b7",
+    purple = "#bf68d9",
+    green = "#8ebd6b",
+    orange = "#cc9057",
+    blue = "#4fa6ed",
+    yellow = "#e2b86b",
+    cyan = "#48b0bd",
+    red = "#e55561",
+    grey = "#535965",
+    light_grey = "#7a818e",
+    dark_cyan = "#266269",
+    dark_red = "#8b3434",
+    dark_yellow = "#835d1a",
+    dark_purple = "#7e3992",
+    diff_add = "#272e23",
+    diff_delete = "#2d2223",
+    diff_change = "#172a3a",
+    diff_text = "#274964",
+  },
 }
-
-function M.setItalics()
-  vim.cmd("hi Comment gui=italic")
-  vim.cmd("hi Keyword gui=italic")
-  vim.cmd("hi Keyword gui=italic")
-  vim.cmd("hi Identifier gui=italic")
-  vim.cmd("hi StorageClass gui=italic")
-  vim.cmd("hi jsLineComment gui=italic")
-  vim.cmd("hi xmlAttrib gui=italic")
-  vim.cmd("hi htmlArg gui=italic")
-  vim.cmd("hi pythonSelf gui=italic")
-end
-
-M.setItalics()
-
-return M

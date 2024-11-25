@@ -56,3 +56,17 @@ vim.api.nvim_create_autocmd({ "FileType" }, {
     vim.opt_local.conceallevel = 0
   end,
 })
+
+-- autocmd to show diagnostics on CursorHold
+vim.api.nvim_create_autocmd("CursorHold", {
+  desc = "lsp show diagnostics on CursorHold",
+  callback = function()
+    local hover_opts = {
+      focusable = false,
+      close_events = { "BufLeave", "CursorMoved", "InsertEnter", "FocusLost" },
+      border = border or "rounded",
+      source = "always",
+    }
+    vim.diagnostic.open_float(nil, hover_opts)
+  end,
+})
