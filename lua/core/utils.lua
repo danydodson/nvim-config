@@ -2,7 +2,7 @@
 
 local M = {}
 
-M.mappings = function(tbl, options)
+function M.mappings(tbl, options)
   ---@diagnostic disable-next-line: lowercase-global
   for mode, values in pairs(tbl) do
     local gopts = vim.tbl_deep_extend("force", { mode = mode }, options or { silent = true })
@@ -16,7 +16,88 @@ M.mappings = function(tbl, options)
   end
 end
 
-M.toggle_diagnostics_ghost_text = function()
+-- Run a shell command and capture the output and if the command
+-- succeeded or failed.
+function M.run_cmd(cmd, show_error)
+  if type(cmd) == "string" then cmd = vim.split(cmd, " ") end
+  if vim.fn.has "win32" == 1 then cmd = vim.list_extend({ "cmd.exe", "/C" }, cmd) end
+  local result = vim.fn.system(cmd)
+  local success = vim.api.nvim_get_vvar "shell_error" == 0
+  if not success and (show_error == nil or show_error) then
+    vim.api.nvim_err_writeln(("Error running command %s\nError message:\n%s"):format(table.concat(cmd, " "), result))
+  end
+  return success and result:gsub("[\27\155][][()#;?%d]*[A-PRZcf-ntqry=><~]", "") or nil
+end
+
+-- Sends a notification with 'Neovim' as default title.
+-- Same as using vim.notify, but it saves us typing the title every time.
+function M.notify(msg, type, opts)
+  vim.schedule(function()
+    vim.notify(
+      msg, type, vim.tbl_deep_extend("force", { title = "Neovim" }, opts or {}))
+  end)
+end
+
+-- Adds autocmds to a specific buffer if they don't already exist.
+function M.add_autocmds_to_buffer(augroup, bufnr, autocmds)
+  -- Check if autocmds is a list, if not convert it to a list
+  if not vim.islist(autocmds) then autocmds = { autocmds } end
+
+  -- Attempt to retrieve existing autocmds associated with the specified augroup and bufnr
+  local cmds_found, cmds = pcall(vim.api.nvim_get_autocmds, { group = augroup, buffer = bufnr })
+
+  -- If no existing autocmds are found or the cmds_found call fails
+  if not cmds_found or vim.tbl_isempty(cmds) then
+    -- Create a new augroup if it doesn't already exist
+    vim.api.nvim_create_augroup(augroup, { clear = false })
+
+    -- Iterate over each autocmd provided
+    for _, autocmd in ipairs(autocmds) do
+      -- Extract the events from the autocmd and remove the events key
+      local events = autocmd.events
+      autocmd.events = nil
+
+      -- Set the group and buffer keys for the autocmd
+      autocmd.group = augroup
+      autocmd.buffer = bufnr
+
+      -- Create the autocmd
+      vim.api.nvim_create_autocmd(events, autocmd)
+    end
+  end
+end
+
+-- Deletes autocmds associated with a specific buffer and autocmd group.
+function M.del_autocmds_from_buffer(augroup, bufnr)
+  -- Attempt to retrieve existing autocmds associated with the specified augroup and bufnr
+  local cmds_found, cmds = pcall(vim.api.nvim_get_autocmds, { group = augroup, buffer = bufnr })
+
+  -- If retrieval was successful
+  if cmds_found then
+    -- Map over each retrieved autocmd and delete it
+    vim.tbl_map(function(cmd) vim.api.nvim_del_autocmd(cmd.id) end, cmds)
+  end
+end
+
+-- Get an icon from `lspkind` if it is available and return it.
+function M.get_icon(kind, padding, no_fallback)
+  if not vim.g.icons_enabled and no_fallback then return "" end
+  local icon_pack = vim.g.icons_enabled and "icons" or "text_icons"
+  if not M[icon_pack] then
+    M.icons = require("base.icons.nerd_font")
+    M.text_icons = require("base.icons.text")
+  end
+  local icon = M[icon_pack] and M[icon_pack][kind]
+  return icon and icon .. string.rep(" ", padding or 0) or ""
+end
+
+-- Check if a plugin is defined in lazy. Useful with lazy loading
+function M.is_available(plugin)
+  local lazy_config_avail, lazy_config = pcall(require, "lazy.core.config")
+  return lazy_config_avail and lazy_config.spec.plugins[plugin] ~= nil
+end
+
+function M.toggle_diagnostics_ghost_text()
   if vim.diagnostic.config().virtual_text == false then
     vim.diagnostic.config({
       virtual_text = {
@@ -31,7 +112,7 @@ M.toggle_diagnostics_ghost_text = function()
   end
 end
 
-M.toggle_diagnostics = function()
+function M.toggle_diagnostics()
   if vim.g.diagnostics_visible then
     vim.g.diagnostics_visible = false
     vim.diagnostic.disable()
@@ -41,7 +122,7 @@ M.toggle_diagnostics = function()
   end
 end
 
-M.setFiletype = function()
+function M.setFiletype()
   vim.ui.input({ prompt = "Enter FileType: " }, function(input)
     local ft = input
     if not input or input == "" then
@@ -49,6 +130,51 @@ M.setFiletype = function()
     end
     vim.o.filetype = ft
   end)
+end
+
+-- Convenient wapper to save code when we Trigger events.
+-- To listen for a event triggered by this function you can use `autocmd`.
+function M.trigger_event(event, is_urgent)
+  -- define behavior
+  local function trigger()
+    local is_user_event = string.match(event, "^User ") ~= nil
+    if is_user_event then
+      event = event:gsub("^User ", "")
+      vim.api.nvim_exec_autocmds("User", { pattern = event, modeline = false })
+    else
+      vim.api.nvim_exec_autocmds(event, { modeline = false })
+    end
+  end
+
+  -- execute
+  if is_urgent then
+    trigger()
+  else
+    vim.schedule(trigger)
+  end
+end
+
+-- Get the options of a plugin managed by lazy.
+function M.get_plugin_opts(plugin)
+  local lazy_config_avail, lazy_config = pcall(require, "lazy.core.config")
+  local lazy_plugin_avail, lazy_plugin = pcall(require, "lazy.core.plugin")
+  local opts = {}
+  if lazy_config_avail and lazy_plugin_avail then
+    local spec = lazy_config.spec.plugins[plugin]
+    if spec then opts = lazy_plugin.values(spec, "opts") end
+  end
+  return opts
+end
+
+-- Returns true if the file is considered a big file,
+-- according to the criteria defined in `vim.g.big_file`.
+function M.is_big_file(bufnr)
+  if bufnr == nil then bufnr = 0 end
+  local filesize = vim.fn.getfsize(vim.api.nvim_buf_get_name(bufnr))
+  local nlines = vim.api.nvim_buf_line_count(bufnr)
+  local is_big_file = (filesize > vim.g.big_file.size)
+      or (nlines > vim.g.big_file.lines)
+  return is_big_file
 end
 
 -- check:
@@ -80,15 +206,5 @@ M.check = {
     return lines
   end,
 }
-
--- local fixBufferLineSeparator = function()
---   vim.api.nvim_set_hl(0, "BufferLineOffsetSeparator", vim.api.nvim_get_hl_by_name('NeoTreeEndOfBuffer', true))
--- end
-
--- vim.api.nvim_create_autocmd("ColorScheme", {
---   callback = fixBufferLineSeparator,
--- })
-
--- fixBufferLineSeparator()
 
 return M

@@ -18,8 +18,8 @@ return {
           require("none-ls-shellcheck.diagnostics"),
           require("none-ls-shellcheck.code_actions"),
 
-          require("none-ls.diagnostics.eslint_d"),
-          require("none-ls.code_actions.eslint_d"),
+          -- require("none-ls.diagnostics.eslint_d"),
+          -- require("none-ls.code_actions.eslint_d"),
 
           null_ls.builtins.diagnostics.staticcheck,
 
@@ -48,7 +48,7 @@ return {
           }),
         },
       })
-      vim.keymap.set("n", "<leader>cf", vim.lsp.buf.format, {})
+      vim.keymap.set("n", "<leader>ff", vim.lsp.buf.format, { desc = "Format File" })
     end,
   }
 }

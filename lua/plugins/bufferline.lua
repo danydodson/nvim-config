@@ -2,49 +2,49 @@
 
 return {
   {
-    "akinsho/bufferline.nvim",
-    event = { "BufReadPre", "WinEnter" },
-    version = "*",
-    dependencies = "nvim-tree/nvim-web-devicons",
+    'akinsho/bufferline.nvim',
+    event = { 'BufReadPre', 'WinEnter' },
+    version = '*',
+    dependencies = 'nvim-tree/nvim-web-devicons',
     opts = {
       options = {
         always_show_bufferline = true,
         show_buffer_icons = false,
         show_close_icon = false,
-        diagnostics = "nvim_lsp",
+        diagnostics = 'nvim_lsp',
         show_tab_indicators = false,
         indicator = {
-          style = "icon",
-          icon = "",
-          buffer_close_icon = "",
-          modified_icon = "",
-          close_icon = "",
-          left_trunc_marker = "<-",
-          right_trunc_marker = "->",
+          style = 'icon',
+          icon = '',
+          buffer_close_icon = '',
+          modified_icon = '',
+          close_icon = '',
+          left_trunc_marker = '<-',
+          right_trunc_marker = '->',
         },
         offsets = {
           {
-            filetype = "undotree",
-            text = "Undotree",
-            highlight = "PanelHeading",
+            filetype = 'undotree',
+            text = 'Undotree',
+            highlight = 'PanelHeading',
             padding = 1,
           },
           {
-            filetype = "neo-tree",
-            text = "",
-            text_align = "left",
+            filetype = 'neo-tree',
+            text = '',
+            text_align = 'left',
             padding = 1,
           },
           {
-            filetype = "DiffviewFiles",
-            text = "Diff View",
-            highlight = "PanelHeading",
+            filetype = 'DiffviewFiles',
+            text = 'Diff View',
+            highlight = 'PanelHeading',
             padding = 1,
           },
           {
-            filetype = "lazy",
-            text = "Lazy",
-            highlight = "PanelHeading",
+            filetype = 'lazy',
+            text = 'Lazy',
+            highlight = 'PanelHeading',
             padding = 1,
           },
         },
@@ -52,32 +52,32 @@ return {
     },
     keys = {
       {
-        "<C-h>",
+        '<C-h>',
         function()
-          if utils.check.vimcmd("BufferLineCyclePrev") then
-            vim.cmd("BufferLineCyclePrev")
+          if utils.check.vimcmd 'BufferLineCyclePrev' then
+            vim.cmd 'BufferLineCyclePrev'
           else
-            vim.cmd("bprev")
+            vim.cmd 'bprev'
           end
         end,
-        desc = "Buffer Previous",
+        desc = 'Buffer Previous',
       },
       {
-        "<C-l>",
+        '<C-l>',
         function()
-          if utils.check.vimcmd("BufferLineCycleNext") then
-            vim.cmd("BufferLineCycleNext")
+          if utils.check.vimcmd 'BufferLineCycleNext' then
+            vim.cmd 'BufferLineCycleNext'
           else
-            vim.cmd("bnext")
+            vim.cmd 'bnext'
           end
         end,
-        desc = "Buffer Next",
+        desc = 'Buffer Next',
       },
-      { "<leader>bc", "<cmd>:bp | bd #<cr>",          desc = "Buffer Delete" },
-      { "<leader>b[", "<cmd>BufferLineCyclePrev<cr>", desc = "Buffer Previous" },
-      { "<leader>b]", "<cmd>BufferLineCycleNext<cr>", desc = "Buffer Next" },
-      { "<leader>bp", "<cmd>BufferLinePick<cr>",      desc = "Buffer Pick" },
-      { "<leader>bk", "<cmd>BufferLineTogglePin<cr>", desc = "Buffer Pin" },
+      { '<leader>bc', '<cmd>:bp | bd #<cr>',          desc = 'Buffer Close' },
+      { '<leader>bp', '<cmd>BufferLineCyclePrev<cr>', desc = 'Buffer Previous' },
+      { '<leader>bn', '<cmd>BufferLineCycleNext<cr>', desc = 'Buffer Next' },
+      { '<leader>bk', '<cmd>BufferLinePick<cr>',      desc = 'Buffer Pick' },
+      { '<leader>bp', '<cmd>BufferLineTogglePin<cr>', desc = 'Buffer Pin' },
     },
-  }
+  },
 }

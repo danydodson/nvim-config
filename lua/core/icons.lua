@@ -1,4 +1,4 @@
--- lua/icons/icons.lua
+-- lua/core/icons.lua
 
 return {
   kind = {

@@ -75,10 +75,14 @@ return {
 				filetypes = { "sh", "bash" },
 			})
 
-			vim.keymap.set("n", "K", vim.lsp.buf.hover, {})
-			vim.keymap.set("n", "<leader>cd", vim.lsp.buf.definition, {})
-			vim.keymap.set("n", "<leader>cr", vim.lsp.buf.references, {})
-			vim.keymap.set("n", "<leader>ca", vim.lsp.buf.code_action, {})
+			vim.keymap.set("n", "K", vim.lsp.buf.hover, { desc = "Hover Info" })
+			vim.keymap.set("n", "<leader>cd", vim.lsp.buf.definition, { desc = " Code Go To Definition" })
+			vim.keymap.set("n", "<leader>cr", vim.lsp.buf.references, { desc = " Code List Reference" })
+			vim.keymap.set("n", "<leader>ca", vim.lsp.buf.code_action, { desc = " Code Show Action" })
+
+			vim.keymap.set('n', 'df', vim.diagnostic.open_float, { desc = "Diag Open Float" })
+			vim.keymap.set('n', 'dp', vim.diagnostic.goto_prev, { desc = "Diag Go To Previous" })
+			vim.keymap.set('n', 'dn', vim.diagnostic.goto_next, { desc = "Diag Go To Next" })
 		end,
 	},
 }
