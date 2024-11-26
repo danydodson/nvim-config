@@ -1,24 +1,5 @@
 -- lua/icons/icons.lua
 
--- return {
---   ROUNDED = { "╭", "─", "╮", "│", "╯", "─", "╰", "│" },
---   HEAVY = { "┏", "━", "┓", "┃", "┛", "━", "┗", "┃" },
--- }
-
--- return {
---   THIN = { left = "▏", center = "│", right = "▕" },
---   LIGHT = "┃",
---   HALF = { left = "▌", right = "▐" },
---   HEAVY = "▊",
---   FULL = "█",
---   SHADE = { light = "░", medium = "▒", dark = "▓" },
--- }
-
--- Icon.STATE = {
---   MODIFIED = "",
---   READONLY = "",
--- }
-
 return {
   kind = {
     Array = "",
@@ -195,5 +176,19 @@ return {
       arrow_closed = "",
     },
   },
+  lazy = {
+    cmd = '⌘',
+    config = '🛠',
+    event = '📅',
+    ft = '📂',
+    init = '⚙',
+    keys = '🗝',
+    plugin = '🔌',
+    runtime = '💻',
+    require = '🌙',
+    source = '📄',
+    start = '🚀',
+    task = '📌',
+    lazy = '💤 ',
+  }
 }
-

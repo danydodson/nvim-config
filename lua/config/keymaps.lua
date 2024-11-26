@@ -9,6 +9,9 @@ map({ "i", "x", "n", "s" }, "<C-s>", "<cmd>w<cr><esc>", { desc = "Save File" })
 -- quit all
 map("n", "<leader>qq", "<cmd>qa<cr>", { desc = "Quit All" })
 
+-- stop search highlight
+map('n', '<Esc>', '<cmd>nohlsearch<CR>')
+
 -- clear search
 map({ "i", "n" }, "<esc>", "<cmd>noh<cr><esc>", { desc = "Escape and Clear hlsearch" })
 

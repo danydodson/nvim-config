@@ -1,6 +1,6 @@
 -- lua/config/lazy.lua
 
-border = "rounded"
+-- border = "rounded"
 icons = require("core.icons")
 utils = require("core.utils")
 
@@ -21,8 +21,8 @@ vim.opt.rtp:prepend(lazypath)
 
 require("lazy").setup({
   ui = {
-    border = border or "rounded",
-    icons = icons.ui.lazy,
+    -- border = border or "rounded",
+    icons = icons.ui.lazy
   },
   spec = {
     {
@@ -33,7 +33,7 @@ require("lazy").setup({
     },
   },
   change_detection = {
-    notify = true,
+    notify = false,
   },
   defaults = {
     lazy = false,
