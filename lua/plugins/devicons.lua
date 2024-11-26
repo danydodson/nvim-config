@@ -6,7 +6,7 @@ return {
       override = {
         lua = {
           icon = "",
-          color = "#51a0cf",
+          color = "#61afef",
           cterm_color = "74",
           name = "Lua",
         },

@@ -8,22 +8,11 @@ return {
       'nvim-lua/plenary.nvim',
       'nvim-tree/nvim-web-devicons',
       'MunifTanjim/nui.nvim',
-      '3rd/image.nvim',
-      -- 'mohitsinghs/repo.nvim',
+      '3rd/image.nvim'
     },
     config = function()
       require('neo-tree').setup {
         sources = { 'filesystem' },
-        -- source_selector = {
-        -- 	winbar = true,
-        -- 	sources = {
-        -- 		{ source = "filesystem", display_name = "  Files" },
-        -- 		{ source = "repo", display_name = "  Repos" },
-        -- 		{ source = "buffers", display_name = "  Buffers" },
-        -- 	},
-        -- 	content_layout = "center",
-        -- 	separator = { left = "", right = "" },
-        -- },
         close_if_last_window = true,
         popup_border_style = 'rounded',
         hide_root_node = true,
@@ -68,8 +57,8 @@ return {
           },
           git_status = {
             symbols = {
-              added = '', -- or "✚",
-              modified = '', -- or "",
+              added = '', -- ✚
+              modified = '', -- 
               deleted = '✖',
               renamed = '󰁕',
               untracked = '',
@@ -102,15 +91,6 @@ return {
           mappings = {
             ['.'] = 'set_root',
             ['<esc>'] = 'cancel',
-            -- ["e"] = function()
-            -- 	vim.api.nvim_exec2("Neotree focus filesystem", { output = true })
-            -- end,
-            -- ["b"] = function()
-            -- 	vim.api.nvim_exec2("Neotree focus buffers", { output = true })
-            -- end,
-            -- ["R"] = function()
-            -- 	vim.api.nvim_exec2("Neotree focus repo", { output = true })
-            -- end,
             ['l'] = { 'toggle_node', nowait = true },
             ['P'] = { 'toggle_preview', config = { use_float = false, use_image_nvim = true } },
             ['O'] = {

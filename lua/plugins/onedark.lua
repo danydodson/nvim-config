@@ -7,23 +7,23 @@ return {
 		lazy = false,
 		enabled = true,
 		config = function()
-			local col = require("core.colors")
+			local colors = require("core.colors")
+			local highlights = require("core.highlights")
 			require("onedark").setup({
 				transparent = false,
 				-- style = "darker",
 				ending_tildes = false,
+				colors = colors,
+				highlights = highlights,
 				code_style = {
-					comments = "italic",
-					keywords = "bold",
-					functions = "bold",
+					comments = "none",
+					keywords = "none",
+					functions = "none",
 					strings = "none",
 					variables = "none",
-					lualine = {
-						transparent = false,
-					},
+					lualine = { transparent = false },
 				},
-				colors = col.onedark,
-				highlights = col.onedark_hl
+
 			})
 			require("onedark").load()
 		end,
