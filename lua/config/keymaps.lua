@@ -77,21 +77,21 @@ map('n', '<S-Left>', '<cmd>vertical resize -2<cr>', { desc = 'Decrease Window Wi
 map('n', '<S-Right>', '<cmd>vertical resize +2<cr>', { desc = 'Increase Window Width' })
 
 -- toggle background
-map('n', '<leader>tb', require("core.ui").toggle_background, { desc = " Toggle Background" })
+map('n', '<leader>tb', require("core.ui").toggle_background, { desc = "Toggle Background" })
 -- toggle diagnostics
--- map('n', '<leader>td', require("core.ui").toggle_diagnostics, { desc = " Toggle Diagnostics" })
+-- map('n', '<leader>td', require("core.ui").toggle_diagnostics, { desc = "Toggle Diagnostics" })
 -- toggle statusline
-map('n', '<leader>tl', require("core.ui").toggle_statusline, { desc = " Toggle Statusline" })
+map('n', '<leader>tl', require("core.ui").toggle_statusline, { desc = "Toggle Statusline" })
 -- toggle auto formatting buffer
-map('n', '<leader>tf', require("core.ui").toggle_buffer_autoformat, { desc = " Toggle Autoformt (B)" })
+map('n', '<leader>tf', require("core.ui").toggle_buffer_autoformat, { desc = "Toggle Autoformt (B)" })
 -- toggle auto formatting global
-map('n', '<leader>tF', require("core.ui").toggle_autoformat, { desc = " Toggle Autoformt (G)" })
+map('n', '<leader>tF', require("core.ui").toggle_autoformat, { desc = "Toggle Autoformt (G)" })
 -- toggle ui notifications
--- map('n', '<leader>tN', require("core.ui").toggle_ui_notifications, { desc = " Toggle UI Notifications" })
+-- map('n', '<leader>tN', require("core.ui").toggle_ui_notifications, { desc = "Toggle UI Notifications" })
 -- toggle indent settings
--- map('n', '<leader>tD', require("core.ui").set_indent, { desc = " Toggle Change Indent Setting" })
+-- map('n', '<leader>tD', require("core.ui").set_indent, { desc = "Toggle Change Indent Setting" })
 -- toggle line numbering
--- map('n', '<leader>tn', require("core.ui").change_number, { desc = " Toggle Change Line Numbering" })
+-- map('n', '<leader>tn', require("core.ui").change_number, { desc = "Toggle Change Line Numbering" })
 -- toggle paste mode
 -- map('n', '<leader>tP', require("core.ui").toggle_paste, { desc = " Toggle Paste Mode" })
 -- toggle spellcheck
@@ -105,23 +105,23 @@ map('n', '<leader>tF', require("core.ui").toggle_autoformat, { desc = " Toggle A
 -- toggle syntax highlight
 -- map('n', '<leader>ty', require("core.ui").toggle_buffer_syntax, { desc = " Toggle Syntax highlight" })
 -- toggle signcolum
-map('n', '<leader>tg', require("core.ui").toggle_signcolumn, { desc = " Toggle Signcolumn" })
+map('n', '<leader>tg', require("core.ui").toggle_signcolumn, { desc = "Toggle Signcolumn" })
 -- toggle foldcolumn
 -- map('n', '<leader>th', require("core.ui").toggle_foldcolumn, { desc = "Toggle Foldcolumn" })
 
 -- toggle autopairs
 if is_available "nvim-autopairs" then
-  map('n', '<leader>ta', require("core.ui").toggle_autopairs, { desc = " Toggle Autopairs" })
+  map('n', '<leader>ta', require("core.ui").toggle_autopairs, { desc = "Toggle Autopairs" })
 end
 
 -- toggle autocompletion
 if is_available "nvim-cmp" then
-  map('n', '<leader>tc', require("core.ui").toggle_cmp, { desc = " Toggle Completion" })
+  map('n', '<leader>tc', require("core.ui").toggle_cmp, { desc = "Toggle Completion" })
 end
 
 -- toggle nvim-colorizer
 if is_available "nvim-colorizer.lua" then
-  map('n', '<leader>tC', '<cmd>ColorizerToggle<cr>', { desc = ' Toggle Color Highlight' })
+  map('n', '<leader>tC', '<cmd>ColorizerToggle<cr>', { desc = 'Toggle Color Highlight' })
 end
 
 -- toggle lsp signature

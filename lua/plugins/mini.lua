@@ -3,6 +3,7 @@
 return {
   { -- Collection of various small independent plugins/modules
     'echasnovski/mini.nvim',
+    version = '*',
     event = 'VeryLazy',
     config = function()
       -- Better Around/Inside textobjects
