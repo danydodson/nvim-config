@@ -86,8 +86,4 @@ vim.keymap.set("n", "<C-j>", [[<cmd>call VSCodeNotify('workbench.action.navigate
 vim.keymap.set("n", "<C-k>", [[<cmd>call VSCodeNotify('workbench.action.navigateUp')<cr>]])
 vim.keymap.set("n", "-", [[<cmd>call VSCodeNotify('workbench.view.explorer')<cr>]])
 vim.keymap.set("n", "<leader>gs", [[<cmd>call VSCodeNotify('workbench.view.scm')<cr>]])
-vim.keymap.set(
-  "n",
-  "<leader>'",
-  [[<cmd>call VSCodeNotify('workbench.action.toggleEditorGroupLayout')<cr> <cmd>call VSCodeNotify('workbench.action.focusPreviousGroup')<cr>]]
-)
+vim.keymap.set("n", "<leader>'", [[<cmd>call VSCodeNotify('workbench.action.toggleEditorGroupLayout')<cr> <cmd>call VSCodeNotify('workbench.action.focusPreviousGroup')<cr>]])
