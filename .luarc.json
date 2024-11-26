@@ -4,6 +4,7 @@
   "diagnostics.globals": [ "vim" ],
   "diagnostics.disable": [
     "lowercase-global",
-    "different-requires"
+    "different-requires",
+    "undefined-field"
   ]
 }

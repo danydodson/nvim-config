@@ -23,7 +23,7 @@ vim.api.nvim_create_autocmd("TextYankPost", {
   end,
 })
 
--- Auto commands below does not work in vs code
+-- auto commands below does not work in vs code
 if vim.g.vscode then
   return {}
 end
@@ -36,7 +36,7 @@ autocmd({ "VimEnter" }, {
       -- In order to avoid visual glitches.
       utils.trigger_event("User BaseDefered", true)
       utils.trigger_event("BufEnter", true) -- also, initialize tabline_buffers.
-    else                                    -- Wait some ms before triggering the event.
+    else -- Wait some ms before triggering the event.
       vim.defer_fn(function()
         utils.trigger_event("User BaseDefered")
       end, 70)
@@ -67,7 +67,7 @@ vim.api.nvim_create_autocmd("BufReadPost", {
   end,
 })
 
--- Terminal
+-- terminal
 vim.api.nvim_create_autocmd({ "TermOpen", "TermEnter" }, {
   desc = "Make Termainal took good",
   callback = function()

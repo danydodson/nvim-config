@@ -13,10 +13,7 @@ map('n', '<leader>ww', '<cmd>wa<cr>', { desc = 'File Save All' })
 -- save file
 map({ 'i', 'x', 'n', 's' }, '<C-s>', '<cmd>w<cr><esc>', { desc = 'File Save' })
 
---tmux-sessions
-map('n', '<C-f>', '<cmd>silent !tmux neww ~/.local/scripts/tmux-sessionizer<CR>', { desc = 'Tmux Sessionizer' })
-
--- move to the first non-blank character of the line
+-- move on line
 map('n', "gj", "gj^")
 map('n', "gk", "gk^")
 
@@ -37,6 +34,9 @@ map('x', '<Leader>f/', 'gcc', { remap = true, desc = 'File Comment Line' })
 -- comments above/below
 map('n', '<Leader>fO', 'O<Esc>Vcx<Esc><cmd>normal gcc<CR>fxa<BS>', { silent = true, desc = 'File Comment Line Above' })
 map('n', '<Leader>fo', 'o<Esc>Vcx<Esc><cmd>normal gcc<CR>fxa<BS>', { silent = true, desc = 'File Comment Line Below' })
+
+--tmux-sessions
+map('n', '<C-f>', '<cmd>silent !tmux neww ~/.local/scripts/tmux-sessionizer<CR>', { desc = 'Tmux Sessionizer' })
 
 -- clear search
 map('n', '<Esc>', '<cmd>nohlsearch<CR>', { desc = 'Escape and Clear hlsearch' })
@@ -78,36 +78,33 @@ map('n', '<S-Right>', '<cmd>vertical resize +2<cr>', { desc = 'Increase Window W
 
 -- toggle background
 map('n', '<leader>tb', require("core.ui").toggle_background, { desc = "Toggle Background" })
+
 -- toggle diagnostics
--- map('n', '<leader>td', require("core.ui").toggle_diagnostics, { desc = "Toggle Diagnostics" })
+map('n', '<leader>td', require("core.ui").toggle_diagnostics, { desc = "Toggle Diagnostics" })
+
 -- toggle statusline
 map('n', '<leader>tl', require("core.ui").toggle_statusline, { desc = "Toggle Statusline" })
+
 -- toggle auto formatting buffer
-map('n', '<leader>tf', require("core.ui").toggle_buffer_autoformat, { desc = "Toggle Autoformt (B)" })
+map('n', '<leader>tf', require("core.ui").toggle_buffer_autoformat, { desc = "Toggle Autoformat Buffer" })
+
 -- toggle auto formatting global
-map('n', '<leader>tF', require("core.ui").toggle_autoformat, { desc = "Toggle Autoformt (G)" })
+map('n', '<leader>tF', require("core.ui").toggle_autoformat, { desc = "Toggle Autoformt Global" })
+
 -- toggle ui notifications
--- map('n', '<leader>tN', require("core.ui").toggle_ui_notifications, { desc = "Toggle UI Notifications" })
--- toggle indent settings
--- map('n', '<leader>tD', require("core.ui").set_indent, { desc = "Toggle Change Indent Setting" })
+map('n', '<leader>tN', require("core.ui").toggle_ui_notifications, { desc = "Toggle UI Notifications" })
+
 -- toggle line numbering
--- map('n', '<leader>tn', require("core.ui").change_number, { desc = "Toggle Change Line Numbering" })
+map('n', '<leader>tn', require("core.ui").change_number, { desc = "Toggle Change Line Numbering" })
+
 -- toggle paste mode
--- map('n', '<leader>tP', require("core.ui").toggle_paste, { desc = " Toggle Paste Mode" })
--- toggle spellcheck
--- map('n', '<leader>ts', require("core.ui").toggle_spell, { desc = " Toggle Spellcheck" })
--- toggle tabline
--- map('n', '<leader>tt', require("core.ui").toggle_tabline, { desc = " Toggle Tabline" })
--- toggle url highlight
--- map('n', '<leader>tu', require("core.ui").toggle_url_effect, { desc = " Toggle URL Highlight" })
--- toggle line wrap
--- map('n', '<leader>tw', require("core.ui").toggle_wrap, { desc = "Wrap" })
--- toggle syntax highlight
--- map('n', '<leader>ty', require("core.ui").toggle_buffer_syntax, { desc = " Toggle Syntax highlight" })
+map('n', '<leader>tP', require("core.ui").toggle_paste, { desc = " Toggle Paste Mode" })
+
 -- toggle signcolum
 map('n', '<leader>tg', require("core.ui").toggle_signcolumn, { desc = "Toggle Signcolumn" })
+
 -- toggle foldcolumn
--- map('n', '<leader>th', require("core.ui").toggle_foldcolumn, { desc = "Toggle Foldcolumn" })
+map('n', '<leader>th', require("core.ui").toggle_foldcolumn, { desc = "Toggle Foldcolumn" })
 
 -- toggle autopairs
 if is_available "nvim-autopairs" then
@@ -125,14 +122,9 @@ if is_available "nvim-colorizer.lua" then
 end
 
 -- toggle lsp signature
--- if is_available "lsp_signature.nvim" then
---   map('n', '<leader>tp', require("core.ui").toggle_lsp_signature, { desc = " Toggle LSP Signature" })
--- end
-
--- toggle animations
--- if is_available "mini.animate" then
---   map('n', '<leader>tA', require("core.ui").toggle_animations, { desc = " Toggle Animations" })
--- end
+if is_available "lsp_signature.nvim" then
+  map('n', '<leader>tp', require("core.ui").toggle_lsp_signature, { desc = "Toggle LSP Signature" })
+end
 
 -- better up/down
 map({ 'n', 'x' }, 'j', "v:count == 0 ? 'gj' : 'j'", { desc = 'Down', expr = true, silent = true })
