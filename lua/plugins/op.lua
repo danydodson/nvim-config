@@ -1,5 +1,5 @@
 -- lua/plugins/op.lua
-
+ 
 return {
   {
     "mrjones2014/op.nvim",

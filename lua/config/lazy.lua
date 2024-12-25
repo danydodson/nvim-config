@@ -1,11 +1,6 @@
 -- lua/config/lazy.lua
 
-border = "rounded"
 icons = require("core.icons")
-utils = require("core.utils")
-colors = require("core.colors")
-
-require("core.codium")
 
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
 
@@ -24,8 +19,9 @@ vim.opt.rtp:prepend(lazypath)
 
 require("lazy").setup({
   ui = {
-    border = border or "rounded",
-    icons = icons.ui.lazy
+    size = { width = 0.9, height = 0.9 },
+    border = icons.border,
+    icons = icons.ui.lazy,
   },
   spec = {
     { import = "plugins" },

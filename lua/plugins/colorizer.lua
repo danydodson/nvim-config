@@ -1,5 +1,5 @@
 -- lua/plugins/colorizer.lua
-
+ 
 return {
   {
     "norcalli/nvim-colorizer.lua",

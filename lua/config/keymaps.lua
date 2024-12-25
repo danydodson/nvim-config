@@ -2,149 +2,151 @@
 
 local map = vim.keymap.set
 local del = vim.keymap.del
+local utils = require("core.utils")
 local is_available = utils.is_available
 
 -- quit all
-map('n', '<leader>wq', '<cmd>qa<cr>', { desc = 'File Quit All' })
+map('n', '<leader>wq', '<cmd>qa<cr>', { desc = 'quit all' })
 
 -- write all
-map('n', '<leader>ww', '<cmd>wa<cr>', { desc = 'File Save All' })
+map({ 'i', 'x', 'n', 's' }, '<leader>ww', '<cmd>wa<cr>', { desc = 'save all' })
+map({ 'i', 'x', 'n', 's' }, '<C-s>', '<cmd>wa<cr><esc>', { desc = 'save all' })
 
--- save file
-map({ 'i', 'x', 'n', 's' }, '<C-s>', '<cmd>w<cr><esc>', { desc = 'File Save' })
+--tmux-sessions
+map('n', '<C-f>', '<cmd>silent !tmux neww ~/.dotfiles/bin/tms<CR>', { desc = 'tmux sessionizer' })
 
--- move on line
-map('n', "gj", "gj^")
-map('n', "gk", "gk^")
+-- buffer controls
+map('n', '<leader>b|', '<cmd>vert belowright sb N<cr>', { desc = 'buffer split right' })
 
--- create a new blank lines
-map('n', "<Leader>fL", 'O<Esc>0"_D', { remap = false, desc = 'File Create Line Above' })
-map('n', "<Leader>fl", 'o<Esc>0"_D', { remap = false, desc = 'File Create Line Below' })
-
--- duplicate lines without affecting clipboard
-map('n', '<Leader>fd', 'm`""Y""P``', { desc = 'File Duplicate Line' })
-map('x', '<Leader>fd', '""Y""Pgv', { desc = 'File Duplicate Selection' })
+-- clear search
+map('n', '<Esc>', '<cmd>nohlsearch<CR>', { desc = 'escape and clear hlsearch' })
 
 -- comments
 del('n', 'gb')
 del('n', 'gc')
-map('n', '<Leader>f/', 'gcc', { remap = true, desc = 'File Comment Line' })
-map('x', '<Leader>f/', 'gcc', { remap = true, desc = 'File Comment Line' })
+map('n', '<Leader>/', 'gcc', { remap = true, desc = 'comment line' })
+map('x', '<Leader>/', 'gcc', { remap = true, desc = 'comment line' })
 
--- comments above/below
-map('n', '<Leader>fO', 'O<Esc>Vcx<Esc><cmd>normal gcc<CR>fxa<BS>', { silent = true, desc = 'File Comment Line Above' })
-map('n', '<Leader>fo', 'o<Esc>Vcx<Esc><cmd>normal gcc<CR>fxa<BS>', { silent = true, desc = 'File Comment Line Below' })
+-- add blank lines
+map('n', '<Leader>fL', 'O<Esc>0"_D', { remap = false, desc = 'create Blank line above' })
+map('n', '<Leader>fl', 'o<Esc>0"_D', { remap = false, desc = 'create Blank line below' })
 
---tmux-sessions
-map('n', '<C-f>', '<cmd>silent !tmux neww ~/.local/scripts/tmux-sessionizer<CR>', { desc = 'Tmux Sessionizer' })
+-- duplicate lines
+map('n', '<Leader>fd', 'm`""Y""P``', { desc = 'duplicate line' })
+map('x', '<Leader>fd', '""Y""Pgv', { desc = 'duplicate selection' })
 
--- clear search
-map('n', '<Esc>', '<cmd>nohlsearch<CR>', { desc = 'Escape and Clear hlsearch' })
+-- editor line controls
+map('n', '<S-k>', '<cmd>m .-2<cr>==', { desc = 'Move Up' })
+map('n', '<S-j>', '<cmd>m .+1<cr>==', { desc = 'Move Down' })
+map('i', '<S-j>', '<esc><cmd>m .+1<cr>==gi', { desc = 'Move Down' })
+map('i', '<S-k>', '<esc><cmd>m .-2<cr>==gi', { desc = 'Move Up' })
+map('v', '<S-j>', ":m '>+1<cr>gv=gv", { desc = 'Move Down' })
+map('v', '<S-k>', ":m '<-2<cr>gv=gv", { desc = 'Move Up' })
 
--- move lines in the editor
-map('n', '<C-k>', '<cmd>m .-2<cr>==', { desc = 'Move Up' })
-map('n', '<C-j>', '<cmd>m .+1<cr>==', { desc = 'Move Down' })
-map('i', '<C-j>', '<esc><cmd>m .+1<cr>==gi', { desc = 'Move Down' })
-map('i', '<C-k>', '<esc><cmd>m .-2<cr>==gi', { desc = 'Move Up' })
-map('v', '<C-j>', ":m '>+1<cr>gv=gv", { desc = 'Move Down' })
-map('v', '<C-k>', ":m '<-2<cr>gv=gv", { desc = 'Move Up' })
+-- tab controls
+map('n', '<leader><tab><tab>', '<cmd>tabnew<cr>', { desc = 'new tab' })
+map('n', '<leader><tab>c', '<cmd>tabclose<cr>', { desc = 'close tab' })
+map('n', '<leader><tab>n', '<cmd>tabnext<cr>', { desc = 'next tab' })
+map('n', '<leader><tab>p', '<cmd>tabprevious<cr>', { desc = 'previous tab' })
 
--- open buffer in split
-map('n', '<leader>bs', '<cmd>vert belowright sb N<cr>', { desc = 'Buffer Split Right' })
-
--- tabs life control
-map('n', '<leader><tab><tab>', '<cmd>tabnew<cr>', { desc = 'New Tab' })
-map('n', '<leader><tab>n', '<cmd>tabnext<cr>', { desc = 'Next Tab' })
-map('n', '<leader><tab>c', '<cmd>tabclose<cr>', { desc = 'Close Tab' })
-map('n', '<leader><tab>p', '<cmd>tabprevious<cr>', { desc = 'Previous Tab' })
-
--- windows life control
--- map('n', '<leader>w', '<c-w>', { desc = 'Windows', remap = true })
--- map('n', '<leader>w-', '<C-W>s', { desc = 'Split Window Below', remap = true })
--- map('n', '<leader>w|', '<C-W>v', { desc = 'Split Window Right', remap = true })
--- map('n', '<leader>wd', '<C-W>c', { desc = 'Delete Window', remap = true })
-
--- window focus control
-map('n', '<S-h>', '<C-w>h', { desc = 'Go to Left Window', remap = true })
-map('n', '<S-j>', '<C-w>j', { desc = 'Go to Lower Window', remap = true })
-map('n', '<S-k>', '<C-w>k', { desc = 'Go to Upper Window', remap = true })
-map('n', '<S-l>', '<C-w>l', { desc = 'Go to Right Window', remap = true })
+map('n', '<meta-h>', 'TmuxResizeLeft<CR>', {silent = true,remap = false, desc = 'new tab' })
+map('n', '<meta-j>', 'TmuxResizeDown<CR>', {silent = true,remap = false, desc = 'close tab' })
+map('n', '<meta-k>', 'TmuxResizeUp<CR>', {silent = true,remap = false, desc = 'next tab' })
+map('n', '<meta-l>', 'TmuxResizeRight<CR>', {silent = true,remap = false, desc = 'previous tab' })
 
 -- window resize control
-map('n', '<S-Up>', '<cmd>resize +1<cr>', { desc = 'Increase Window Height' })
-map('n', '<S-Down>', '<cmd>resize -1<cr>', { desc = 'Decrease Window Height' })
-map('n', '<S-Left>', '<cmd>vertical resize -2<cr>', { desc = 'Decrease Window Width' })
-map('n', '<S-Right>', '<cmd>vertical resize +2<cr>', { desc = 'Increase Window Width' })
+-- map('n', '<S-Up>', '<cmd>resize +1<cr>', { desc = 'Increase Window Height' })
+-- map('n', '<S-Down>', '<cmd>resize -1<cr>', { desc = 'Decrease Window Height' })
+-- map('n', '<S-Left>', '<cmd>vertical resize -2<cr>', { desc = 'Decrease Window Width' })
+-- map('n', '<S-Right>', '<cmd>vertical resize +2<cr>', { desc = 'Increase Window Width' })
+
+-- window life 
+map('n', '<leader>pp', '<c-w>', { desc = 'Windows', remap = true })
+map('n', '<leader>p-', '<C-W>s', { remap = true, desc = 'split window below' })
+map('n', '<leader>p|', '<C-W>v', { remap = true, desc = 'split window right' })
+map('n', '<leader>pd', '<C-W>c', { remap = true, desc = 'delete window' })
+
+-- window navigation
+-- map('n', '<S-h>', '<C-w>h', { desc = 'Go to Left Window', remap = true })
+-- map('n', '<S-j>', '<C-w>j', { desc = 'Go to Lower Window', remap = true })
+-- map('n', '<S-k>', '<C-w>k', { desc = 'Go to Upper Window', remap = true })
+-- map('n', '<S-l>', '<C-w>l', { desc = 'Go to Right Window', remap = true })
+
+-- window resize
+map('n', '<M-j>', '<cmd>resize +1<cr>', { desc = 'increase window height' })
+map('n', '<M-k>', '<cmd>resize -1<cr>', { desc = 'decrease window height' })
+map('n', '<M-l>', '<cmd>vertical resize -2<cr>', { desc = 'decrease window width' })
+map('n', '<M-h>', '<cmd>vertical resize +2<cr>', { desc = 'increase window width' })
+
+-- terminal controls
+map('t', '<C-/>', '<cmd>close<cr>', { silent = true, desc = 'hide terminal' })
+map('t', '<esc>', '<c-\\><c-n>', { silent = true, desc = 'enter normal mode' })
+map('t', '<C-w>', '<c-\\><C-n><C-w>', { silent = true, desc = 'toggle focus' })
+
+-- terminal navigation
+-- map('t', '<C-Left>', '<C-\\><C-N><C-w>h', { silent = true })
+-- map('t', '<C-Down>', '<C-\\><C-N><C-w>j', { silent = true })
+-- map('t', '<C-Up>', '<C-\\><C-N><C-w>k', { silent = true })
+-- map('t', '<C-Right>', '<C-\\><C-N><C-w>l', { silent = true })
 
 -- toggle background
-map('n', '<leader>tb', require("core.ui").toggle_background, { desc = "Toggle Background" })
+map('n', '<leader>tb', require('core.ui').toggle_background, { desc = 'toggle background' })
 
 -- toggle diagnostics
-map('n', '<leader>td', require("core.ui").toggle_diagnostics, { desc = "Toggle Diagnostics" })
+map('n', '<leader>td', require('core.ui').toggle_diagnostics, { desc = 'toggle diagnostics' })
 
 -- toggle statusline
-map('n', '<leader>tl', require("core.ui").toggle_statusline, { desc = "Toggle Statusline" })
+map('n', '<leader>tl', require('core.ui').toggle_statusline, { desc = 'toggle statusline' })
 
 -- toggle auto formatting buffer
-map('n', '<leader>tf', require("core.ui").toggle_buffer_autoformat, { desc = "Toggle Autoformat Buffer" })
+map('n', '<leader>tf', require('core.ui').toggle_buffer_autoformat, { desc = 'toggle autoformat buffer' })
 
 -- toggle auto formatting global
-map('n', '<leader>tF', require("core.ui").toggle_autoformat, { desc = "Toggle Autoformt Global" })
+map('n', '<leader>tF', require('core.ui').toggle_autoformat, { desc = 'toggle autoformt global' })
 
 -- toggle ui notifications
-map('n', '<leader>tN', require("core.ui").toggle_ui_notifications, { desc = "Toggle UI Notifications" })
+map('n', '<leader>tN', require('core.ui').toggle_ui_notifications, { desc = 'toggle ui notifications' })
 
 -- toggle line numbering
-map('n', '<leader>tn', require("core.ui").change_number, { desc = "Toggle Change Line Numbering" })
+map('n', '<leader>tn', require('core.ui').change_number, { desc = 'toggle change line numbering' })
 
 -- toggle paste mode
-map('n', '<leader>tP', require("core.ui").toggle_paste, { desc = " Toggle Paste Mode" })
+map('n', '<leader>tP', require('core.ui').toggle_paste, { desc = 'toggle paste mode' })
 
 -- toggle signcolum
-map('n', '<leader>tg', require("core.ui").toggle_signcolumn, { desc = "Toggle Signcolumn" })
+map('n', '<leader>tg', require('core.ui').toggle_signcolumn, { desc = 'toggle signcolumn' })
 
 -- toggle foldcolumn
-map('n', '<leader>th', require("core.ui").toggle_foldcolumn, { desc = "Toggle Foldcolumn" })
+map('n', '<leader>th', require('core.ui').toggle_foldcolumn, { desc = 'toggle foldcolumn' })
 
 -- toggle autopairs
-if is_available "nvim-autopairs" then
-  map('n', '<leader>ta', require("core.ui").toggle_autopairs, { desc = "Toggle Autopairs" })
+if is_available 'nvim-autopairs' then
+  map('n', '<leader>ta', require('core.ui').toggle_autopairs, { desc = 'toggle autopairs' })
 end
 
 -- toggle autocompletion
-if is_available "nvim-cmp" then
-  map('n', '<leader>tc', require("core.ui").toggle_cmp, { desc = "Toggle Completion" })
+if is_available 'nvim-cmp' then
+  map('n', '<leader>tc', require('core.ui').toggle_cmp, { desc = 'toggle completion' })
 end
 
 -- toggle nvim-colorizer
-if is_available "nvim-colorizer.lua" then
-  map('n', '<leader>tC', '<cmd>ColorizerToggle<cr>', { desc = 'Toggle Color Highlight' })
+if is_available 'nvim-colorizer.lua' then
+  map('n', '<leader>tC', '<cmd>ColorizerToggle<cr>', { desc = 'toggle color highlight' })
 end
 
 -- toggle lsp signature
-if is_available "lsp_signature.nvim" then
-  map('n', '<leader>tp', require("core.ui").toggle_lsp_signature, { desc = "Toggle LSP Signature" })
+if is_available 'lsp_signature.nvim' then
+  map('n', '<leader>tp', require('core.ui').toggle_lsp_signature, { desc = 'toggle lsp signature' })
 end
 
--- better up/down
-map({ 'n', 'x' }, 'j', "v:count == 0 ? 'gj' : 'j'", { desc = 'Down', expr = true, silent = true })
-map({ 'n', 'x' }, '<Down>', "v:count == 0 ? 'gj' : 'j'", { desc = 'Down', expr = true, silent = true })
-map({ 'n', 'x' }, 'k', "v:count == 0 ? 'gk' : 'k'", { desc = 'Up', expr = true, silent = true })
-map({ 'n', 'x' }, '<Up>', "v:count == 0 ? 'gk' : 'k'", { desc = 'Up', expr = true, silent = true })
+-- toggle inlay hints
+if vim.b.inlay_hints_enabled == nil then
+  vim.b.inlay_hints_enabled = vim.g.inlay_hints_enabled
+end
+if vim.b.inlay_hints_enabled then
+  vim.lsp.inlay_hint.enable(true, { bufnr = bufnr })
+end
 
--- terminal control
-map('t', '<C-/>', '<cmd>close<cr>', { silent = true, desc = 'Hide Terminal' })
-map('t', '<esc>', '<c-\\><c-n>', { silent = true, desc = 'Enter Normal Mode' })
-map('t', '<C-w>', '<c-\\><C-n><C-w>', { silent = true, desc = 'Toggle Focus' })
-
--- terminal better navigation
-map('n', '<C-Left>', '<C-w>h', { silent = true, noremap = true })
-map('n', '<C-Down>', '<C-w>j', { silent = true, noremap = true })
-map('n', '<C-Up>', '<C-w>k', { silent = true, noremap = true })
-map('n', '<C-Right>', '<C-w>l', { silent = true, noremap = true })
-
--- terminal better navigation
-map('t', '<C-Left>', '<C-\\><C-N><C-w>h', { silent = true })
-map('t', '<C-Down>', '<C-\\><C-N><C-w>j', { silent = true })
-map('t', '<C-Up>', '<C-\\><C-N><C-w>k', { silent = true })
-map('t', '<C-Right>', '<C-\\><C-N><C-w>l', { silent = true })
+map('n', '<leader>tH', function()
+  require('core.ui').toggle_buffer_inlay_hints(bufnr)
+end, { desc = 'toggle buffer inlay hints' })

@@ -5,11 +5,11 @@ return {
     "akinsho/toggleterm.nvim",
     version = "*",
     opts = {
-      size = 30,
+      size = 20,
       open_mapping = [[<c-\>]],
       shading_factor = 2,
       shade_terminals = true,
-      direction = "float",
+      direction = "horizontal",
       float_opts = {
         border = "rounded",
         winblend = 3,

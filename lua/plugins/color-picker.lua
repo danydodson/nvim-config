@@ -6,7 +6,7 @@ return {
     config = true,
     event = "VeryLazy",
     keys = {
-      { "<leader>fp", "<cmd>PickColor<CR>", desc = "Toggle Color Picker" },
+      { "<leader>fp", "<cmd>PickColor<CR>", desc = "toggle color picker" },
     },
   }
 }

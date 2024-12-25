@@ -1,7 +1,10 @@
 {
   "$schema": "https://raw.githubusercontent.com/LuaLS/vscode-lua/master/setting/schema.json",
   "runtime.version": "Lua 5.1",
-  "diagnostics.globals": [ "vim" ],
+  "diagnostics.globals": [
+    "vim",
+    "bufnr"
+  ],
   "diagnostics.disable": [
     "lowercase-global",
     "different-requires",

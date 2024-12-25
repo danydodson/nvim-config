@@ -1,5 +1,5 @@
 -- lua/plugins/sleuth.lua
 
 return {
-  { 'tpope/vim-sleuth', opts = {} }
+  { 'tpope/vim-sleuth' },
 }

@@ -112,7 +112,7 @@ return {
       define('DiagnosticSignInfo', { text = ' ', texthl = 'DiagnosticSignInfo' })
       define('DiagnosticSignHint', { text = '󰌵', texthl = 'DiagnosticSignHint' })
       local set = vim.keymap.set
-      set('n', '<leader>e', ':Neotree filesystem toggle<CR>', { noremap = true, silent = true, desc = 'Neotree' })
+      set('n', '<leader>e', ':Neotree filesystem toggle<CR>', { noremap = true, silent = true, desc = 'neotree' })
     end,
   },
 }

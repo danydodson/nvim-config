@@ -1,5 +1,5 @@
 -- lua/plugins/devicons.lua
-
+ 
 return {
   {
     require("nvim-web-devicons").setup({

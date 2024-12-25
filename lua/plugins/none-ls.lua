@@ -48,7 +48,7 @@ return {
           }),
         },
       })
-      vim.keymap.set("n", "<leader>ff", vim.lsp.buf.format, { desc = "Format File" })
+      vim.keymap.set("n", "<leader>ff", vim.lsp.buf.format, { desc = "format file" })
     end,
   }
 }

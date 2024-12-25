@@ -4,10 +4,10 @@ local M = {}
 local utils = require("core.utils")
 local function bool2str(bool) return bool and "on" or "off" end
 
--- Change the number display modes
+-- change the number display modes
 function M.change_number()
-  local number = vim.wo.number                 -- local to window
-  local relativenumber = vim.wo.relativenumber -- local to window
+  local number = vim.wo.number
+  local relativenumber = vim.wo.relativenumber
   if not number and not relativenumber then
     vim.wo.number = true
   elseif number and not relativenumber then
@@ -20,19 +20,19 @@ function M.change_number()
   utils.notify(string.format("number %s, relativenumber %s", bool2str(vim.wo.number), bool2str(vim.wo.relativenumber)))
 end
 
---- Toggle notifications for UI toggles
+--- toggle notifications for UI toggles
 function M.toggle_ui_notifications()
   vim.g.notifications_enabled = not vim.g.notifications_enabled
   utils.notify(string.format("Notifications %s", bool2str(vim.g.notifications_enabled)))
 end
 
--- Toggle auto format
+-- toggle auto format
 function M.toggle_autoformat()
   vim.g.autoformat_enabled = not vim.g.autoformat_enabled
   utils.notify(string.format("Global autoformatting %s", bool2str(vim.g.autoformat_enabled)))
 end
 
--- Toggle autopairs
+-- toggle autopairs
 function M.toggle_autopairs()
   local ok, autopairs = pcall(require, "nvim-autopairs")
   if ok then
@@ -48,26 +48,26 @@ function M.toggle_autopairs()
   end
 end
 
--- Toggle background="dark"|"light"
+-- toggle background="dark"|"light"
 function M.toggle_background()
   vim.go.background = vim.go.background == "light" and "dark" or "light"
   utils.notify(string.format("background=%s", vim.go.background))
 end
 
--- Toggle cmp entrirely
+-- toggle cmp entrirely
 function M.toggle_cmp()
   vim.g.cmp_enabled = not vim.g.cmp_enabled
   local ok, _ = pcall(require, "cmp")
   utils.notify(ok and string.format("completion %s", bool2str(vim.g.cmp_enabled)) or "completion not available")
 end
 
--- Toggle lsp signature
+-- toggle lsp signature
 function M.toggle_lsp_signature()
   local state = require('lsp_signature').toggle_float_win()
   utils.notify(string.format("lsp signature %s", bool2str(state)))
 end
 
--- Toggle buffer local auto format
+-- toggle buffer local auto format
 function M.toggle_buffer_autoformat(bufnr)
   bufnr = bufnr or 0
   local old_val = vim.b[bufnr].autoformat_enabled
@@ -76,7 +76,15 @@ function M.toggle_buffer_autoformat(bufnr)
   utils.notify(string.format("Buffer autoformatting %s", bool2str(vim.b[bufnr].autoformat_enabled)))
 end
 
--- Toggle signcolumn="auto"|"no"
+-- toggle LSP inlay hints (buffer)
+function M.toggle_buffer_inlay_hints(bufnr)
+  bufnr = bufnr or 0
+  vim.b[bufnr].inlay_hints_enabled = not vim.b[bufnr].inlay_hints_enabled
+  vim.lsp.inlay_hint.enable(vim.b[bufnr].inlay_hints_enabled, { bufnr = bufnr })
+  utils.notify(string.format("Buffer inlay hints %s", bool2str(vim.b[bufnr].inlay_hints_enabled)))
+end
+
+-- toggle signcolumn="auto"|"no"
 function M.toggle_signcolumn()
   if vim.wo.signcolumn == "no" then
     vim.wo.signcolumn = "yes"
@@ -88,7 +96,7 @@ function M.toggle_signcolumn()
   utils.notify(string.format("signcolumn=%s", vim.wo.signcolumn))
 end
 
--- Toggle laststatus=3|2|0
+-- toggle laststatus=3|2|0
 function M.toggle_statusline()
   local laststatus = vim.opt.laststatus:get()
   local status
@@ -105,7 +113,7 @@ function M.toggle_statusline()
   utils.notify(string.format("statusline %s", status))
 end
 
--- Toggle foldcolumn=0|1
+-- toggle foldcolumn=0|1
 local last_active_foldcolumn
 function M.toggle_foldcolumn()
   local curr_foldcolumn = vim.wo.foldcolumn
@@ -114,10 +122,10 @@ function M.toggle_foldcolumn()
   utils.notify(string.format("foldcolumn=%s", vim.wo.foldcolumn))
 end
 
---- Toggle diagnostics
+--- toggle diagnostics
 function M.toggle_diagnostics()
   vim.g.diagnostics_mode = (vim.g.diagnostics_mode - 1) % 4
-  vim.diagnostic.config(require("base.utils.lsp").diagnostics[vim.g.diagnostics_mode])
+  vim.diagnostic.config(require("core.lsp").diagnostics[vim.g.diagnostics_mode])
   if vim.g.diagnostics_mode == 0 then
     utils.notify "diagnostics off"
   elseif vim.g.diagnostics_mode == 1 then
@@ -129,7 +137,16 @@ function M.toggle_diagnostics()
   end
 end
 
--- Toggle paste
+-- toggle lsp inlay hints (global)
+function M.toggle_inlay_hints(bufnr)
+  bufnr = bufnr or 0
+  vim.g.inlay_hints_enabled = not vim.g.inlay_hints_enabled
+  vim.b.inlay_hints_enabled = not vim.g.inlay_hints_enabled
+  vim.lsp.buf.inlay_hint.enable(vim.g.inlay_hints_enabled, { bufnr = bufnr })
+  utils.notify(string.format("Global inlay hints %s", bool2str(vim.g.inlay_hints_enabled)))
+end
+
+-- toggle paste
 function M.toggle_paste()
   vim.opt.paste = not vim.opt.paste:get() -- local to window
   utils.notify(string.format("paste %s", bool2str(vim.opt.paste:get())))
