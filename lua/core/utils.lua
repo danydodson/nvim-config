@@ -82,10 +82,10 @@ end
 -- Get an icon from `lspkind` if it is available and return it.
 function M.get_icon(kind, padding, no_fallback)
   if not vim.g.icons_enabled and no_fallback then return "" end
-  local icon_pack = vim.g.icons_enabled and "icons" or "text_icons"
+  local icon_pack = vim.g.icons_enabled and "icons" or "text"
   if not M[icon_pack] then
-    icons = require("core.icons")
-    -- M.text_icons = require("core.icons.text")
+    M.icons = require("core.icons")
+    M.text = require("core.text")
   end
   local icon = M[icon_pack] and M[icon_pack][kind]
   return icon and icon .. string.rep(" ", padding or 0) or ""
@@ -183,6 +183,17 @@ function M.trigger_event(event, is_urgent)
   else
     vim.schedule(trigger)
   end
+end
+
+--- Convert a path to the path format of the current operative system.
+--- It converts 'slash' to 'inverted slash' if on windows, and vice versa on UNIX.
+function M.os_path(path)
+  if path == nil then
+    return nil
+  end
+  -- Get the platform-specific path separator
+  local separator = string.sub(package.config, 1, 1)
+  return string.gsub(path, "[/\\]", separator)
 end
 
 -- Get the options of a plugin managed by lazy.

@@ -1,5 +1,5 @@
 -- lua/plugins/dressing.lua
- 
+
 return {
 	{
 		"stevearc/dressing.nvim",
@@ -8,9 +8,9 @@ return {
 			require("dressing").setup({
 				select = {
 					input = { default_prompt = "➤ " },
-					backend = { "fzf_lua", "telescope", "fzf", "builtin", "nui" },
+					backend = { "telescope", "fzf_lua", "fzf", "builtin", "nui" },
 				},
-				fzf_lua = {
+				fzf = {
 					window = {
 						width = 0.5,
 						height = 0.5,

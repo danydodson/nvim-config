@@ -16,8 +16,8 @@ return {
         icons = { mappings = false },
       }
       wk.add { --       󱦘
-        { '<leader>s',        group = 'search' },
-        { '<leader>f',        group = 'file' },
+        { '<leader>f',        group = 'find' },
+        { '<leader>s',        group = 'file' },
         { '<leader>b',        group = 'buffer' },
         { '<leader><tab>',    group = 'tabs' },
         { '<leader>p',        group = 'windows' },

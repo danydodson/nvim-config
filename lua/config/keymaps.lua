@@ -3,7 +3,6 @@
 local map = vim.keymap.set
 local del = vim.keymap.del
 local utils = require("core.utils")
-local is_available = utils.is_available
 
 -- quit all
 map('n', '<leader>wq', '<cmd>qa<cr>', { desc = 'quit all' })
@@ -28,12 +27,12 @@ map('n', '<Leader>/', 'gcc', { remap = true, desc = 'comment line' })
 map('x', '<Leader>/', 'gcc', { remap = true, desc = 'comment line' })
 
 -- add blank lines
-map('n', '<Leader>fL', 'O<Esc>0"_D', { remap = false, desc = 'create Blank line above' })
-map('n', '<Leader>fl', 'o<Esc>0"_D', { remap = false, desc = 'create Blank line below' })
+map('n', '<Leader>sL', 'O<Esc>0"_D', { remap = false, desc = 'create Blank line above' })
+map('n', '<Leader>sl', 'o<Esc>0"_D', { remap = false, desc = 'create Blank line below' })
 
 -- duplicate lines
-map('n', '<Leader>fd', 'm`""Y""P``', { desc = 'duplicate line' })
-map('x', '<Leader>fd', '""Y""Pgv', { desc = 'duplicate selection' })
+map('n', '<Leader>sd', 'm`""Y""P``', { desc = 'duplicate line' })
+map('x', '<Leader>sd', '""Y""Pgv', { desc = 'duplicate selection' })
 
 -- editor line controls
 map('n', '<S-k>', '<cmd>m .-2<cr>==', { desc = 'Move Up' })
@@ -61,7 +60,7 @@ map('n', '<meta-l>', 'TmuxResizeRight<CR>', {silent = true,remap = false, desc =
 -- map('n', '<S-Right>', '<cmd>vertical resize +2<cr>', { desc = 'Increase Window Width' })
 
 -- window life 
-map('n', '<leader>pp', '<c-w>', { desc = 'Windows', remap = true })
+map('n', '<leader>pp', '<c-w>', { desc = 'windows', remap = true })
 map('n', '<leader>p-', '<C-W>s', { remap = true, desc = 'split window below' })
 map('n', '<leader>p|', '<C-W>v', { remap = true, desc = 'split window right' })
 map('n', '<leader>pd', '<C-W>c', { remap = true, desc = 'delete window' })
@@ -120,22 +119,22 @@ map('n', '<leader>tg', require('core.ui').toggle_signcolumn, { desc = 'toggle si
 map('n', '<leader>th', require('core.ui').toggle_foldcolumn, { desc = 'toggle foldcolumn' })
 
 -- toggle autopairs
-if is_available 'nvim-autopairs' then
+if utils.is_available 'nvim-autopairs' then
   map('n', '<leader>ta', require('core.ui').toggle_autopairs, { desc = 'toggle autopairs' })
 end
 
 -- toggle autocompletion
-if is_available 'nvim-cmp' then
+if utils.is_available 'nvim-cmp' then
   map('n', '<leader>tc', require('core.ui').toggle_cmp, { desc = 'toggle completion' })
 end
 
 -- toggle nvim-colorizer
-if is_available 'nvim-colorizer.lua' then
+if utils.is_available 'nvim-colorizer.lua' then
   map('n', '<leader>tC', '<cmd>ColorizerToggle<cr>', { desc = 'toggle color highlight' })
 end
 
 -- toggle lsp signature
-if is_available 'lsp_signature.nvim' then
+if utils.is_available 'lsp_signature.nvim' then
   map('n', '<leader>tp', require('core.ui').toggle_lsp_signature, { desc = 'toggle lsp signature' })
 end
 

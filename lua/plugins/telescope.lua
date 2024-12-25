@@ -34,6 +34,9 @@ return {
       }
 
       local builtin = require 'telescope.builtin'
+      local utils = require("core.utils")
+      local config_dir = utils.os_path(vim.fn.stdpath "config")
+      local dotfiles_dir = vim.fn.expand("$HOME") .. "/.dotfiles"
 
       local find_files = function()
         builtin.find_files {
@@ -43,22 +46,30 @@ return {
 
       local find_config_files = function()
         builtin.find_files {
-          find_command = { 'rg', '--files', '--iglob', '!.git', '--hidden', '/.config/nvim' },
+          find_command = { 'rg', '--files', '--iglob', '!.git', '--hidden', config_dir },
         }
       end
 
-      vim.keymap.set('n', '<leader><leader>', find_files)
-      vim.keymap.set('n', '<leader>sc', find_config_files, { desc = 'search neovim configs' })
-      vim.keymap.set('n', '<leader>sr', builtin.resume, { desc = 'search resume' })
-      vim.keymap.set('n', '<leader>sw', builtin.grep_string, { desc = 'search current word' })
-      vim.keymap.set('n', '<leader>sg', builtin.live_grep, { desc = 'search by grep' })
-      vim.keymap.set('n', '<leader>sb', builtin.buffers, { desc = 'search buffers' })
-      vim.keymap.set('n', '<leader>sd', builtin.diagnostics, { desc = 'search diagnostics' })
-      vim.keymap.set('n', '<leader>st', builtin.builtin, { desc = 'search select telescope' })
-      vim.keymap.set('n', '<leader>sk', builtin.keymaps, { desc = 'search keymaps' })
-      vim.keymap.set('n', '<leader>sh', builtin.help_tags, { desc = 'search help' })
-      vim.keymap.set('n', '<leader>sm', builtin.man_pages, { desc = 'search man pages' })
-      vim.keymap.set('n', '<leader>ss', builtin.git_status, { desc = 'search git status' })
+      local find_dotfiles = function()
+        builtin.find_files {
+          find_command = { 'rg', '--files', '--iglob', '!.git', '--hidden', dotfiles_dir },
+        }
+      end
+
+      -- vim.keymap.set('n', '<leader><leader>', find_files)
+      vim.keymap.set('n', '<leader>ff', find_files, { desc = 'search files' })
+      vim.keymap.set('n', '<leader>fc', find_config_files, { desc = 'search nvim configs' })
+      vim.keymap.set('n', '<leader>fd', find_dotfiles, { desc = 'search dotfiles' })
+      vim.keymap.set('n', '<leader>fr', builtin.resume, { desc = 'search resume' })
+      vim.keymap.set('n', '<leader>fw', builtin.grep_string, { desc = 'search current word' })
+      vim.keymap.set('n', '<leader>fg', builtin.live_grep, { desc = 'search by grep' })
+      vim.keymap.set('n', '<leader>fb', builtin.buffers, { desc = 'search buffers' })
+      -- vim.keymap.set('n', '<leader>fd', builtin.diagnostics, { desc = 'search diagnostics' })
+      vim.keymap.set('n', '<leader>ft', builtin.builtin, { desc = 'search select telescope' })
+      vim.keymap.set('n', '<leader>fk', builtin.keymaps, { desc = 'search keymaps' })
+      vim.keymap.set('n', '<leader>fh', builtin.help_tags, { desc = 'search help' })
+      vim.keymap.set('n', '<leader>fm', builtin.man_pages, { desc = 'search man pages' })
+      vim.keymap.set('n', '<leader>fs', builtin.git_status, { desc = 'search git status' })
       vim.keymap.set('n', '<C-p>', builtin.oldfiles, { desc = 'search recents' })
 
       require('telescope').load_extension 'ui-select'

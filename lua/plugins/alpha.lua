@@ -1,31 +1,25 @@
 -- lua/plugins/alpha.lua
 
+local headers = require("core.headers")
+
 return {
   {
     'goolord/alpha-nvim',
     dependencies = { 'nvim-tree/nvim-web-devicons' },
+    enabled = true,
     opts = function()
       local dashboard = require("alpha.themes.dashboard")
-      dashboard.section.header.val = {
-        [[                                          ]],
-        [[        _                ___       _.--.  ]],
-        [[        \`.|\..----...-'`   `-._.-'_.-'`  ]],
-        [[        /  ' `         ,       __.--'     ]],
-        [[        )/' _/     \   `-_,   /           ]],
-        [[        `-'" `"\_  ,_.-;_.-\_ ',          ]],
-        [[            _.-'_./   {_.'   ; /          ]],
-        [[  bug.       {_.-``-'         {_/         ]]
-      }
-      -- dashboard.section.header.opts.hl = "DashboardHeader"
-      -- vim.cmd("highlight DashboardHeader guifg=#F7778F")
+      math.randomseed(os.time())
+      dashboard.section.header.val = headers[1] --headers[math.random(1, #headers)]
+      dashboard.section.header.opts.hl = "DashboardHeader"
 
       -- Buttons
       dashboard.section.buttons.val = {
-        dashboard.button("n", " New     ", "<cmd>ene<CR>"), -- 
-        dashboard.button("e", " Recent  ", "<cmd>Telescope oldfiles<CR>"), -- 󰊳
+        dashboard.button("n", " New", "<cmd>ene<CR>"), -- 
+        dashboard.button("e", " Recent", "<cmd>Telescope oldfiles<CR>"), -- 󰊳
         -- dashboard.button("s", "󰅌  Sessions", "<cmd>SessionManager! load_session<CR>"),
         -- dashboard.button("p", "  Projects", "<cmd>Telescope projects<CR>"),
-        dashboard.button("q", "  Quit", "<cmd>exit<CR>"),
+        dashboard.button("q", " Quit", "<cmd>exit<CR>"),
         -- dashboard.button("LDR f '", " Bookmarks"),
       }
 

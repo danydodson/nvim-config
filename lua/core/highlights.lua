@@ -1,5 +1,7 @@
 -- lua/core/highlights.lua
 
+colors = require("core.colors")
+
 return {
   -- examples
   -- LspDiagnosticsUnderlineInformation = { style = config.styles.diagnostics, sp = colors.info },

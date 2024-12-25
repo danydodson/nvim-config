@@ -1,7 +1,7 @@
 -- lua/plugins/mini.lua
- 
+
 return {
-  { -- Collection of various small independent plugins/modules
+  {
     'echasnovski/mini.nvim',
     version = '*',
     event = 'VeryLazy',
@@ -39,35 +39,35 @@ return {
       -- ... and there is more!
       --  Check out: https://github.com/echasnovski/mini.nvim
 
-      -- require('mini.icons').setup {
-      --   lsp = {
-      --     text = { glyph = '󰉿' },
-      --     method = { glyph = '󰆧' },
-      --     ['function'] = { glyph = '󰊕' },
-      --     constructor = { glyph = '' },
-      --     field = { glyph = '󰜢' },
-      --     variable = { glyph = '󰀫' },
-      --     class = { glyph = '󰠱' },
-      --     interface = { glyph = '' },
-      --     module = { glyph = '' },
-      --     property = { glyph = '󰜢' },
-      --     unit = { glyph = '󰑭' },
-      --     value = { glyph = '󰎠' },
-      --     enum = { glyph = '' },
-      --     keyword = { glyph = '󰌋' },
-      --     snippet = { glyph = '' },
-      --     color = { glyph = '󰏘' },
-      --     file = { glyph = '󰈙' },
-      --     reference = { glyph = '󰈇' },
-      --     folder = { glyph = '󰉋' },
-      --     enumMember = { glyph = '' },
-      --     constant = { glyph = '󰏿' },
-      --     struct = { glyph = '󰙅' },
-      --     event = { glyph = '' },
-      --     operator = { glyph = '󰆕' },
-      --     typeParameter = { glyph = '' },
-      --   },
-      -- }
+      require('mini.icons').setup {
+        lsp = {
+          text = { glyph = '󰉿' },
+          method = { glyph = '󰆧' },
+          ['function'] = { glyph = '󰊕' },
+          constructor = { glyph = '' },
+          field = { glyph = '󰜢' },
+          variable = { glyph = '󰀫' },
+          class = { glyph = '󰠱' },
+          interface = { glyph = '' },
+          module = { glyph = '' },
+          property = { glyph = '󰜢' },
+          unit = { glyph = '󰑭' },
+          value = { glyph = '󰎠' },
+          enum = { glyph = '' },
+          keyword = { glyph = '󰌋' },
+          snippet = { glyph = '' },
+          color = { glyph = '󰏘' },
+          file = { glyph = '󰈙' },
+          reference = { glyph = '󰈇' },
+          folder = { glyph = '󰉋' },
+          enumMember = { glyph = '' },
+          constant = { glyph = '󰏿' },
+          struct = { glyph = '󰙅' },
+          event = { glyph = '' },
+          operator = { glyph = '󰆕' },
+          typeParameter = { glyph = '' },
+        },
+      }
     end,
   },
 }
