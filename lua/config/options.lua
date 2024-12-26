@@ -67,7 +67,6 @@ vim.g.loaded_perl_provider = 0
 vim.g.loaded_ruby_provider = 0
 vim.g.python3_host_prog = vim.fn.exepath 'python3'
 
--- The next globals are toggleable with <space + l + u>
 vim.g.autoformat_enabled = false -- Enable auto formatting at start.
 vim.g.autopairs_enabled = false -- Enable autopairs at start.
 vim.g.cmp_enabled = true -- Enable completion at start.

@@ -1,7 +1,5 @@
 -- lua/config/lazy.lua
 
-icons = require("core.icons")
-
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
 
 if not vim.loop.fs_stat(lazypath) then
@@ -20,8 +18,8 @@ vim.opt.rtp:prepend(lazypath)
 require("lazy").setup({
   ui = {
     size = { width = 0.9, height = 0.9 },
-    border = icons.border,
-    icons = icons.ui.lazy,
+    border = require("core.icons").border,
+    icons = require("core.icons").lazy,
   },
   spec = {
     { import = "plugins" },

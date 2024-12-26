@@ -36,7 +36,7 @@ return {
       local builtin = require 'telescope.builtin'
       local utils = require("core.utils")
       local config_dir = utils.os_path(vim.fn.stdpath "config")
-      local dotfiles_dir = vim.fn.expand("$HOME") .. "/.dotfiles"
+      local dotfiles_dir = os.getenv 'HOME' .. '/.dotfiles'
 
       local find_files = function()
         builtin.find_files {
@@ -56,7 +56,7 @@ return {
         }
       end
 
-      -- vim.keymap.set('n', '<leader><leader>', find_files)
+      vim.keymap.set('n', '<leader><leader>', find_files)
       vim.keymap.set('n', '<leader>ff', find_files, { desc = 'search files' })
       vim.keymap.set('n', '<leader>fc', find_config_files, { desc = 'search nvim configs' })
       vim.keymap.set('n', '<leader>fd', find_dotfiles, { desc = 'search dotfiles' })

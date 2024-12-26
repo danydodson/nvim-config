@@ -24,6 +24,7 @@ return {
         { '<leader>h',        group = 'harpoon' },
         { '<leader>c',        group = 'code' },
         { '<leader>g',        group = 'git' },
+        { '<leader>m',        group = 'markdown' },
         { '<leader>d',        group = 'debug' },
         { '<leader>t',        group = 'toggle' },
         { '<leader>/',        group = 'comment' },
