@@ -20,7 +20,11 @@ map('n', '<leader>b|', '<cmd>vert belowright sb N<cr>', { desc = 'buffer split r
 -- clear search
 map('n', '<Esc>', '<cmd>nohlsearch<CR>', { desc = 'escape and clear hlsearch' })
 
+-- lazy configs
 map('n', '<leader>ll', '<cmd>Lazy<CR>', { noremap = true, silent = true, desc = 'open lazy configs' })
+
+-- open alpha dashboard
+map("n", "<leader>aa", "<cmd>Alpha<cr>", { silent = true, desc = 'open alpha' })
 
 -- comments
 del('n', 'gb')

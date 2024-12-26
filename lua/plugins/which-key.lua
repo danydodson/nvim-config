@@ -17,6 +17,7 @@ return {
       }
       wk.add { --       󱦘
         { '<leader>/', hidden = true },
+        { '<leader>a', group = 'dashboard' },
         { '<leader>b', group = 'buffer' },
         { '<leader>c', group = 'code' },
         { '<leader>d', group = 'debug' },
