@@ -20,6 +20,8 @@ map('n', '<leader>b|', '<cmd>vert belowright sb N<cr>', { desc = 'buffer split r
 -- clear search
 map('n', '<Esc>', '<cmd>nohlsearch<CR>', { desc = 'escape and clear hlsearch' })
 
+map("n", "<leader>ll", "<cmd>Lazy<CR>", { noremap = true, silent = true, desc = 'open lazy configs' })
+
 -- comments
 del('n', 'gb')
 del('n', 'gc')
@@ -48,10 +50,10 @@ map('n', '<leader><tab>c', '<cmd>tabclose<cr>', { desc = 'close tab' })
 map('n', '<leader><tab>n', '<cmd>tabnext<cr>', { desc = 'next tab' })
 map('n', '<leader><tab>p', '<cmd>tabprevious<cr>', { desc = 'previous tab' })
 
-map('n', '<meta-h>', 'TmuxResizeLeft<CR>', {silent = true,remap = false, desc = 'new tab' })
-map('n', '<meta-j>', 'TmuxResizeDown<CR>', {silent = true,remap = false, desc = 'close tab' })
-map('n', '<meta-k>', 'TmuxResizeUp<CR>', {silent = true,remap = false, desc = 'next tab' })
-map('n', '<meta-l>', 'TmuxResizeRight<CR>', {silent = true,remap = false, desc = 'previous tab' })
+map('n', '<meta-h>', 'TmuxResizeLeft<CR>', { silent = true, remap = false, desc = 'new tab' })
+map('n', '<meta-j>', 'TmuxResizeDown<CR>', { silent = true, remap = false, desc = 'close tab' })
+map('n', '<meta-k>', 'TmuxResizeUp<CR>', { silent = true, remap = false, desc = 'next tab' })
+map('n', '<meta-l>', 'TmuxResizeRight<CR>', { silent = true, remap = false, desc = 'previous tab' })
 
 -- window resize control
 -- map('n', '<S-Up>', '<cmd>resize +1<cr>', { desc = 'Increase Window Height' })
@@ -59,7 +61,7 @@ map('n', '<meta-l>', 'TmuxResizeRight<CR>', {silent = true,remap = false, desc =
 -- map('n', '<S-Left>', '<cmd>vertical resize -2<cr>', { desc = 'Decrease Window Width' })
 -- map('n', '<S-Right>', '<cmd>vertical resize +2<cr>', { desc = 'Increase Window Width' })
 
--- window life 
+-- window life
 map('n', '<leader>pp', '<c-w>', { desc = 'windows', remap = true })
 map('n', '<leader>p-', '<C-W>s', { remap = true, desc = 'split window below' })
 map('n', '<leader>p|', '<C-W>v', { remap = true, desc = 'split window right' })
