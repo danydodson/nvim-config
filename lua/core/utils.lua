@@ -82,10 +82,9 @@ end
 -- Get an icon from `lspkind` if it is available and return it.
 function M.get_icon(kind, padding, no_fallback)
   if not vim.g.icons_enabled and no_fallback then return "" end
-  local icon_pack = vim.g.icons_enabled and "icons" or "text"
+  local icon_pack = vim.g.icons_enabled and "icons"
   if not M[icon_pack] then
     M.icons = require("core.icons")
-    M.text = require("core.text")
   end
   local icon = M[icon_pack] and M[icon_pack][kind]
   return icon and icon .. string.rep(" ", padding or 0) or ""

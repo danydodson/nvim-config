@@ -1,6 +1,6 @@
 -- lua/plugins/alpha.lua
 
-local headers = require("core.headers")
+local ascii = require("core.ascii")
 
 return {
   {
@@ -10,7 +10,7 @@ return {
     opts = function()
       local dashboard = require("alpha.themes.dashboard")
       math.randomseed(os.time())
-      dashboard.section.header.val = headers[1] --headers[math.random(1, #headers)]
+      dashboard.section.header.val = ascii[1] --ascii[math.random(1, #ascii)]
       dashboard.section.header.opts.hl = "DashboardHeader"
 
       -- Buttons

@@ -1,7 +1,7 @@
 -- lua/plugins/dashboard.lua
 
 local icons = require("core.icons")
-local headers = require("core.headers")
+local ascii = require("core.ascii")
 
 return {
   "nvimdev/dashboard-nvim",
@@ -27,7 +27,7 @@ return {
     },
   },
   config = function(_, opts)
-    opts.config.header = headers
+    opts.config.header = ascii
 
     local function footer()
       return { "", "", "Don't Stop Until You are Proud..." }
