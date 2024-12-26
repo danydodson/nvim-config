@@ -16,25 +16,54 @@ return {
     dependencies = { 'onsails/lspkind.nvim' },
     config = function()
       local cmp = require 'cmp'
-      local lspkind = require 'lspkind'
+      -- local lspkind = require 'lspkind'
       require('luasnip.loaders.from_vscode').lazy_load()
+
+      -- border opts
+      local border_opts = {
+        border = 'rounded',
+        scrollbar = false,
+        col_offset = -3,
+        side_padding = 0,
+        scrolloff = 0,
+        winhighlight = 'Normal:NormalFloat,FloatBorder:FloatBorder,CursorLine:PmenuSel,Search:None',
+      }
+      local cmp_config_window = (vim.g.lsp_round_borders_enabled and cmp.config.window.bordered(border_opts)) or
+      cmp.config.window
+
       cmp.setup {
         formatting = {
-          format = lspkind.cmp_format {
-            mode = 'symbol_text',
-            maxwidth = {
-              menu = 50,
+          fields = { 'kind', 'abbr', 'menu' },
+          format = function(entry, vim_item)
+            local kind = require('lspkind').cmp_format {
+              mode = 'symbol_text',
+              maxwidth = 50,
               abbr = 50,
-            },
-            ellipsis_char = '...',
-            show_labelDetails = true,
+              ellipsis_char = '...',
+              show_labelDetails = true,
+            } (entry, vim_item)
+            local strings = vim.split(kind.kind, '%s', { trimempty = true })
+            kind.kind = ' ' .. (strings[1] or '') .. ' '
+            kind.menu = '    (' .. (strings[2] or '') .. ')'
 
-            -- The function below will be called before any actual modifications from lspkind
-            -- so that you can provide more controls on popup customization. (See [#30](https://github.com/onsails/lspkind-nvim/pull/30))
-            before = function(entry, vim_item)
-              return vim_item
-            end,
-          },
+            return kind
+          end,
+
+          -- format = lspkind.cmp_format {
+          --   mode = 'symbol_text',
+          --   maxwidth = {
+          --     menu = 50,
+          --     abbr = 50,
+          --   },
+          --   ellipsis_char = '...',
+          --   show_labelDetails = true,
+
+          --   -- The function below will be called before any actual modifications from lspkind
+          --   -- so that you can provide more controls on popup customization. (See [#30](https://github.com/onsails/lspkind-nvim/pull/30))
+          --   before = function(entry, vim_item)
+          --     return vim_item
+          --   end,
+          -- },
         },
         snippet = {
           expand = function(args)
@@ -42,6 +71,8 @@ return {
           end,
         },
         window = {
+          completion = cmp_config_window,
+          documentation = cmp_config_window,
           -- completion = cmp.config.window.bordered(),
           -- documentation = cmp.config.window.bordered(),
         },

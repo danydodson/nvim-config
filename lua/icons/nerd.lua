@@ -87,6 +87,7 @@ return {
   GitStaged = '✓',
   GitUnstaged = '✗',
   GitUntracked = '★',
+  GreeterYazi = " ",
   History = '',
   Lightbulb = '',
   LineLeft = '▏',

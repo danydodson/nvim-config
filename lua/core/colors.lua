@@ -9,6 +9,7 @@ return {
   bg_d = '#181b20',
   bg_blue = '#61afef',
   bg_yellow = '#e8c88c',
+  border_bg = "#171b20",
   fg = '#a0a8b7',
   purple = '#bf68d9',
   violet = '#a9a1e1',

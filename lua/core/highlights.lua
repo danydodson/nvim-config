@@ -39,8 +39,24 @@ return {
   -- IncSearch = { style = "reverse" },
 
   -- completion popup
-  -- PMenu = { bg = colors.bg_d, blend = vim.o.pumblend },
-  -- PmenuThumb = { bg = colors.grey },
+  NormalFloat = { bg = colors.border_bg },
+  FloatBorder = { bg = colors.border_bg, fg = colors.purple, blend = vim.o.pumblend },
+  -- FloatBorderHighlight = { bg = colors.bg_blue, fg = colors.cyan },
+  -- FloatTitle = { bg = colors.green },
+  -- FloatHeader = { bg = colors.yellow},
+  -- FloatFooter = { bg = colors.black },
+
+  -- Pmenu = { blend = vim.o.pumblend },
+  -- PMenu = { bg = colors.red },  -- Popup menu: Normal item. hl-PmenuSel
+  -- PmenuSel = { bg = colors.bg2, blend = vim.o.pumblend, pumblend = 30, }, -- Popup menu: Selected item. Combined with hl-Pmenu. hl-PmenuKind
+  -- PmenuKind = { bg = colors.red },   -- Popup menu: Normal item "kind". hl-PmenuKindSel
+  -- PmenuKindSel = { bg = colors.red }, -- Popup menu: Selected item "kind". hl-PmenuExtra
+  -- PmenuExtra = { bg = colors.red },  -- Popup menu: Normal item "extra text". hl-PmenuExtraSel
+  -- PmenuExtraSel = { bg = colors.red }, -- Popup menu: Selected item "extra text". hl-PmenuSbar
+  -- PmenuSbar = { bg = colors.grey },  -- Popup menu: Scrollbar. hl-PmenuThumb
+  -- PmenuThumb = { bg = colors.bg3, fg = colors.red }, -- Popup menu: Thumb of the scrollbar. hl-PmenuMatch
+  -- PmenuMatch = { bg = colors.red },  -- Popup menu: Matched text in normal item. Combined with hl-Pmenu. hl-PmenuMatchSel
+  -- PmenuMatchSel = { bg = colors.red }, -- Popup menu: Matched text in selected item. Combined with
 
   -- lsp document highlights
   -- LspReferenceText = { bg = colors.grey11, style = 'none' },

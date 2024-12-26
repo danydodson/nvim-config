@@ -16,7 +16,7 @@ vim.opt.signcolumn = 'yes:1'
 vim.opt.cmdheight = 0
 
 vim.opt.inccommand = "nosplit"
-vim.opt.pumblend = 0  -- Popup blend
+vim.opt.pumblend = 10  -- Popup blend
 vim.opt.pumheight = 10
 
 vim.g.loaded_netrw = 1
@@ -77,5 +77,5 @@ vim.g.inlay_hints_enabled = false
 vim.g.lsp_signature_enabled = true
 vim.g.notifications_enabled = true
 -- vim.g.codelens_enabled = true
--- vim.g.lsp_round_borders_enabled = true
+vim.g.lsp_round_borders_enabled = true
 -- vim.g.semantic_tokens_enabled = true
