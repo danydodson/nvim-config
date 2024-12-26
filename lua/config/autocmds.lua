@@ -1,25 +1,25 @@
 -- lua/config/autocmds.lua
 
 local function augroup(name)
-  return vim.api.nvim_create_augroup("lazyvim_" .. name, { clear = true })
+  return vim.api.nvim_create_augroup('lazyvim_' .. name, { clear = true })
 end
 
 local autocmd = vim.api.nvim_create_autocmd
-local utils = require("core.utils")
+local utils = require 'core.utils'
 local is_available = utils.is_available
 
 -- don't auto comment new line
-autocmd({ "FileType" }, {
-  desc = "Disables auto commenting next line",
-  pattern = "*",
+autocmd({ 'FileType' }, {
+  desc = 'Disables auto commenting next line',
+  pattern = '*',
   callback = function()
-    vim.cmd("set formatoptions-=cro")
+    vim.cmd 'set formatoptions-=cro'
   end,
 })
 
 -- highlight on yank
-autocmd("TextYankPost", {
-  group = augroup("highlight_yank"),
+autocmd('TextYankPost', {
+  group = augroup 'highlight_yank',
   callback = function()
     vim.highlight.on_yank()
   end,
@@ -30,36 +30,36 @@ if vim.g.vscode then
   return {}
 end
 
-autocmd({ "VimEnter" }, {
-  desc = "Nvim user event that trigger a few ms after nvim starts",
+autocmd({ 'VimEnter' }, {
+  desc = 'Nvim user event that trigger a few ms after nvim starts',
   callback = function()
     -- If nvim is opened passing a filename, trigger the event inmediatelly.
     if #vim.fn.argv() >= 1 then
       -- In order to avoid visual glitches.
-      utils.trigger_event("User BaseDefered", true)
-      utils.trigger_event("BufEnter", true) -- also, initialize tabline_buffers.
+      utils.trigger_event('User BaseDefered', true)
+      utils.trigger_event('BufEnter', true) -- also, initialize tabline_buffers.
     else                                    -- Wait some ms before triggering the event.
       vim.defer_fn(function()
-        utils.trigger_event("User BaseDefered")
+        utils.trigger_event 'User BaseDefered'
       end, 70)
     end
   end,
 })
 
 -- check if we need to reload the file when it changed
-autocmd({ "FocusGained", "TermClose", "TermLeave" }, {
-  group = augroup("checktime"),
+autocmd({ 'FocusGained', 'TermClose', 'TermLeave' }, {
+  group = augroup 'checktime',
   callback = function()
-    if vim.o.buftype ~= "nofile" then
-      vim.cmd("checktime")
+    if vim.o.buftype ~= 'nofile' then
+      vim.cmd 'checktime'
     end
   end,
 })
 
 -- go to last loc when opening a buffer
 -- this mean that when you open a file, you will be at the last position
-autocmd("BufReadPost", {
-  desc = "Go to Last loc when Opening a buffer",
+autocmd('BufReadPost', {
+  desc = 'Go to Last loc when Opening a buffer',
   callback = function()
     local mark = vim.api.nvim_buf_get_mark(0, '"')
     local lcount = vim.api.nvim_buf_line_count(0)
@@ -70,37 +70,37 @@ autocmd("BufReadPost", {
 })
 
 -- terminal
-autocmd({ "TermOpen", "TermEnter" }, {
-  desc = "Make Termainal took good",
+autocmd({ 'TermOpen', 'TermEnter' }, {
+  desc = 'Make Termainal took good',
   callback = function()
     vim.opt_local.number = false
     vim.opt_local.relativenumber = false
     vim.opt_local.spell = false
-    vim.opt_local.signcolumn = "no"
+    vim.opt_local.signcolumn = 'no'
     vim.opt_local.laststatus = 0
-    vim.api.nvim_command("startinsert") --to start terminal in insert mood
+    vim.api.nvim_command 'startinsert' --to start terminal in insert mood
   end,
 })
-autocmd({ "TermLeave" }, {
-  desc = "Make Termainal took good",
+autocmd({ 'TermLeave' }, {
+  desc = 'Make Termainal took good',
   callback = function()
     vim.opt_local.laststatus = 2
   end,
 })
 
 -- resize splits if window got resized
-autocmd({ "VimResized" }, {
-  group = augroup("resize_splits"),
+autocmd({ 'VimResized' }, {
+  group = augroup 'resize_splits',
   callback = function()
     local current_tab = vim.fn.tabpagenr()
-    vim.cmd("tabdo wincmd =")
-    vim.cmd("tabnext " .. current_tab)
+    vim.cmd 'tabdo wincmd ='
+    vim.cmd('tabnext ' .. current_tab)
   end,
 })
 
 -- show cursor line only in active window
 autocmd({ 'InsertLeave', 'WinEnter' }, {
-  group = augroup('auto_cursorline_show'),
+  group = augroup 'auto_cursorline_show',
   callback = function(event)
     if vim.bo[event.buf].buftype == '' then
       vim.opt_local.cursorline = true
@@ -108,52 +108,49 @@ autocmd({ 'InsertLeave', 'WinEnter' }, {
   end,
 })
 autocmd({ 'InsertEnter', 'WinLeave' }, {
-  group = augroup('auto_cursorline_hide'),
+  group = augroup 'auto_cursorline_hide',
   callback = function()
     vim.opt_local.cursorline = false
   end,
 })
 
 -- fix conceallevel for json files
-autocmd({ "FileType" }, {
-  group = augroup("json_conceal"),
-  pattern = { "json", "jsonc", "json5" },
+autocmd({ 'FileType' }, {
+  group = augroup 'json_conceal',
+  pattern = { 'json', 'jsonc', 'json5' },
   callback = function()
     vim.opt_local.conceallevel = 0
   end,
 })
 
 -- autocmd to show diagnostics on CursorHold
-autocmd("CursorHold", {
-  desc = "lsp show diagnostics on CursorHold",
+autocmd('CursorHold', {
+  desc = 'lsp show diagnostics on CursorHold',
   callback = function()
     local hover_opts = {
       focusable = false,
-      close_events = { "BufLeave", "CursorMoved", "InsertEnter", "FocusLost" },
-      border = "rounded",
-      source = "always",
+      close_events = { 'BufLeave', 'CursorMoved', 'InsertEnter', 'FocusLost' },
+      border = 'rounded',
+      source = 'always',
     }
     vim.diagnostic.open_float(nil, hover_opts)
   end,
 })
 
 -- 3. Launch alpha greeter on startup
-if is_available("alpha-nvim") then
-  autocmd({ "User", "BufEnter" }, {
-    desc = "Disable status and tablines for alpha",
+if is_available 'alpha-nvim' then
+  autocmd({ 'User', 'BufEnter' }, {
+    desc = 'Disable status and tablines for alpha',
     callback = function(args)
-      local is_filetype_alpha = vim.api.nvim_get_option_value("filetype", { buf = 0 }) == "alpha"
-      local is_empty_file = vim.api.nvim_get_option_value("buftype", { buf = 0 }) == "nofile"
-      if
-          ((args.event == "User" and args.file == "AlphaReady") or (args.event == "BufEnter" and is_filetype_alpha))
-          and not vim.g.before_alpha
-      then
+      local is_filetype_alpha = vim.api.nvim_get_option_value('filetype', { buf = 0 }) == 'alpha'
+      local is_empty_file = vim.api.nvim_get_option_value('buftype', { buf = 0 }) == 'nofile'
+      if ((args.event == 'User' and args.file == 'AlphaReady') or (args.event == 'BufEnter' and is_filetype_alpha)) and not vim.g.before_alpha then
         vim.g.before_alpha = {
           -- showtabline = vim.opt.showtabline:get(),
           laststatus = vim.opt.laststatus:get(),
         }
         vim.opt.showtabline, vim.opt.laststatus = 0, 0
-      elseif vim.g.before_alpha and args.event == "BufEnter" and not is_empty_file then
+      elseif vim.g.before_alpha and args.event == 'BufEnter' and not is_empty_file then
         -- vim.opt.laststatus = vim.g.before_alpha.laststatus
         vim.opt.showtabline = vim.g.before_alpha.showtabline
         vim.g.before_alpha = nil
@@ -161,8 +158,8 @@ if is_available("alpha-nvim") then
     end,
   })
 
-  autocmd("VimEnter", {
-    desc = "Start Alpha only when nvim is opened with no arguments",
+  autocmd('VimEnter', {
+    desc = 'Start Alpha only when nvim is opened with no arguments',
     callback = function()
       -- Precalculate conditions.
       local lines = vim.api.nvim_buf_get_lines(0, 0, 2, false)
@@ -177,15 +174,15 @@ if is_available("alpha-nvim") then
         return
       end
       for _, arg in pairs(vim.v.argv) do
-        if arg == "-b" or arg == "-c" or vim.startswith(arg, "+") or arg == "-S" then
+        if arg == '-b' or arg == '-c' or vim.startswith(arg, '+') or arg == '-S' then
           return
         end
       end
 
       -- All good? Show alpha.
-      require("alpha").start(true, require("alpha").default_config)
+      require('alpha').start(true, require('alpha').default_config)
       vim.schedule(function()
-        vim.cmd.doautocmd("FileType")
+        vim.cmd.doautocmd 'FileType'
       end)
     end,
   })

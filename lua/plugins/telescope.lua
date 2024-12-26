@@ -34,8 +34,8 @@ return {
       }
 
       local builtin = require 'telescope.builtin'
-      local utils = require("core.utils")
-      local config_dir = utils.os_path(vim.fn.stdpath "config")
+      local utils = require 'core.utils'
+      local config_dir = utils.os_path(vim.fn.stdpath 'config')
       local dotfiles_dir = os.getenv 'HOME' .. '/.dotfiles'
 
       local find_files = function()

@@ -1,7 +1,7 @@
 -- lua/core/lsp.lua
 
 local M = {}
-local utils = require "core.utils"
+local utils = require 'core.utils'
 local stored_handlers = {}
 
 --- Apply default settings for diagnostics, formatting, and lsp capabilities.
@@ -11,15 +11,15 @@ M.apply_default_lsp_settings = function()
   -- Apply the icons defined in ../icons/nerd_font.lua
   local get_icon = utils.get_icon
   local signs = {
-    { name = "DiagnosticSignError",    text = get_icon("DiagnosticError"),        texthl = "DiagnosticSignError" },
-    { name = "DiagnosticSignWarn",     text = get_icon("DiagnosticWarn"),         texthl = "DiagnosticSignWarn" },
-    { name = "DiagnosticSignHint",     text = get_icon("DiagnosticHint"),         texthl = "DiagnosticSignHint" },
-    { name = "DiagnosticSignInfo",     text = get_icon("DiagnosticInfo"),         texthl = "DiagnosticSignInfo" },
-    { name = "DapStopped",             text = get_icon("DapStopped"),             texthl = "DiagnosticWarn" },
-    { name = "DapBreakpoint",          text = get_icon("DapBreakpoint"),          texthl = "DiagnosticInfo" },
-    { name = "DapBreakpointRejected",  text = get_icon("DapBreakpointRejected"),  texthl = "DiagnosticError" },
-    { name = "DapBreakpointCondition", text = get_icon("DapBreakpointCondition"), texthl = "DiagnosticInfo" },
-    { name = "DapLogPoint",            text = get_icon("DapLogPoint"),            texthl = "DiagnosticInfo" }
+    { name = 'DiagnosticSignError',    text = get_icon 'DiagnosticError',        texthl = 'DiagnosticSignError' },
+    { name = 'DiagnosticSignWarn',     text = get_icon 'DiagnosticWarn',         texthl = 'DiagnosticSignWarn' },
+    { name = 'DiagnosticSignHint',     text = get_icon 'DiagnosticHint',         texthl = 'DiagnosticSignHint' },
+    { name = 'DiagnosticSignInfo',     text = get_icon 'DiagnosticInfo',         texthl = 'DiagnosticSignInfo' },
+    { name = 'DapStopped',             text = get_icon 'DapStopped',             texthl = 'DiagnosticWarn' },
+    { name = 'DapBreakpoint',          text = get_icon 'DapBreakpoint',          texthl = 'DiagnosticInfo' },
+    { name = 'DapBreakpointRejected',  text = get_icon 'DapBreakpointRejected',  texthl = 'DiagnosticError' },
+    { name = 'DapBreakpointCondition', text = get_icon 'DapBreakpointCondition', texthl = 'DiagnosticInfo' },
+    { name = 'DapLogPoint',            text = get_icon 'DapLogPoint',            texthl = 'DiagnosticInfo' },
   }
   for _, sign in ipairs(signs) do
     vim.fn.sign_define(sign.name, sign)
@@ -28,9 +28,9 @@ M.apply_default_lsp_settings = function()
   -- Borders
   -- Apply the option lsp_round_borders_enabled from ../1-options.lua
   if vim.g.lsp_round_borders_enabled then
-    vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, { border = "rounded", silent = true })
-    vim.lsp.handlers["textDocument/signatureHelp"] =
-        vim.lsp.with(vim.lsp.handlers.signature_help, { border = "rounded", silent = true })
+    vim.lsp.handlers['textDocument/hover'] = vim.lsp.with(vim.lsp.handlers.hover, { border = 'rounded', silent = true })
+    vim.lsp.handlers['textDocument/signatureHelp'] = vim.lsp.with(vim.lsp.handlers.signature_help,
+      { border = 'rounded', silent = true })
   end
 
   -- Set default diagnostics
@@ -38,10 +38,10 @@ M.apply_default_lsp_settings = function()
     virtual_text = true,
     signs = {
       text = {
-        [vim.diagnostic.severity.ERROR] = utils.get_icon("DiagnosticError"),
-        [vim.diagnostic.severity.HINT] = utils.get_icon("DiagnosticHint"),
-        [vim.diagnostic.severity.WARN] = utils.get_icon("DiagnosticWarn"),
-        [vim.diagnostic.severity.INFO] = utils.get_icon("DiagnosticInfo"),
+        [vim.diagnostic.severity.ERROR] = utils.get_icon 'DiagnosticError',
+        [vim.diagnostic.severity.HINT] = utils.get_icon 'DiagnosticHint',
+        [vim.diagnostic.severity.WARN] = utils.get_icon 'DiagnosticWarn',
+        [vim.diagnostic.severity.INFO] = utils.get_icon 'DiagnosticInfo',
       },
       active = signs,
     },
@@ -50,11 +50,11 @@ M.apply_default_lsp_settings = function()
     severity_sort = true,
     float = {
       focused = false,
-      style = "minimal",
-      border = "rounded",
-      source = "always",
-      header = "",
-      prefix = "",
+      style = 'minimal',
+      border = 'rounded',
+      source = 'always',
+      header = '',
+      prefix = '',
     },
   }
 
@@ -62,15 +62,12 @@ M.apply_default_lsp_settings = function()
   -- Applies the option diagnostics_mode from ../1-options.lua
   M.diagnostics = {
     -- diagnostics off
-    [0] = vim.tbl_deep_extend(
-      "force",
-      default_diagnostics,
-      { underline = false, virtual_text = false, signs = false, update_in_insert = false }
-    ),
+    [0] = vim.tbl_deep_extend('force', default_diagnostics,
+      { underline = false, virtual_text = false, signs = false, update_in_insert = false }),
     -- status only
-    vim.tbl_deep_extend("force", default_diagnostics, { virtual_text = false, signs = false }),
+    vim.tbl_deep_extend('force', default_diagnostics, { virtual_text = false, signs = false }),
     -- virtual text off, signs on
-    vim.tbl_deep_extend("force", default_diagnostics, { virtual_text = false }),
+    vim.tbl_deep_extend('force', default_diagnostics, { virtual_text = false }),
     -- all diagnostics on
     default_diagnostics,
   }
@@ -78,7 +75,7 @@ M.apply_default_lsp_settings = function()
 
   -- Apply formatting settings
   M.formatting = { format_on_save = { enabled = true }, disabled = {} }
-  if type(M.formatting.format_on_save) == "boolean" then
+  if type(M.formatting.format_on_save) == 'boolean' then
     M.formatting.format_on_save = { enabled = M.formatting.format_on_save }
   end
   M.format_opts = vim.deepcopy(M.formatting)
@@ -88,27 +85,27 @@ M.apply_default_lsp_settings = function()
     local filter = M.formatting.filter
     local disabled = M.formatting.disabled or {}
     -- check if client is fully disabled or filtered by function
-    return not (vim.tbl_contains(disabled, client.name) or (type(filter) == "function" and not filter(client)))
+    return not (vim.tbl_contains(disabled, client.name) or (type(filter) == 'function' and not filter(client)))
   end
 end
 
 --- This function has the sole purpose of passing the lsp keymappings to lsp.
 --- We have this function, because we use it on none-ls.
 function M.apply_user_lsp_mappings(client, bufnr)
-  local lsp_mappings = require("base.4-mappings").lsp_mappings(client, bufnr)
+  local lsp_mappings = require('base.4-mappings').lsp_mappings(client, bufnr)
   if not vim.tbl_isempty(lsp_mappings.v) then
-    lsp_mappings.v["<leader>l"] = { desc = utils.get_icon("ActiveLSP", 1, true) .. "LSP" }
+    lsp_mappings.v['<leader>l'] = { desc = utils.get_icon('ActiveLSP', 1, true) .. 'LSP' }
   end
   utils.set_mappings(lsp_mappings, { buffer = bufnr })
 end
 
 --- Here you can specify custom settings for the lsp servers you install.
 function M.apply_user_lsp_settings(server_name)
-  local server = require("lspconfig")[server_name]
+  local server = require('lspconfig')[server_name]
 
   -- Define user server capabilities.
   M.capabilities = vim.lsp.protocol.make_client_capabilities()
-  M.capabilities.textDocument.completion.completionItem.documentationFormat = { "markdown", "plaintext" }
+  M.capabilities.textDocument.completion.completionItem.documentationFormat = { 'markdown', 'plaintext' }
   M.capabilities.textDocument.completion.completionItem.snippetSupport = true
   M.capabilities.textDocument.completion.completionItem.preselectSupport = true
   M.capabilities.textDocument.completion.completionItem.insertReplaceSupport = true
@@ -116,25 +113,26 @@ function M.apply_user_lsp_settings(server_name)
   M.capabilities.textDocument.completion.completionItem.deprecatedSupport = true
   M.capabilities.textDocument.completion.completionItem.commitCharactersSupport = true
   M.capabilities.textDocument.completion.completionItem.tagSupport = { valueSet = { 1 } }
-  M.capabilities.textDocument.completion.completionItem.resolveSupport =
-  { properties = { "documentation", "detail", "additionalTextEdits" } }
+  M.capabilities.textDocument.completion.completionItem.resolveSupport = { properties = { 'documentation', 'detail', 'additionalTextEdits' } }
   M.capabilities.textDocument.foldingRange = { dynamicRegistration = false, lineFoldingOnly = true }
   M.flags = {}
-  local opts = vim.tbl_deep_extend("force", server, { capabilities = M.capabilities, flags = M.flags })
+  local opts = vim.tbl_deep_extend('force', server, { capabilities = M.capabilities, flags = M.flags })
 
   -- Define user server rules.
-  if server_name == "jsonls" then -- Add schemastore schemas
-    local is_schemastore_loaded, schemastore = pcall(require, "schemastore")
+  if server_name == 'jsonls' then -- Add schemastore schemas
+    local is_schemastore_loaded, schemastore = pcall(require, 'schemastore')
     if is_schemastore_loaded then
       opts.settings = { json = { schemas = schemastore.json.schemas(), validate = { enable = true } } }
     end
   end
-  if server_name == "yamlls" then -- Add schemastore schemas
-    local is_schemastore_loaded, schemastore = pcall(require, "schemastore")
-    if is_schemastore_loaded then opts.settings = { yaml = { schemas = schemastore.yaml.schemas() } } end
+  if server_name == 'yamlls' then -- Add schemastore schemas
+    local is_schemastore_loaded, schemastore = pcall(require, 'schemastore')
+    if is_schemastore_loaded then
+      opts.settings = { yaml = { schemas = schemastore.yaml.schemas() } }
+    end
   end
-  if server_name == "lua_ls" then -- Disable third party checking
-    pcall(require, "neodev")
+  if server_name == 'lua_ls' then -- Disable third party checking
+    pcall(require, 'neodev')
     opts.settings = { Lua = { workspace = { checkThirdParty = false } } }
   end
 
@@ -142,7 +140,9 @@ function M.apply_user_lsp_settings(server_name)
   local old_on_attach = server.on_attach
   opts.on_attach = function(client, bufnr)
     -- If the server on_attach function exist → server.on_attach(client, bufnr)
-    if type(old_on_attach) == "function" then old_on_attach(client, bufnr) end
+    if type(old_on_attach) == 'function' then
+      old_on_attach(client, bufnr)
+    end
     -- Also, apply mappings to the buffer.
     M.apply_user_lsp_mappings(client, bufnr)
   end
@@ -156,10 +156,12 @@ M.setup = function(server)
   local opts = M.apply_user_lsp_settings(server)
 
   -- Get a handler from lspconfig.
-  local setup_handler = stored_handlers[server] or require("lspconfig")[server].setup(opts)
+  local setup_handler = stored_handlers[server] or require('lspconfig')[server].setup(opts)
 
   -- Apply our user settings to the lspconfig handler.
-  if setup_handler then setup_handler(server, opts) end
+  if setup_handler then
+    setup_handler(server, opts)
+  end
 end
 
 return M

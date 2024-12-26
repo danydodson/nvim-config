@@ -2,7 +2,7 @@
 
 local map = vim.keymap.set
 local del = vim.keymap.del
-local utils = require("core.utils")
+local utils = require 'core.utils'
 
 -- quit all
 map('n', '<leader>wq', '<cmd>qa<cr>', { desc = 'quit all' })
@@ -20,7 +20,7 @@ map('n', '<leader>b|', '<cmd>vert belowright sb N<cr>', { desc = 'buffer split r
 -- clear search
 map('n', '<Esc>', '<cmd>nohlsearch<CR>', { desc = 'escape and clear hlsearch' })
 
-map("n", "<leader>ll", "<cmd>Lazy<CR>", { noremap = true, silent = true, desc = 'open lazy configs' })
+map('n', '<leader>ll', '<cmd>Lazy<CR>', { noremap = true, silent = true, desc = 'open lazy configs' })
 
 -- comments
 del('n', 'gb')

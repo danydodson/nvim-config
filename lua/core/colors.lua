@@ -22,7 +22,7 @@ return {
   grey = '#535965',
   light_grey = '#7a818e',
 }
- 
+
 -- dark = {
 --   black = '#181a1f',
 --   bg0 = '#282c34',

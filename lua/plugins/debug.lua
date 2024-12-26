@@ -64,7 +64,7 @@ return {
       icons = {
         expanded = '▾',
         collapsed = '▸',
-        current_frame = '*'
+        current_frame = '*',
       },
       controls = {
         icons = {

@@ -15,7 +15,7 @@ vim.opt.numberwidth = 2
 vim.opt.signcolumn = 'yes:1'
 vim.opt.cmdheight = 0
 
--- vim.opt.inccommand = "nosplit"
+vim.opt.inccommand = "nosplit"
 vim.opt.pumblend = 0  -- Popup blend
 vim.opt.pumheight = 10
 
@@ -67,18 +67,15 @@ vim.g.loaded_perl_provider = 0
 vim.g.loaded_ruby_provider = 0
 vim.g.python3_host_prog = vim.fn.exepath 'python3'
 
-package.path = package.path .. ";" .. vim.fn.expand("$HOME") .. "/.luarocks/share/lua/5.1/?/init.lua;"
-package.path = package.path .. ";" .. vim.fn.expand("$HOME") .. "/.luarocks/share/lua/5.1/?.lua;"
-
-vim.g.autoformat_enabled = false -- Enable auto formatting at start.
-vim.g.autopairs_enabled = false -- Enable autopairs at start.
-vim.g.cmp_enabled = true -- Enable completion at start.
-vim.g.icons_enabled = true -- Enable icons in the UI (disable if no nerd font is available).
-vim.g.codeactions_enabled = true -- Enable displaying 💡 where code actions can be used.
--- vim.g.codelens_enabled = true -- Enable automatic codelens refreshing for lsp that support it.
+vim.g.autoformat_enabled = false
+vim.g.autopairs_enabled = false
+vim.g.cmp_enabled = true
+vim.g.icons_enabled = true
+vim.g.codeactions_enabled = true
 vim.g.diagnostics_mode = 3 -- Set code linting (0=off, 1=only show in status line, 2=virtual text off, 3=all on).
-vim.g.inlay_hints_enabled = false -- Enable always show function parameter names.
--- vim.g.lsp_round_borders_enabled = true -- Enable round borders for lsp hover and signatureHelp.
-vim.g.lsp_signature_enabled = true -- Enable automatically showing lsp help as you write function parameters.
-vim.g.notifications_enabled = true -- Enable notifications.
--- vim.g.semantic_tokens_enabled = true -- Enable lsp semantic tokens at start.
+vim.g.inlay_hints_enabled = false
+vim.g.lsp_signature_enabled = true
+vim.g.notifications_enabled = true
+-- vim.g.codelens_enabled = true
+-- vim.g.lsp_round_borders_enabled = true
+-- vim.g.semantic_tokens_enabled = true

@@ -2,11 +2,11 @@
 
 return {
   {
-    "ziontee113/color-picker.nvim",
+    'ziontee113/color-picker.nvim',
     config = true,
-    event = "VeryLazy",
+    event = 'VeryLazy',
     keys = {
-      { "<leader>tp", "<cmd>PickColor<CR>", desc = "toggle color picker" },
+      { '<leader>tp', '<cmd>PickColor<CR>', desc = 'toggle color picker' },
     },
-  }
+  },
 }

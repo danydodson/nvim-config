@@ -1,6 +1,6 @@
-vim.filetype.add({
+vim.filetype.add {
   extension = {
     astro = 'astro',
-    mdx = 'mdx'
-  }
-})
+    mdx = 'mdx',
+  },
+}

@@ -54,6 +54,7 @@ return {
       {
         '<C-h>',
         function()
+          local utils = require 'core.utils'
           if utils.check.vimcmd 'BufferLineCyclePrev' then
             vim.cmd 'BufferLineCyclePrev'
           else
@@ -65,6 +66,7 @@ return {
       {
         '<C-l>',
         function()
+          local utils = require 'core.utils'
           if utils.check.vimcmd 'BufferLineCycleNext' then
             vim.cmd 'BufferLineCycleNext'
           else
