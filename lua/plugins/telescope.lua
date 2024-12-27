@@ -5,15 +5,11 @@ return {
     'nvim-telescope/telescope-ui-select.nvim',
   },
   {
-    'nvim-telescope/telescope-project.nvim',
-    dependencies = {
-      'nvim-telescope/telescope.nvim',
-    },
-  },
-  {
     'nvim-telescope/telescope.nvim',
     tag = '0.1.5',
-    dependencies = { 'nvim-lua/plenary.nvim' },
+    dependencies = {
+      'nvim-lua/plenary.nvim'
+    },
     config = function()
       local actions = require 'telescope.actions'
 
@@ -23,6 +19,7 @@ return {
             hidden = true,
           },
         },
+
         extensions = {
           ['ui-select'] = {
             require('telescope.themes').get_dropdown {},
@@ -64,7 +61,7 @@ return {
       vim.keymap.set('n', '<leader>fw', builtin.grep_string, { desc = 'search current word' })
       vim.keymap.set('n', '<leader>fg', builtin.live_grep, { desc = 'search by grep' })
       vim.keymap.set('n', '<leader>fb', builtin.buffers, { desc = 'search buffers' })
-      -- vim.keymap.set('n', '<leader>fd', builtin.diagnostics, { desc = 'search diagnostics' })
+      vim.keymap.set('n', '<leader>fd', builtin.diagnostics, { desc = 'search diagnostics' })
       vim.keymap.set('n', '<leader>ft', builtin.builtin, { desc = 'search select telescope' })
       vim.keymap.set('n', '<leader>fk', builtin.keymaps, { desc = 'search keymaps' })
       vim.keymap.set('n', '<leader>fh', builtin.help_tags, { desc = 'search help' })

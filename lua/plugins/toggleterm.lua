@@ -10,11 +10,6 @@ return {
       shading_factor = 2,
       shade_terminals = true,
       direction = 'horizontal',
-      float_opts = {
-        border = 'rounded',
-        winblend = 3,
-        highlights = { border = 'Normal', background = 'Normal' },
-      },
     },
   },
 }

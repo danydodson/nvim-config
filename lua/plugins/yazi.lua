@@ -6,7 +6,7 @@ return {
     event = "User BaseDefered",
     cmd = { "Yazi", "Yazi cwd", "Yazi toggle" },
     opts = {
-      open_for_directories = true,
+      open_for_directories = false,
     },
   }
 }
