@@ -87,7 +87,7 @@ return {
           },
         },
         window = {
-          width = 35,
+          width = 30,
           mappings = {
             ['.'] = 'set_root',
             ['<esc>'] = 'cancel',

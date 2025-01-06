@@ -26,7 +26,7 @@ return {
       if not is_yazi_installed then
         yazi_button = nil
       end
-           
+
       -- Buttons
       dashboard.section.buttons.val = {
         dashboard.button('n', ' ' .. ' New', '<cmd>ene<CR>'), -- 
