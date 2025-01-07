@@ -137,7 +137,7 @@ autocmd('CursorHold', {
   end,
 })
 
--- 3. Launch alpha greeter on startup
+-- 3. launch alpha greeter on startup
 if is_available 'alpha-nvim' then
   autocmd({ 'User', 'BufEnter' }, {
     desc = 'Disable status and tablines for alpha',
