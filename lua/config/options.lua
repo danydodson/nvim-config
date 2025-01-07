@@ -46,6 +46,7 @@ vim.opt.mousescroll = 'ver:1,hor:0'
 vim.opt.guicursor = 'n:blinkon200,i-ci-ve:ver25'
 vim.opt.listchars = { tab = '→ ', space = '·', trail = '·' }
 
+vim.opt.autochdir = true -- Use current file dir as working dir (See project.nvim).
 vim.opt.conceallevel = 0
 vim.opt.clipboard = 'unnamedplus'
 vim.opt.fillchars = { eob = ' ' }
