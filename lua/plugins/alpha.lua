@@ -27,14 +27,14 @@ return {
         yazi_button = nil
       end
 
-      -- Buttons
+      -- Buttons 󰊳  󰅌 󰱽
       dashboard.section.buttons.val = {
-        dashboard.button('n', ' ' .. ' New', '<cmd>ene<CR>'), -- 
-        yazi_button,
-        dashboard.button('r', ' 󰊳' .. ' Recent', '<cmd>Telescope oldfiles<CR>'),
-        dashboard.button('g', ' ' .. ' Grep', builtin.live_grep),
-        -- dashboard.button("s", " 󰅌  Sessions", "<cmd>SessionManager! load_session<CR>"),
+        dashboard.button('n', ' 󰻭' .. ' New', '<cmd>ene<CR>'), -- 
+        dashboard.button('r', ' 󰕁' .. ' Recent', '<cmd>Telescope oldfiles<CR>'),
+        dashboard.button('g', ' 󰺯' .. ' Grep', builtin.live_grep),
+        dashboard.button('s', ' ' .. ' Sessions', '<cmd>SessionManager! load_session<CR>'),
         -- dashboard.button("p", "   Projects", "<cmd>Telescope projects<CR>"),
+        yazi_button,
         dashboard.button('l', ' 󰒲' .. ' Lazy', '<cmd> Lazy <CR>'),
         dashboard.button('q', ' ' .. ' Quit', '<cmd>exit<CR>'),
         -- dashboard.button("LDR f '", " Bookmarks"),

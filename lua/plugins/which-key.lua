@@ -27,17 +27,18 @@ return {
         { '<leader>h', group = 'harpoon' },
         { '<leader>l', group = 'lazy' },
         { '<leader>m', group = 'markdown' },
-        { '<leader>p', group = 'windows' },
-        { '<leader>s', group = 'file' },
+        { '<leader>s', group = 'sessions' },
         { '<leader>t', group = 'toggle' },
+        { '<leader>w', group = 'windows' },
+        { '<leader>z', group = 'file' },
         { '<leader><tab>', group = 'tabs' },
         { '<leader><leader>', hidden = true },
         {
           mode = { 'n', 'v' },
           -- -----------------------------------------------
-          { '<leader>w', group = 'save/quit' },
-          { '<leader>wq', '<cmd>qa<cr>', desc = 'quit all' },
-          { '<leader>ww', '<cmd>wa<cr>', desc = 'save all' },
+          { '<leader>q', group = 'save/quit' },
+          { '<leader>qq', '<cmd>qa<cr>', desc = 'quit all' },
+          { '<leader>qw', '<cmd>wa<cr>', desc = 'save all' },
         },
       }
     end,

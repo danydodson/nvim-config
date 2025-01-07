@@ -4,11 +4,9 @@ local map = vim.keymap.set
 local del = vim.keymap.del
 local utils = require 'core.utils'
 
--- quit all
-map('n', '<leader>wq', '<cmd>qa<cr>', { desc = 'quit all' })
-
--- write all
-map({ 'i', 'x', 'n', 's' }, '<leader>ww', '<cmd>wa<cr>', { desc = 'save all' })
+-- write/quit all
+map('n', '<leader>qq', '<cmd>qa<cr>', { desc = 'quit all' })
+map({ 'i', 'x', 'n', 's' }, '<leader>qw', '<cmd>wa<cr>', { desc = 'save all' })
 map({ 'i', 'x', 'n', 's' }, '<C-s>', '<cmd>wa<cr><esc>', { desc = 'save all' })
 
 --tmux-sessions
@@ -33,12 +31,12 @@ map('n', '<Leader>/', 'gcc', { remap = true, desc = 'comment line' })
 map('x', '<Leader>/', 'gcc', { remap = true, desc = 'comment line' })
 
 -- add blank lines
-map('n', '<Leader>sL', 'O<Esc>0"_D', { remap = false, desc = 'create Blank line above' })
-map('n', '<Leader>sl', 'o<Esc>0"_D', { remap = false, desc = 'create Blank line below' })
+map('n', '<Leader>zL', 'O<Esc>0"_D', { remap = false, desc = 'create Blank line above' })
+map('n', '<Leader>zl', 'o<Esc>0"_D', { remap = false, desc = 'create Blank line below' })
 
 -- duplicate lines
-map('n', '<Leader>sd', 'm`""Y""P``', { desc = 'duplicate line' })
-map('x', '<Leader>sd', '""Y""Pgv', { desc = 'duplicate selection' })
+map('n', '<Leader>zd', 'm`""Y""P``', { desc = 'duplicate line' })
+map('x', '<Leader>zd', '""Y""Pgv', { desc = 'duplicate selection' })
 
 -- editor line controls
 map('n', '<S-k>', '<cmd>m .-2<cr>==', { desc = 'Move Up' })
@@ -66,10 +64,10 @@ map('n', '<meta-l>', 'TmuxResizeRight<CR>', { silent = true, remap = false, desc
 -- map('n', '<S-Right>', '<cmd>vertical resize +2<cr>', { desc = 'Increase Window Width' })
 
 -- window life
-map('n', '<leader>pp', '<c-w>', { desc = 'windows', remap = true })
-map('n', '<leader>p-', '<C-W>s', { remap = true, desc = 'split window below' })
-map('n', '<leader>p|', '<C-W>v', { remap = true, desc = 'split window right' })
-map('n', '<leader>pd', '<C-W>c', { remap = true, desc = 'delete window' })
+map('n', '<leader>wp', '<c-w>', { desc = 'windows', remap = true })
+map('n', '<leader>w-', '<C-W>s', { remap = true, desc = 'split window below' })
+map('n', '<leader>w|', '<C-W>v', { remap = true, desc = 'split window right' })
+map('n', '<leader>wd', '<C-W>c', { remap = true, desc = 'delete window' })
 
 -- window navigation
 -- map('n', '<S-h>', '<C-w>h', { desc = 'Go to Left Window', remap = true })
