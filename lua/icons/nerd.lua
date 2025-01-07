@@ -157,6 +157,11 @@ return {
   Debug = '',
   Trace = '✎',
   --
+  -- Mason
+  MasonInstalled = "✓",
+  MasonUninstalled = "✗",
+  MasonPending = "⟳",
+  --
   --
   kind = {
     Array = '',
