@@ -21,6 +21,9 @@ map('n', '<Esc>', '<cmd>nohlsearch<CR>', { desc = 'escape and clear hlsearch' })
 -- lazy configs
 map('n', '<leader>ll', '<cmd>Lazy<CR>', { noremap = true, silent = true, desc = 'open lazy configs' })
 
+-- projects
+map('n', '<leader>pp', '<cmd>Telescope projects<CR>', { noremap = true, silent = true, desc = 'open projects' })
+
 -- open alpha dashboard
 map("n", "<leader>aa", "<cmd>Alpha<cr>", { silent = true, desc = 'open alpha' })
 
