@@ -49,6 +49,32 @@ return {
           },
         },
       },
+      highlights = {
+        fill = {
+          bg = '#191b20',
+        },
+        -- buffer_selected = {
+        --   fg = '#58b99d',
+        -- },
+        -- buffer_visible = {
+        --   fg = '#565f89',
+        -- },
+        -- separator = {
+        --   fg = '#1d202f',
+        -- },
+        -- separator_selected = {
+        --   fg = '#1d202f',
+        -- },
+        -- separator_visible = {
+        --   fg = '#1d202f',
+        -- },
+        -- tab_separator = {
+        --   fg = '#1d202f',
+        -- },
+        -- tab_separator_selected = {
+        --   fg = '#1d202f',
+        -- },
+      }
     },
     keys = {
       {
