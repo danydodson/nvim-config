@@ -15,7 +15,7 @@ return {
         show_keys = false,
         icons = { mappings = false },
       }
-      wk.add { --       󱦘
+      wk.add {
         { '<leader>/', hidden = true },
         { '<leader>a', group = 'dashboard' },
         { '<leader>b', group = 'buffer' },

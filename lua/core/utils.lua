@@ -93,8 +93,8 @@ function M.get_icon(kind, padding, no_fallback)
   end
   local icon_pack = vim.g.icons_enabled and 'icons' or 'text'
   if not M[icon_pack] then
-    M.icons = require 'icons.nerd'
-    M.text = require 'icons.text'
+    M.icons = require 'core.icons'
+    M.text = require 'core.icons'
   end
   local icon = M[icon_pack] and M[icon_pack][kind]
   return icon and icon .. string.rep(' ', padding or 0) or ''

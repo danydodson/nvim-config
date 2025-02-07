@@ -3,116 +3,105 @@
 return {
   {
     'nvim-neo-tree/neo-tree.nvim',
-    branch = 'v3.x',
-    dependencies = {
-      'nvim-lua/plenary.nvim',
-      'nvim-tree/nvim-web-devicons',
-      'MunifTanjim/nui.nvim',
-      '3rd/image.nvim',
+    dependencies = { 'MunifTanjim/nui.nvim' },
+    cmd = 'Neotree',
+    keys = {
+      { '<leader>e', ':Neotree filesystem toggle<CR>', { noremap = true, silent = true, desc = 'Neotree' } },
     },
-    config = function()
-      require('neo-tree').setup {
-        sources = { 'filesystem' },
+    opts = function()
+      vim.g.neo_tree_remove_legacy_commands = true
+
+      vim.fn.sign_define('DiagnosticSignError', { text = ' ', texthl = 'DiagnosticSignError' })
+      vim.fn.sign_define('DiagnosticSignWarn', { text = ' ', texthl = 'DiagnosticSignWarn' })
+      vim.fn.sign_define('DiagnosticSignInfo', { text = ' ', texthl = 'DiagnosticSignInfo' })
+      vim.fn.sign_define('DiagnosticSignHint', { text = '󰌵', texthl = 'DiagnosticSignHint' })
+
+      local utils = require 'core.utils'
+      local get_icon = utils.get_icon
+
+      return {
+        auto_clean_after_session_restore = true,
         close_if_last_window = true,
-        popup_border_style = 'rounded',
-        hide_root_node = true,
-        enable_git_status = true,
-        enable_diagnostics = true,
-        open_files_do_not_replace_types = {
-          'terminal',
-          'trouble',
-          'qf',
+        buffers = { show_unloaded = true },
+        sources = { 'filesystem', 'buffers', 'git_status' },
+        source_selector = {
+          winbar = false,
+          content_layout = 'center',
+          sources = {
+            { source = 'filesystem', display_name = get_icon('Files', 0) .. ' File' },
+            { source = 'buffers', display_name = '󰈙' .. ' Bufs' },
+            { source = 'git_status', display_name = '󰊢' .. ' Git' },
+            { source = 'diagnostics', display_name = '󰒡' .. ' Diagnostic' },
+          },
         },
         default_component_configs = {
-          container = {
-            enable_character_fade = true,
-          },
           indent = {
-            indent_size = 1,
-            padding = 1,
-            with_markers = true,
-            indent_marker = '│',
-            last_indent_marker = '└',
-            highlight = 'NeoTreeIndentMarker',
-            with_expanders = nil,
-            expander_collapsed = '',
-            expander_expanded = '',
-            expander_highlight = 'NeoTreeExpander',
+            padding = 0,
           },
           icon = {
             folder_closed = '',
             folder_open = '',
-            folder_empty = '',
-            default = '',
+            folder_empty = '',
+            folder_empty_open = '',
+            default = '󰈙',
             highlight = 'NeoTreeFileIcon',
           },
           modified = {
-            symbol = '[+]',
-            highlight = 'NeoTreeModified',
+            symbol = '',
           },
           name = {
-            trailing_slash = false,
             use_git_status_colors = false,
             highlight = 'NeoTreeFileName',
           },
           git_status = {
             symbols = {
-              added = '', -- ✚
-              modified = '', -- 
-              deleted = '✖',
-              renamed = '󰁕',
-              untracked = '',
-              ignored = '',
-              unstaged = '󰄱',
-              staged = '',
+              added = '',
+              modified = '',
+              deleted = '',
+              renamed = '➜',
+              untracked = '★',
+              ignored = '◌',
+              unstaged = '✗',
+              staged = '✓',
               conflict = '',
             },
           },
         },
-        filesystem = {
-          use_libuv_file_watcher = true,
-          follow_current_file = {
-            enabled = true,
-            leave_dirs_open = true,
-          },
-          filtered_items = {
-            visible = true,
-            hide_dotfiles = false,
-            hide_gitignored = false,
-            never_show = {
-              '.git',
-              '.DS_Store',
-              "Icon'$'\r",
-            },
-          },
-        },
         window = {
-          width = 30,
+          width = 33,
           mappings = {
             ['.'] = 'set_root',
             ['<esc>'] = 'cancel',
             ['l'] = { 'toggle_node', nowait = true },
             ['P'] = { 'toggle_preview', config = { use_float = false, use_image_nvim = true } },
-            ['O'] = {
-              function(state)
-                require('lazy.util').open(state.tree:get_node().path, { system = true })
-              end,
-            },
+            F = utils.is_available 'telescope.nvim' and 'find_in_dir' or nil,
+            O = 'system_open',
+            Y = 'copy_selector',
           },
         },
-        buffers = {
+        filesystem = {
           follow_current_file = {
             enabled = true,
+            leave_dirs_open = true,
+          },
+          hijack_netrw_behavior = 'open_current',
+          use_libuv_file_watcher = true,
+          filtered_items = {
+            visible = true,
+            hide_dotfiles = false,
+            hide_gitignored = false,
+            never_show = { '.git', '.DS_Store', "Icon'$'\r" },
+          },
+        },
+        event_handlers = {
+          {
+            event = 'neo_tree_buffer_enter',
+            handler = function(_)
+              vim.opt_local.signcolumn = 'auto'
+            end,
           },
         },
       }
-      local define = vim.fn.sign_define
-      define('DiagnosticSignError', { text = ' ', texthl = 'DiagnosticSignError' })
-      define('DiagnosticSignWarn', { text = ' ', texthl = 'DiagnosticSignWarn' })
-      define('DiagnosticSignInfo', { text = ' ', texthl = 'DiagnosticSignInfo' })
-      define('DiagnosticSignHint', { text = '󰌵', texthl = 'DiagnosticSignHint' })
-      local set = vim.keymap.set
-      set('n', '<leader>e', ':Neotree filesystem toggle<CR>', { noremap = true, silent = true, desc = 'neotree' })
     end,
   },
 }

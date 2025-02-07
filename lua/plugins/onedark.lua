@@ -5,7 +5,7 @@ return {
     'navarasu/onedark.nvim',
     priority = 1000,
     lazy = false,
-    enabled = true,
+    enabled = false,
     config = function()
       local colors = require 'core.colors'
       local highlights = require 'core.highlights'

@@ -3,11 +3,11 @@
   "runtime.version": "Lua 5.1",
   "diagnostics.globals": [
     "vim",
-     "bufnr"
-    ],
+    "bufnr"
+  ],
   "diagnostics.disable": [
-    "lowercase-global", 
-    "different-requires", 
+    "lowercase-global",
+    "different-requires",
     "undefined-field"
   ]
 }

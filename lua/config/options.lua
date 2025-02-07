@@ -1,7 +1,7 @@
 -- lua/config/options.lua
 
 vim.g.mapleader = ' '
-vim.g.maplocalleader = ' '
+vim.g.maplocalleader = ','
 
 vim.opt.wrap = false
 vim.opt.termguicolors = true
@@ -12,16 +12,12 @@ vim.opt.laststatus = 3
 vim.opt.number = true
 vim.opt.relativenumber = true
 vim.opt.numberwidth = 2
-vim.opt.signcolumn = 'yes:1'
+vim.opt.signcolumn = 'no'
 vim.opt.cmdheight = 0
 
-vim.opt.inccommand = "nosplit"
-vim.opt.pumblend = 10  -- Popup blend
+vim.opt.inccommand = 'nosplit'
+vim.opt.pumblend = 5
 vim.opt.pumheight = 10
-
-vim.g.loaded_netrw = 1
-vim.g.loaded_netrwPlugin = 1
-
 vim.opt.showmode = false
 vim.opt.ruler = false
 vim.opt.showcmd = false
@@ -46,7 +42,7 @@ vim.opt.mousescroll = 'ver:1,hor:0'
 vim.opt.guicursor = 'n:blinkon200,i-ci-ve:ver25'
 vim.opt.listchars = { tab = '→ ', space = '·', trail = '·' }
 
-vim.opt.autochdir = true -- Use current file dir as working dir (See project.nvim).
+vim.opt.autochdir = true
 vim.opt.conceallevel = 0
 vim.opt.clipboard = 'unnamedplus'
 vim.opt.fillchars = { eob = ' ' }
@@ -62,21 +58,24 @@ vim.opt.undolevels = 10000
 vim.opt.undodir = os.getenv 'HOME' .. '/.vim/undodir'
 
 vim.g.tmux_resizer_no_mappings = 1
+vim.g.loaded_netrw = 1
+
+vim.g.loaded_netrwPlugin = 1
 vim.g.bigfile_size = 1024 * 1024 * 1.5
 
 vim.g.loaded_perl_provider = 0
 vim.g.loaded_ruby_provider = 0
 vim.g.python3_host_prog = vim.fn.exepath 'python3'
 
-vim.g.autoformat_enabled = false
-vim.g.autopairs_enabled = false
 vim.g.cmp_enabled = true
+vim.g.autoformat_enabled = false
 vim.g.icons_enabled = true
 vim.g.codeactions_enabled = true
-vim.g.diagnostics_mode = 3 -- Set code linting (0=off, 1=only show in status line, 2=virtual text off, 3=all on).
-vim.g.inlay_hints_enabled = false
+vim.g.diagnostics_mode = 3
+vim.g.inlay_hints_enabled = true
 vim.g.lsp_signature_enabled = true
 vim.g.notifications_enabled = true
--- vim.g.codelens_enabled = true
+vim.g.codelens_enabled = true
 vim.g.lsp_round_borders_enabled = true
--- vim.g.semantic_tokens_enabled = true
+vim.g.semantic_tokens_enabled = true
+
