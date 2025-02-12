@@ -31,7 +31,6 @@ return {
             end
           end)
 
-          -- Actions
           -- map('n', '<leader>hs', gitsigns.stage_hunk)
           -- map('n', '<leader>hr', gitsigns.reset_hunk)
           -- map('v', '<leader>hs', function() gitsigns.stage_hunk { vim.fn.line('.'), vim.fn.line('v') } end)
@@ -40,11 +39,10 @@ return {
           -- map('n', '<leader>hu', gitsigns.undo_stage_hunk)
           -- map('n', '<leader>hR', gitsigns.reset_buffer)
           -- map('n', '<leader>hp', gitsigns.preview_hunk)
-          map('n', '<leader>gb', function()
-            gitsigns.blame_line { full = true }
-          end, { desc = 'git signs blame' })
-          map('n', '<leader>gc', gitsigns.toggle_current_line_blame, { desc = 'git signs toggle for line' })
+          -- map('n', '<leader>gb', function() gitsigns.blame_line { full = true } end, { desc = 'git signs blame' })
           -- map('n', '<leader>hd', gitsigns.diffthis)
+
+          map('n', '<leader>tb', gitsigns.toggle_current_line_blame, { desc = 'git signs toggle for line' })
           -- map('n', '<leader>hD', function() gitsigns.diffthis('~') end)
           -- map('n', '<leader>td', gitsigns.toggle_deleted)
         end,

@@ -29,7 +29,6 @@ return {
           'html',
           'lua_ls',
           'marksman',
-          'rust_analyzer',
           'tailwindcss',
           'ts_ls',
           'yamlls',
@@ -47,9 +46,9 @@ return {
       local capabilities = require('cmp_nvim_lsp').default_capabilities()
 
       local lspconfig = require 'lspconfig'
-      -- lspconfig.ts_ls.setup {
-      --   capabilities = capabilities,
-      -- }
+      lspconfig.ts_ls.setup {
+        capabilities = capabilities,
+      }
 
       lspconfig.html.setup {
         capabilities = capabilities,
@@ -83,7 +82,7 @@ return {
         filetypes = { 'sh', 'bash' },
       }
 
-      vim.keymap.set('n', 'K', vim.lsp.buf.hover, { desc = 'hover info' })
+      vim.keymap.set('n', '<leader>ci', vim.lsp.buf.hover, { desc = 'hover info' })
       vim.keymap.set('n', '<leader>cd', vim.lsp.buf.definition, { desc = 'code go to definition' })
       vim.keymap.set('n', '<leader>cr', vim.lsp.buf.references, { desc = 'code list reference' })
       vim.keymap.set('n', '<leader>ca', vim.lsp.buf.code_action, { desc = 'code show action' })

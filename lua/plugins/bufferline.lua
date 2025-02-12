@@ -8,7 +8,7 @@ return {
     dependencies = { 'nvim-tree/nvim-web-devicons' },
     opts = {
       options = {
-        always_show_bufferline = true,
+        always_show_bufferline = false,
         show_buffer_icons = false,
         show_close_icon = false,
         show_tab_indicators = false,
@@ -26,29 +26,17 @@ return {
             text_align = 'left',
             padding = 0,
           },
-          {
-            filetype = 'DiffviewFiles',
-            text = 'Diff View',
-            highlight = 'PanelHeading',
-            padding = 0,
-          },
-          {
-            filetype = 'lazy',
-            text = 'Lazy',
-            highlight = 'PanelHeading',
-            padding = 0,
-          },
         },
       },
-      highlights = {
-        fill = {
-          bg = '#16161e',
-        },
-        buffer_selected = {
-          fg = '#7aa2f7',
-          bg = '#121219',
-        },
-      },
+      -- highlights = {
+      --   fill = {
+      --     bg = '#16161e',
+      --   },
+      --   buffer_selected = {
+      --     fg = '#7aa2f7',
+      --     bg = '#121219',
+      --   },
+      -- },
     },
     keys = {
       { '<leader>bd', '<cmd>:bp | bd #<cr>', desc = 'buffer delete' },

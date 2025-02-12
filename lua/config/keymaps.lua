@@ -58,17 +58,15 @@ map('t', '<C-/>', '<cmd>close<cr>', { silent = true, desc = 'hide terminal' })
 map('t', '<C-w>', '<c-\\><C-n><C-w>', { silent = true, desc = 'toggle focus' })
 map('t', '<esc>', '<c-\\><c-n>', { silent = true, desc = 'enter normal mode' })
 
--- toggle completion
+-- toggles
 if utils.is_available 'nvim-cmp' then
   map('n', '<leader>tc', require('core.ui').toggle_cmp, { desc = 'toggle completion' })
 end
-
--- toggle lsp signature
 if utils.is_available 'lsp_signature.nvim' then
   map('n', '<leader>tp', require('core.ui').toggle_lsp_signature, { desc = 'toggle lsp signature' })
 end
 
--- toggle configs
+-- more toggles
 map('n', '<leader>td', require('core.ui').toggle_diagnostics, { desc = 'toggle diagnostics' })
 map('n', '<leader>tl', require('core.ui').toggle_statusline, { desc = 'toggle statusline' })
 map('n', '<leader>tF', require('core.ui').toggle_autoformat, { desc = 'toggle autoformt global' })
