@@ -9,7 +9,6 @@ return {
         options = {
           icons_enabled = true,
           theme = 'onedark',
-          always_show_tabline = false,
           component_separators = {
             left = '',
             right = '',
@@ -30,7 +29,7 @@ return {
           lualine_c = { 'filename' },
           lualine_x = {},
           lualine_y = {},
-          lualine_z = { 'location' },
+          lualine_z = { '' },
         },
         inactive_sections = {
           lualine_a = {},

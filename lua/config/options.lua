@@ -14,7 +14,13 @@ vim.opt.relativenumber = true
 vim.opt.numberwidth = 2
 vim.opt.signcolumn = 'yes'
 vim.opt.cmdheight = 0
+
+vim.opt.foldenable = true
+vim.opt.foldcolumn = '1'
 vim.opt.foldlevel = 99
+vim.opt.foldlevelstart = 99
+vim.opt.foldnestmax = 1
+vim.opt.fillchars = [[eob: ,fold: ,foldopen:,foldsep: ,foldclose:]]
 
 vim.opt.inccommand = 'nosplit'
 vim.opt.pumblend = 5
@@ -40,14 +46,14 @@ vim.opt.wildignore = '*/.git,*/node_modules,*/venv,*/tmp,*.so,*.swp,*.zip,*.pyc'
 
 vim.opt.mouse = 'a'
 vim.opt.mousescroll = 'ver:1,hor:0'
-vim.opt.cursorlineopt='number'
+vim.opt.cursorlineopt = 'number,line'
 vim.opt.guicursor = 'n:blinkon200,i-ci-ve:ver25'
 vim.opt.listchars = { tab = '→ ', space = '·', trail = '·' }
 
 vim.opt.autochdir = true
 vim.opt.conceallevel = 0
 vim.opt.clipboard = 'unnamedplus'
-vim.opt.fillchars = { eob = ' ' }
+-- vim.opt.fillchars = { eob = ' ' }
 vim.opt.shortmess:append { s = true, I = true }
 vim.opt.viewoptions:remove 'curdir'
 vim.opt.backspace:append { 'nostop' }
@@ -69,9 +75,6 @@ vim.g.loaded_perl_provider = 0
 vim.g.loaded_ruby_provider = 0
 vim.g.python3_host_prog = vim.fn.exepath 'python3'
 
-package.path = package.path .. ";" .. vim.fn.expand("$HOME") .. "/.luarocks/share/lua/5.1/?/init.lua;"
-package.path = package.path .. ";" .. vim.fn.expand("$HOME") .. "/.luarocks/share/lua/5.1/?.lua;"
-
 vim.g.cmp_enabled = true
 vim.g.autoformat_enabled = false
 vim.g.icons_enabled = true
@@ -83,3 +86,6 @@ vim.g.notifications_enabled = true
 vim.g.codelens_enabled = true
 vim.g.lsp_round_borders_enabled = true
 vim.g.semantic_tokens_enabled = true
+
+package.path = package.path .. ';' .. vim.fn.expand '$HOME' .. '/.luarocks/share/lua/5.1/?/init.lua;'
+package.path = package.path .. ';' .. vim.fn.expand '$HOME' .. '/.luarocks/share/lua/5.1/?.lua;'

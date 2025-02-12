@@ -7,9 +7,11 @@ return {
       local icons = require 'core.icons'
       require('gitsigns').setup {
         signs = {
-          add = { text = icons.GitAdd },
-          change = { text = icons.GitChange },
-          delete = { text = icons.GitDelete },
+          add = { text = '+' },
+          change = { text = '~' },
+          delete = { text = '_' },
+          topdelete = { text = '‾' },
+          changedelete = { text = '~' },
         },
         signcolumn = false,
         on_attach = function(bufnr)

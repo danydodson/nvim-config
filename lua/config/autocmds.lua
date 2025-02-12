@@ -57,7 +57,6 @@ autocmd({ 'FocusGained', 'TermClose', 'TermLeave' }, {
 })
 
 -- go to last loc when opening a buffer
--- this mean that when you open a file, you will be at the last position
 autocmd('BufReadPost', {
   desc = 'Go to Last loc when Opening a buffer',
   callback = function()
@@ -123,7 +122,7 @@ autocmd({ 'FileType' }, {
   end,
 })
 
--- autocmd to show diagnostics on CursorHold
+-- autocmd to show diagnostics on cursorhold
 autocmd('CursorHold', {
   desc = 'lsp show diagnostics on CursorHold',
   callback = function()
@@ -174,7 +173,7 @@ autocmd('FileType', {
   end,
 })
 
--- lsp Hover autocmd to show diagnostics on CursorHold
+-- lsp hover autocmd to show diagnostics on cursorhold
 autocmd('CursorHold', {
   desc = 'lsp show diagnostics on CursorHold',
   callback = function()
@@ -197,7 +196,7 @@ if is_available 'alpha-nvim' then
       local is_empty_file = vim.api.nvim_get_option_value('buftype', { buf = 0 }) == 'nofile'
       if ((args.event == 'User' and args.file == 'AlphaReady') or (args.event == 'BufEnter' and is_filetype_alpha)) and not vim.g.before_alpha then
         vim.g.before_alpha = {
-          showtabline = vim.opt.showtabline:get(),
+          -- showtabline = vim.opt.showtabline:get(),
           laststatus = vim.opt.laststatus:get(),
         }
         vim.opt.showtabline, vim.opt.laststatus = 0, 0
@@ -212,7 +211,7 @@ if is_available 'alpha-nvim' then
   autocmd('VimEnter', {
     desc = 'Start Alpha only when nvim is opened with no arguments',
     callback = function()
-      -- Precalculate conditions.
+      -- precalculate conditions.
       local lines = vim.api.nvim_buf_get_lines(0, 0, 2, false)
       local buf_not_empty = vim.fn.argc() > 0 or #lines > 1 or (#lines == 1 and lines[1]:len() > 0)
       local buflist_not_empty = #vim.tbl_filter(function(bufnr)
@@ -220,7 +219,7 @@ if is_available 'alpha-nvim' then
       end, vim.api.nvim_list_bufs()) > 1
       local buf_not_modifiable = not vim.o.modifiable
 
-      -- Return instead of opening alpha if any of these conditions occur.
+      -- return instead of opening alpha if any of these conditions occur.
       if buf_not_modifiable or buf_not_empty or buflist_not_empty then
         return
       end
@@ -230,7 +229,7 @@ if is_available 'alpha-nvim' then
         end
       end
 
-      -- All good? Show alpha.
+      -- all good? show alpha.
       require('alpha').start(true, require('alpha').default_config)
       vim.schedule(function()
         vim.cmd.doautocmd 'FileType'

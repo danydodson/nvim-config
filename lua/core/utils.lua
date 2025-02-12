@@ -16,7 +16,7 @@ function M.mappings(tbl, options)
   end
 end
 
--- Run a shell command and capture the output and if the command
+-- run a shell command and capture the output and if the command
 -- succeeded or failed.
 function M.run_cmd(cmd, show_error)
   if type(cmd) == 'string' then
@@ -33,40 +33,40 @@ function M.run_cmd(cmd, show_error)
   return success and result:gsub('[\27\155][][()#;?%d]*[A-PRZcf-ntqry=><~]', '') or nil
 end
 
--- Sends a notification with 'Neovim' as default title.
--- Same as using vim.notify, but it saves us typing the title every time.
+-- sends a notification with 'neovim' as default title.
+-- same as using vim.notify, but it saves us typing the title every time.
 function M.notify(msg, type, opts)
   vim.schedule(function()
     vim.notify(msg, type, vim.tbl_deep_extend('force', { title = 'Neovim' }, opts or {}))
   end)
 end
 
--- Adds autocmds to a specific buffer if they don't already exist.
+-- adds autocmds to a specific buffer if they don't already exist.
 function M.add_autocmds_to_buffer(augroup, bufnr, autocmds)
   -- Check if autocmds is a list, if not convert it to a list
   if not vim.islist(autocmds) then
     autocmds = { autocmds }
   end
 
-  -- Attempt to retrieve existing autocmds associated with the specified augroup and bufnr
+  -- attempt to retrieve existing autocmds associated with the specified augroup and bufnr
   local cmds_found, cmds = pcall(vim.api.nvim_get_autocmds, { group = augroup, buffer = bufnr })
 
-  -- If no existing autocmds are found or the cmds_found call fails
+  -- if no existing autocmds are found or the cmds_found call fails
   if not cmds_found or vim.tbl_isempty(cmds) then
-    -- Create a new augroup if it doesn't already exist
+    -- create a new augroup if it doesn't already exist
     vim.api.nvim_create_augroup(augroup, { clear = false })
 
-    -- Iterate over each autocmd provided
+    -- iterate over each autocmd provided
     for _, autocmd in ipairs(autocmds) do
-      -- Extract the events from the autocmd and remove the events key
+      -- extract the events from the autocmd and remove the events key
       local events = autocmd.events
       autocmd.events = nil
 
-      -- Set the group and buffer keys for the autocmd
+      -- set the group and buffer keys for the autocmd
       autocmd.group = augroup
       autocmd.buffer = bufnr
 
-      -- Create the autocmd
+      -- create the autocmd
       vim.api.nvim_create_autocmd(events, autocmd)
     end
   end
@@ -79,14 +79,14 @@ function M.del_autocmds_from_buffer(augroup, bufnr)
 
   -- If retrieval was successful
   if cmds_found then
-    -- Map over each retrieved autocmd and delete it
+    -- map over each retrieved autocmd and delete it
     vim.tbl_map(function(cmd)
       vim.api.nvim_del_autocmd(cmd.id)
     end, cmds)
   end
 end
 
--- Get an icon from `lspkind` if it is available and return it.
+-- get an icon from `lspkind` if it is available and return it.
 function M.get_icon(kind, padding, no_fallback)
   if not vim.g.icons_enabled and no_fallback then
     return ''
@@ -100,13 +100,13 @@ function M.get_icon(kind, padding, no_fallback)
   return icon and icon .. string.rep(' ', padding or 0) or ''
 end
 
--- Check if a plugin is defined in lazy. Useful with lazy loading
+-- check if a plugin is defined in lazy. Useful with lazy loading
 function M.is_available(plugin)
   local lazy_config_avail, lazy_config = pcall(require, 'lazy.core.config')
   return lazy_config_avail and lazy_config.spec.plugins[plugin] ~= nil
 end
 
--- Set a table of mappings.
+-- set a table of mappings.
 function M.set_mappings(map_table, base)
   -- iterate over the first keys for each mode
   base = base or {}

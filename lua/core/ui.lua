@@ -31,7 +31,7 @@ function M.toggle_lsp_signature()
   utils.notify(string.format('lsp signature %s', bool2str(state)))
 end
 
--- Toggle foldcolumn=0|1
+--- toggle foldcolumn=0|1
 local last_active_foldcolumn
 function M.toggle_foldcolumn()
   local curr_foldcolumn = vim.wo.foldcolumn
@@ -71,7 +71,7 @@ function M.toggle_statusline()
   utils.notify(string.format('statusline %s', status))
 end
 
--- Toggle codelens
+-- toggle codelens
 function M.toggle_codelens(bufnr)
   bufnr = bufnr or 0
   vim.g.codelens_enabled = not vim.g.codelens_enabled

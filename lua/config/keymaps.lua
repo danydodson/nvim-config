@@ -30,8 +30,12 @@ map('n', '<Leader>zL', 'O<Esc>0"_D', { remap = false, desc = 'create blank line 
 map('n', '<Leader>zl', 'o<Esc>0"_D', { remap = false, desc = 'create blank line below' })
 
 -- duplicate lines
-map('n', '<Leader>zd', 'm`""Y""P``', { desc = 'duplicate line' })
-map('x', '<Leader>zd', '""Y""Pgv', { desc = 'duplicate selection' })
+map('n', '<Leader>zd', 'm`""Y""P``', { remap = false, desc = 'duplicate line' })
+map('x', '<Leader>zd', '""Y""Pgv', { remap = false, desc = 'duplicate selection' })
+
+-- folding lines
+map('n', 'zR', require('ufo').openAllFolds, { desc = 'open all folds' })
+map('n', 'zM', require('ufo').closeAllFolds, { desc = 'close all folds' })
 
 -- line controls
 map('n', '<S-k>', '<cmd>m .-2<cr>==', { desc = 'move up' })
