@@ -30,16 +30,17 @@ return {
         { '<leader>p', group = 'projects' },
         { '<leader>s', group = 'sessions' },
         { '<leader>t', group = 'toggle' },
-        { '<leader>w', group = 'windows' },
+        { '<leader>u', group = 'windows' },
+        { '<leader>x', group = 'trouble' },
         { '<leader>z', group = 'file' },
         { '<leader><tab>', group = 'tabs' },
         { '<leader><leader>', hidden = true },
         {
           mode = { 'n', 'v' },
           -- -----------------------------------------------
-          { '<leader>q', group = 'save/quit' },
-          { '<leader>qq', '<cmd>qa<cr>', desc = 'quit all' },
-          { '<leader>qw', '<cmd>wa<cr>', desc = 'save all' },
+          { '<leader>w', group = 'save/quit' },
+          { '<leader>wq', '<cmd>qa<cr>', desc = 'quit all' },
+          { '<leader>ww', '<cmd>wa<cr>', desc = 'save all' },
         },
       }
     end,

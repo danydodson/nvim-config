@@ -28,8 +28,7 @@ return {
         scrolloff = 0,
         winhighlight = 'Normal:NormalFloat,FloatBorder:FloatBorder,CursorLine:PmenuSel,Search:None',
       }
-      local cmp_config_window = (vim.g.lsp_round_borders_enabled and cmp.config.window.bordered(border_opts)) or
-      cmp.config.window
+      local cmp_config_window = (vim.g.lsp_round_borders_enabled and cmp.config.window.bordered(border_opts)) or cmp.config.window
 
       cmp.setup {
         formatting = {
@@ -41,7 +40,7 @@ return {
               abbr = 50,
               ellipsis_char = '...',
               show_labelDetails = true,
-            } (entry, vim_item)
+            }(entry, vim_item)
             local strings = vim.split(kind.kind, '%s', { trimempty = true })
             kind.kind = ' ' .. (strings[1] or '') .. ' '
             kind.menu = '    (' .. (strings[2] or '') .. ')'
@@ -65,17 +64,20 @@ return {
           --   end,
           -- },
         },
+
         snippet = {
           expand = function(args)
             require('luasnip').lsp_expand(args.body)
           end,
         },
+
         window = {
           completion = cmp_config_window,
           documentation = cmp_config_window,
           -- completion = cmp.config.window.bordered(),
           -- documentation = cmp.config.window.bordered(),
         },
+
         mapping = cmp.mapping.preset.insert {
           ['<C-b>'] = cmp.mapping.scroll_docs(-4),
           ['<C-f>'] = cmp.mapping.scroll_docs(4),
@@ -83,6 +85,7 @@ return {
           ['<C-e>'] = cmp.mapping.abort(),
           ['<CR>'] = cmp.mapping.confirm { select = true },
         },
+
         sources = cmp.config.sources({
           { name = 'nvim_lsp' },
           { name = 'luasnip' },

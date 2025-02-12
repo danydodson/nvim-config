@@ -5,10 +5,10 @@ local del = vim.keymap.del
 local utils = require 'core.utils'
 
 -- quit all
-map('n', '<leader>qq', '<cmd>qa<cr>', { desc = 'quit all' })
+map('n', '<leader>wq', '<cmd>qa<cr>', { desc = 'quit all' })
 
 -- save all
-map({ 'i', 'x', 'n', 's' }, '<leader>qw', '<cmd>wa<cr>', { desc = 'save all' })
+map({ 'i', 'x', 'n', 's' }, '<leader>ww', '<cmd>wa<cr>', { desc = 'save all' })
 map({ 'i', 'x', 'n', 's' }, '<C-s>', '<cmd>wa<cr><esc>', { desc = 'save all' })
 
 -- clear search
@@ -48,10 +48,10 @@ map('n', '<leader><tab>n', '<cmd>tabnext<cr>', { desc = 'next tab' })
 map('n', '<leader><tab>p', '<cmd>tabprevious<cr>', { desc = 'previous tab' })
 
 -- window life
-map('n', '<leader>wp', '<c-w>', { desc = 'windows', remap = true })
-map('n', '<leader>w-', '<C-W>s', { remap = true, desc = 'split window below' })
-map('n', '<leader>w|', '<C-W>v', { remap = true, desc = 'split window right' })
-map('n', '<leader>wd', '<C-W>c', { remap = true, desc = 'delete window' })
+map('n', '<leader>up', '<c-w>', { desc = 'windows', remap = true })
+map('n', '<leader>u-', '<C-W>s', { remap = true, desc = 'split window below' })
+map('n', '<leader>u|', '<C-W>v', { remap = true, desc = 'split window right' })
+map('n', '<leader>ud', '<C-W>c', { remap = true, desc = 'delete window' })
 
 -- terminal controls
 map('t', '<C-/>', '<cmd>close<cr>', { silent = true, desc = 'hide terminal' })

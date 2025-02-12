@@ -8,7 +8,7 @@ return {
       require('lualine').setup {
         options = {
           icons_enabled = true,
-          theme = 'onedark',
+          theme = 'onedark_dark',
           always_show_tabline = false,
           component_separators = {
             left = '',
