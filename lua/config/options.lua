@@ -15,6 +15,11 @@ vim.opt.numberwidth = 2
 vim.opt.signcolumn = 'yes'
 vim.opt.cmdheight = 0
 
+vim.opt.foldenable = true
+vim.opt.foldlevel = 99
+vim.opt.foldlevelstart = 99
+vim.opt.foldcolumn = '1'
+
 vim.opt.inccommand = 'nosplit'
 vim.opt.pumblend = 5
 vim.opt.pumheight = 10
@@ -78,4 +83,3 @@ vim.g.notifications_enabled = true
 vim.g.codelens_enabled = true
 vim.g.lsp_round_borders_enabled = true
 vim.g.semantic_tokens_enabled = true
-

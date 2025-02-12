@@ -1,4 +1,4 @@
--- lua/plugins/colorscheme.lua
+-- lua/plugins/onedark.lua
 
 return {
   {
@@ -12,11 +12,14 @@ return {
         style = 'darker',
         code_style = {
           comments = 'none',
-          keywords = 'none',
-          functions = 'none',
-          strings = 'none',
-          variables = 'none',
-          lualine = { transparent = true },
+        },
+        lualine = {
+          transparent = false,
+        },
+        diagnostics = {
+          darker = false,
+          undercurl = false,
+          background = true,
         },
       }
       require('onedark').load()
@@ -27,7 +30,6 @@ return {
     priority = 1000,
     lazy = false,
     enabled = false,
-    opts = {},
     config = function()
       require('onedarkpro').setup {
         options = {
