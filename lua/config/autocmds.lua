@@ -38,7 +38,7 @@ autocmd({ 'VimEnter' }, {
       -- In order to avoid visual glitches.
       utils.trigger_event('User BaseDefered', true)
       utils.trigger_event('BufEnter', true) -- also, initialize tabline_buffers.
-    else                                    -- Wait some ms before triggering the event.
+    else -- Wait some ms before triggering the event.
       vim.defer_fn(function()
         utils.trigger_event 'User BaseDefered'
       end, 70)
@@ -146,6 +146,45 @@ autocmd({ 'FileType' }, {
     else
       vim.opt.foldmethod = 'syntax'
     end
+  end,
+})
+
+-- close some filetypes with <q>
+autocmd('FileType', {
+  group = augroup 'close_with_q',
+  pattern = {
+    'PlenaryTestPopup',
+    'help',
+    'lspinfo',
+    'man',
+    'notify',
+    'qf',
+    'query',
+    'spectre_panel',
+    'startuptime',
+    'tsplayground',
+    'neotest-output',
+    'checkhealth',
+    'neotest-summary',
+    'neotest-output-panel',
+  },
+  callback = function(event)
+    vim.bo[event.buf].buflisted = false
+    vim.keymap.set('n', 'q', '<cmd>close<cr>', { buffer = event.buf, silent = true })
+  end,
+})
+
+-- lsp Hover autocmd to show diagnostics on CursorHold
+autocmd('CursorHold', {
+  desc = 'lsp show diagnostics on CursorHold',
+  callback = function()
+    local hover_opts = {
+      focusable = false,
+      close_events = { 'BufLeave', 'CursorMoved', 'InsertEnter', 'FocusLost' },
+      border = 'rounded',
+      source = 'always',
+    }
+    vim.diagnostic.open_float(nil, hover_opts)
   end,
 })
 

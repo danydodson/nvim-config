@@ -10,6 +10,7 @@ return {
       require('onedark').setup {
         transparent = false,
         style = 'darker',
+        ending_tildes = false,
         code_style = {
           comments = 'none',
         },
