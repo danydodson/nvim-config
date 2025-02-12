@@ -9,13 +9,5 @@ return {
         backend = { 'telescope', 'fzf_lua', 'fzf', 'builtin', 'nui' },
       },
     },
-    -- config = function()
-    --   require('dressing').setup {
-    --     select = {
-    --       input = { default_prompt = '➤ ' },
-    --       backend = { 'telescope', 'fzf_lua', 'fzf', 'builtin', 'nui' },
-    --     },
-    --   }
-    -- end,
   },
 }

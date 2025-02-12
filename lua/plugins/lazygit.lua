@@ -11,7 +11,6 @@ return {
       'LazyGitFilter',
       'LazyGitFilterCurrentFile',
     },
-    -- for window decoration
     dependencies = {
       'nvim-lua/plenary.nvim',
     },

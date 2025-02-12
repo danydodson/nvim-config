@@ -15,28 +15,19 @@ return {
         diagnostics = 'nvim_lsp',
         offsets = {
           {
-            filetype = 'undotree',
-            text = 'Undotree',
-            highlight = 'PanelHeading',
-            padding = 0,
-          },
-          {
             filetype = 'neo-tree',
             text = '',
             text_align = 'left',
             padding = 0,
           },
+          {
+            filetype = 'undotree',
+            text = 'undotree',
+            highlight = 'PanelHeading',
+            padding = 0,
+          },
         },
       },
-      -- highlights = {
-      --   fill = {
-      --     bg = '#16161e',
-      --   },
-      --   buffer_selected = {
-      --     fg = '#7aa2f7',
-      --     bg = '#121219',
-      --   },
-      -- },
     },
     keys = {
       { '<leader>bd', '<cmd>:bp | bd #<cr>', desc = 'buffer delete' },

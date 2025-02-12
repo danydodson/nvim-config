@@ -14,7 +14,6 @@ return {
             vim.keymap.set(mode, l, r, opts)
           end
 
-          -- navigation
           map('n', ']c', function()
             if vim.wo.diff then
               vim.cmd.normal { ']c', bang = true }
@@ -41,10 +40,10 @@ return {
           -- map('n', '<leader>hp', gitsigns.preview_hunk)
           -- map('n', '<leader>gb', function() gitsigns.blame_line { full = true } end, { desc = 'git signs blame' })
           -- map('n', '<leader>hd', gitsigns.diffthis)
-
-          map('n', '<leader>tb', gitsigns.toggle_current_line_blame, { desc = 'git signs toggle for line' })
           -- map('n', '<leader>hD', function() gitsigns.diffthis('~') end)
+
           -- map('n', '<leader>td', gitsigns.toggle_deleted)
+          map('n', '<leader>tb', gitsigns.toggle_current_line_blame, { desc = 'git signs toggle for line' })
         end,
       }
     end,

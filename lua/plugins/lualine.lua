@@ -7,9 +7,9 @@ return {
     config = function()
       require('lualine').setup {
         options = {
-          -- icons_enabled = true,
+          icons_enabled = true,
           theme = 'onedark',
-          -- always_show_tabline = false,
+          always_show_tabline = false,
           component_separators = {
             left = '',
             right = '',
