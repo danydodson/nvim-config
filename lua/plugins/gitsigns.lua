@@ -4,7 +4,14 @@ return {
   {
     'lewis6991/gitsigns.nvim',
     config = function()
+      local icons = require 'core.icons'
       require('gitsigns').setup {
+        signs = {
+          add = { text = icons.GitAdd },
+          change = { text = icons.GitChange },
+          delete = { text = icons.GitDelete },
+        },
+        signcolumn = false,
         on_attach = function(bufnr)
           local gitsigns = require 'gitsigns'
 

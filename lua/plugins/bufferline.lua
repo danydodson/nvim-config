@@ -14,17 +14,12 @@ return {
   --       show_close_icon = false,
   --       show_tab_indicators = false,
   --       diagnostics = 'nvim_lsp',
+  --       close_command = function(n) require("mini.bufremove").delete(n, false) end,
   --       offsets = {
   --         {
   --           filetype = 'neo-tree',
   --           text = '',
   --           text_align = 'left',
-  --           padding = 0,
-  --         },
-  --         {
-  --           filetype = 'undotree',
-  --           text = 'undotree',
-  --           highlight = 'PanelHeading',
   --           padding = 0,
   --         },
   --       },

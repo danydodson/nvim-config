@@ -14,11 +14,7 @@ vim.opt.relativenumber = true
 vim.opt.numberwidth = 2
 vim.opt.signcolumn = 'yes'
 vim.opt.cmdheight = 0
-
-vim.opt.foldenable = true
 vim.opt.foldlevel = 99
-vim.opt.foldlevelstart = 99
-vim.opt.foldcolumn = '1'
 
 vim.opt.inccommand = 'nosplit'
 vim.opt.pumblend = 5

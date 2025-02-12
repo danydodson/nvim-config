@@ -21,6 +21,10 @@ return {
 
       return {
         auto_clean_after_session_restore = true,
+        hide_root_node = true,
+        add_blank_line_at_top = false,
+        enable_diagnostics = false,
+        enable_git_status = true,
         close_if_last_window = true,
         buffers = { show_unloaded = true },
         sources = { 'filesystem', 'buffers', 'git_status' },
@@ -68,15 +72,15 @@ return {
           },
         },
         window = {
-          width = 33,
+          width = 30,
           mappings = {
             ['.'] = 'set_root',
             ['<esc>'] = 'cancel',
             ['l'] = { 'toggle_node', nowait = true },
             ['P'] = { 'toggle_preview', config = { use_float = false, use_image_nvim = true } },
-            F = utils.is_available 'telescope.nvim' and 'find_in_dir' or nil,
-            O = 'system_open',
-            Y = 'copy_selector',
+            -- F = utils.is_available 'telescope.nvim' and 'find_in_dir' or nil,
+            -- O = 'system_open',
+            -- Y = 'copy_selector',
           },
         },
         filesystem = {

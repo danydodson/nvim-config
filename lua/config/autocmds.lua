@@ -38,7 +38,7 @@ autocmd({ 'VimEnter' }, {
       -- In order to avoid visual glitches.
       utils.trigger_event('User BaseDefered', true)
       utils.trigger_event('BufEnter', true) -- also, initialize tabline_buffers.
-    else -- Wait some ms before triggering the event.
+    else                                    -- Wait some ms before triggering the event.
       vim.defer_fn(function()
         utils.trigger_event 'User BaseDefered'
       end, 70)
@@ -137,6 +137,18 @@ autocmd('CursorHold', {
   end,
 })
 
+-- code folding type depends on file
+autocmd({ 'FileType' }, {
+  callback = function()
+    if require('nvim-treesitter.parsers').has_parser() then
+      vim.opt.foldmethod = 'expr'
+      vim.opt.foldexpr = 'nvim_treesitter#foldexpr()'
+    else
+      vim.opt.foldmethod = 'syntax'
+    end
+  end,
+})
+
 -- launch alpha greeter on startup
 if is_available 'alpha-nvim' then
   autocmd({ 'User', 'BufEnter' }, {
@@ -146,12 +158,12 @@ if is_available 'alpha-nvim' then
       local is_empty_file = vim.api.nvim_get_option_value('buftype', { buf = 0 }) == 'nofile'
       if ((args.event == 'User' and args.file == 'AlphaReady') or (args.event == 'BufEnter' and is_filetype_alpha)) and not vim.g.before_alpha then
         vim.g.before_alpha = {
-          -- showtabline = vim.opt.showtabline:get(),
+          showtabline = vim.opt.showtabline:get(),
           laststatus = vim.opt.laststatus:get(),
         }
         vim.opt.showtabline, vim.opt.laststatus = 0, 0
       elseif vim.g.before_alpha and args.event == 'BufEnter' and not is_empty_file then
-        -- vim.opt.laststatus = vim.g.before_alpha.laststatus
+        vim.opt.laststatus = vim.g.before_alpha.laststatus
         vim.opt.showtabline = vim.g.before_alpha.showtabline
         vim.g.before_alpha = nil
       end

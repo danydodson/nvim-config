@@ -85,6 +85,7 @@ return {
   GitIgnored = '◌',
   GitRenamed = '➜',
   GitSign = '▎',
+  GitUnmerged = "",
   GitStaged = '✓',
   GitUnstaged = '✗',
   GitUntracked = '★',
@@ -93,6 +94,7 @@ return {
   GitOctoface = '',
   GitLineAdded = '',
   GitLineModified = '',
+  GitModified = "",
   GitLineRemoved = '',
 
   -- DAP

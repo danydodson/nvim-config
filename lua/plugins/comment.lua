@@ -3,6 +3,9 @@
 return {
   {
     'numToStr/Comment.nvim',
-    opts = {},
+    opts = {
+      padding = true,
+      ignore = '^$',
+    },
   },
 }
