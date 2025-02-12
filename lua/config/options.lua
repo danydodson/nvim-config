@@ -40,6 +40,7 @@ vim.opt.wildignore = '*/.git,*/node_modules,*/venv,*/tmp,*.so,*.swp,*.zip,*.pyc'
 
 vim.opt.mouse = 'a'
 vim.opt.mousescroll = 'ver:1,hor:0'
+vim.opt.cursorlineopt='number'
 vim.opt.guicursor = 'n:blinkon200,i-ci-ve:ver25'
 vim.opt.listchars = { tab = '→ ', space = '·', trail = '·' }
 

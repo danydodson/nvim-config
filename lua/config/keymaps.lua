@@ -72,3 +72,5 @@ map('n', '<leader>tl', require('core.ui').toggle_statusline, { desc = 'toggle st
 map('n', '<leader>tF', require('core.ui').toggle_autoformat, { desc = 'toggle autoformt global' })
 map('n', '<leader>tN', require('core.ui').toggle_ui_notifications, { desc = 'toggle ui notifications' })
 map('n', '<leader>tg', require('core.ui').toggle_signcolumn, { desc = 'toggle signcolumn' })
+map('n', '<leader>tf', require('core.ui').toggle_foldcolumn, { desc = 'toggle foldcolumn' })
+map('n', '<leader>tx', require('core.ui').toggle_codelens, { desc = 'toggle codelens' })

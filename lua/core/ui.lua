@@ -31,6 +31,17 @@ function M.toggle_lsp_signature()
   utils.notify(string.format('lsp signature %s', bool2str(state)))
 end
 
+-- Toggle foldcolumn=0|1
+local last_active_foldcolumn
+function M.toggle_foldcolumn()
+  local curr_foldcolumn = vim.wo.foldcolumn
+  if curr_foldcolumn ~= '0' then
+    last_active_foldcolumn = curr_foldcolumn
+  end
+  vim.wo.foldcolumn = curr_foldcolumn == '0' and (last_active_foldcolumn or '1') or '0'
+  utils.notify(string.format('foldcolumn=%s', vim.wo.foldcolumn))
+end
+
 -- toggle signcolumn="auto"|"no"
 function M.toggle_signcolumn()
   if vim.wo.signcolumn == 'no' then
@@ -58,6 +69,18 @@ function M.toggle_statusline()
     status = 'off'
   end
   utils.notify(string.format('statusline %s', status))
+end
+
+-- Toggle codelens
+function M.toggle_codelens(bufnr)
+  bufnr = bufnr or 0
+  vim.g.codelens_enabled = not vim.g.codelens_enabled
+  if vim.g.codelens_enabled then
+    vim.lsp.codelens.refresh { bufnr = bufnr }
+  else
+    vim.lsp.codelens.clear()
+  end
+  utils.notify(string.format('CodeLens %s', bool2str(vim.g.codelens_enabled)))
 end
 
 -- toggle diagnostics
