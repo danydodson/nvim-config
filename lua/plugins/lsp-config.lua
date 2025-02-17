@@ -82,6 +82,14 @@ return {
         filetypes = { 'sh', 'bash' },
       }
 
+      lspconfig.pyright.setup {
+        capabilities = capabilities,
+      }
+
+      lspconfig.rust_analyzer.setup {
+        capabilities = capabilities,
+      }
+
       vim.keymap.set('n', '<leader>ci', vim.lsp.buf.hover, { desc = 'hover info' })
       vim.keymap.set('n', '<leader>cd', vim.lsp.buf.definition, { desc = 'code go to definition' })
       vim.keymap.set('n', '<leader>cr', vim.lsp.buf.references, { desc = 'code list reference' })

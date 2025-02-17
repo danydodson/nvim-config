@@ -6,7 +6,7 @@ return {
     dependencies = { 'MunifTanjim/nui.nvim' },
     cmd = 'Neotree',
     keys = {
-      { '<leader>e', ':Neotree filesystem toggle<CR>', { noremap = true, silent = true, desc = 'Neotree' } },
+      { '<leader>e', ':Neotree filesystem toggle<CR>', { noremap = true, silent = true, desc = 'neotree' } },
     },
     opts = function()
       vim.g.neo_tree_remove_legacy_commands = true
@@ -24,7 +24,7 @@ return {
         hide_root_node = true,
         add_blank_line_at_top = false,
         enable_diagnostics = false,
-        enable_git_status = true,
+        enable_git_status = false,
         close_if_last_window = true,
         buffers = { show_unloaded = true },
         sources = { 'filesystem', 'buffers', 'git_status' },
@@ -72,15 +72,12 @@ return {
           },
         },
         window = {
-          width = 30,
+          width = 25,
           mappings = {
             ['.'] = 'set_root',
             ['<esc>'] = 'cancel',
             ['l'] = { 'toggle_node', nowait = true },
             ['P'] = { 'toggle_preview', config = { use_float = false, use_image_nvim = true } },
-            -- F = utils.is_available 'telescope.nvim' and 'find_in_dir' or nil,
-            -- O = 'system_open',
-            -- Y = 'copy_selector',
           },
         },
         filesystem = {
@@ -101,7 +98,7 @@ return {
           {
             event = 'neo_tree_buffer_enter',
             handler = function(_)
-              vim.opt_local.signcolumn = 'auto'
+              vim.opt_local.signcolumn = 'no'
             end,
           },
         },

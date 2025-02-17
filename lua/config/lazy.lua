@@ -16,12 +16,12 @@ end
 vim.opt.rtp:prepend(lazypath)
 
 require('lazy').setup {
-  ui = {
-    border = require('core.icons').border,
-    icons = require('core.icons').lazy,
-  },
+  -- ui = {
+    border = require('core.art').border,
+    icons = require('core.art').lazy,
+  -- },
   install = {
-    colorscheme = { 'tokyonight' },
+    colorscheme = {},
   },
   spec = {
     { import = 'plugins' },

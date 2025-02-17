@@ -1,6 +1,6 @@
 -- lua/plugins/alpha.lua
 
-local ascii = require 'core.ascii'
+local icons = require 'core.art'
 local utils = require 'core.utils'
 
 return {
@@ -15,7 +15,7 @@ return {
     opts = function()
       local dashboard = require 'alpha.themes.dashboard'
       math.randomseed(os.time())
-      dashboard.section.header.val = ascii[math.random(1, #ascii)]
+      dashboard.section.header.val = icons.ascii[math.random(1, #icons.ascii)]
       dashboard.section.header.opts.hl = 'DashboardHeader'
 
       local is_yazi_installed = vim.fn.executable 'ya' == 1

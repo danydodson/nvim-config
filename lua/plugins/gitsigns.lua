@@ -4,7 +4,7 @@ return {
   {
     'lewis6991/gitsigns.nvim',
     config = function()
-      local icons = require 'core.icons'
+      local icons = require 'core.art'
       require('gitsigns').setup {
         signs = {
           add = { text = '+' },

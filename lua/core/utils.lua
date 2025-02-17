@@ -16,8 +16,7 @@ function M.mappings(tbl, options)
   end
 end
 
--- run a shell command and capture the output and if the command
--- succeeded or failed.
+-- run a shell command and capture the output and if the command succeeded or failed.
 function M.run_cmd(cmd, show_error)
   if type(cmd) == 'string' then
     cmd = vim.split(cmd, ' ')
@@ -72,12 +71,12 @@ function M.add_autocmds_to_buffer(augroup, bufnr, autocmds)
   end
 end
 
--- Deletes autocmds associated with a specific buffer and autocmd group.
+-- deletes autocmds associated with a specific buffer and autocmd group.
 function M.del_autocmds_from_buffer(augroup, bufnr)
   -- Attempt to retrieve existing autocmds associated with the specified augroup and bufnr
   local cmds_found, cmds = pcall(vim.api.nvim_get_autocmds, { group = augroup, buffer = bufnr })
 
-  -- If retrieval was successful
+  -- if retrieval was successful
   if cmds_found then
     -- map over each retrieved autocmd and delete it
     vim.tbl_map(function(cmd)
@@ -93,8 +92,8 @@ function M.get_icon(kind, padding, no_fallback)
   end
   local icon_pack = vim.g.icons_enabled and 'icons' or 'text'
   if not M[icon_pack] then
-    M.icons = require 'core.icons'
-    M.text = require 'core.icons'
+    M.icons = require 'core.art'
+    M.text = require 'core.art'
   end
   local icon = M[icon_pack] and M[icon_pack][kind]
   return icon and icon .. string.rep(' ', padding or 0) or ''
@@ -180,8 +179,8 @@ function M.setFiletype()
   end)
 end
 
--- Convenient wapper to save code when we Trigger events.
--- To listen for a event triggered by this function you can use `autocmd`.
+-- convenient wapper to save code when we Trigger events.
+-- to listen for a event triggered by this function you can use `autocmd`.
 function M.trigger_event(event, is_urgent)
   -- define behavior
   local function trigger()
@@ -202,8 +201,8 @@ function M.trigger_event(event, is_urgent)
   end
 end
 
---- Convert a path to the path format of the current operative system.
---- It converts 'slash' to 'inverted slash' if on windows, and vice versa on UNIX.
+--- convert a path to the path format of the current operative system.
+--- it converts 'slash' to 'inverted slash' if on windows, and vice versa on UNIX.
 function M.os_path(path)
   if path == nil then
     return nil
@@ -213,7 +212,7 @@ function M.os_path(path)
   return string.gsub(path, '[/\\]', separator)
 end
 
--- Get the options of a plugin managed by lazy.
+-- get the options of a plugin managed by lazy.
 function M.get_plugin_opts(plugin)
   local lazy_config_avail, lazy_config = pcall(require, 'lazy.core.config')
   local lazy_plugin_avail, lazy_plugin = pcall(require, 'lazy.core.plugin')
@@ -227,7 +226,7 @@ function M.get_plugin_opts(plugin)
   return opts
 end
 
--- Returns true if the file is considered a big file,
+-- returns true if the file is considered a big file,
 -- according to the criteria defined in `vim.g.big_file`.
 function M.is_big_file(bufnr)
   if bufnr == nil then
@@ -241,7 +240,7 @@ end
 
 -- check:
 M.check = {
-  -- Provides check fn to check commands and files etc.
+  -- provides check fn to check commands and files etc.
   vimcmd = function(string)
     if vim.fn.exists(':' .. string) > 0 then
       return true

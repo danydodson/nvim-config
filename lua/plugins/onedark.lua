@@ -14,6 +14,10 @@ return {
         code_style = {
           comments = 'none',
         },
+        colors = {
+          -- bg0 = '#282b32',
+        },
+        highlights = {},
         diagnostics = {
           darker = false,
           undercurl = false,

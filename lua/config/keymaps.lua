@@ -15,9 +15,12 @@ map({ 'i', 'x', 'n', 's' }, '<C-s>', '<cmd>wa<cr><esc>', { desc = 'save all' })
 map('n', '<Esc>', '<cmd>nohlsearch<CR>', { desc = 'escape and clear hlsearch' })
 
 -- lazy shortcuts
-map('n', '<leader>ll', '<cmd>Lazy<CR>', { noremap = true, silent = true, desc = 'open lazy configs' })
 map('n', '<leader>aa', '<cmd>Alpha<cr>', { silent = true, desc = 'open alpha' })
+map('n', '<leader>ll', '<cmd>Lazy<CR>', { noremap = true, silent = true, desc = 'open lazy configs' })
 map('n', '<leader>pp', '<cmd>Telescope projects<CR>', { noremap = true, silent = true, desc = 'open projects' })
+
+-- showkeys
+map('n', '<Leader>tk', ':ShowkeysToggle<CR>', { remap = false, desc = 'toggle showkeys' })
 
 -- comments
 del('n', 'gb')
@@ -33,9 +36,9 @@ map('n', '<Leader>zl', 'o<Esc>0"_D', { remap = false, desc = 'create blank line 
 map('n', '<Leader>zd', 'm`""Y""P``', { remap = false, desc = 'duplicate line' })
 map('x', '<Leader>zd', '""Y""Pgv', { remap = false, desc = 'duplicate selection' })
 
--- folding lines
-map('n', 'zR', require('ufo').openAllFolds, { desc = 'open all folds' })
-map('n', 'zM', require('ufo').closeAllFolds, { desc = 'close all folds' })
+-- better indenting
+map('v', '<', '<gv', { desc = 'indent left' })
+map('v', '>', '>gv', { desc = 'indent right' })
 
 -- line controls
 map('n', '<S-k>', '<cmd>m .-2<cr>==', { desc = 'move up' })
@@ -45,6 +48,16 @@ map('i', '<S-k>', '<esc><cmd>m .-2<cr>==gi', { desc = 'move up' })
 map('v', '<S-j>', ":m '>+1<cr>gv=gv", { desc = 'move down' })
 map('v', '<S-k>', ":m '<-2<cr>gv=gv", { desc = 'move up' })
 
+-- buffer life
+map('n', '<leader>bn', '<cmd>enew<cr>', { remap = true, desc = 'new buffer' })
+map('n', '<leader>bd', '<cmd>bd %<cr>', { remap = true, desc = 'delete buffer' })
+
+-- window controls
+map('n', '<C-i>', require('smart-splits').resize_up, { noremap = true, desc = 'resize split up' })
+map('n', '<C-u>', require('smart-splits').resize_down, { noremap = true, desc = 'resize split down' })
+map('n', '<C-n>', require('smart-splits').resize_left, { noremap = true, desc = 'resize split left' })
+map('n', '<C-m>', require('smart-splits').resize_right, { noremap = true, desc = 'resize split right' })
+
 -- tab life
 map('n', '<leader><tab><tab>', '<cmd>tabnew<cr>', { desc = 'new tab' })
 map('n', '<leader><tab>c', '<cmd>tabclose<cr>', { desc = 'close tab' })
@@ -52,7 +65,7 @@ map('n', '<leader><tab>n', '<cmd>tabnext<cr>', { desc = 'next tab' })
 map('n', '<leader><tab>p', '<cmd>tabprevious<cr>', { desc = 'previous tab' })
 
 -- window life
-map('n', '<leader>up', '<c-w>', { desc = 'windows', remap = true })
+map('n', '<leader>up', '<c-w>', { remap = true, desc = 'windows' })
 map('n', '<leader>u-', '<C-W>s', { remap = true, desc = 'split window below' })
 map('n', '<leader>u|', '<C-W>v', { remap = true, desc = 'split window right' })
 map('n', '<leader>ud', '<C-W>c', { remap = true, desc = 'delete window' })

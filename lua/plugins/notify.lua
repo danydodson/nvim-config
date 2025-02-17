@@ -5,9 +5,13 @@ return {
     'rcarriga/nvim-notify',
     event = 'User BaseDefered',
     opts = function()
+      require('notify').setup {
+        background_colour = '#000000',
+      }
       return {
         timeout = 5500,
         fps = 144,
+
         max_height = function()
           return math.floor(vim.o.lines * 0.75)
         end,
@@ -32,6 +36,7 @@ return {
         end,
       }
     end,
+
     config = function(_, opts)
       local notify = require 'notify'
       notify.setup(opts)
