@@ -9,12 +9,13 @@ return {
     config = function()
       require('onedark').setup {
         style = 'darker',
-        transparent = false,
+        transparent = true,
         ending_tildes = false,
         code_style = {
           comments = 'none',
         },
         colors = {
+          bg0 = '#1f2328'
           -- bg0 = '#282b32',
         },
         highlights = {},
